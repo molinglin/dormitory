@@ -1,7 +1,6 @@
 package cn.zust.se.controller;
 
 import cn.zust.se.eneity.CommonResult;
-import cn.zust.se.eneity.User;
 import cn.zust.se.service.UserService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
@@ -10,11 +9,12 @@ import javax.annotation.Resource;
 import java.util.Objects;
 
 @RestController
-public class Login {
+@RequestMapping("/user")
+public class UserController {
     @Resource
     UserService userService;
-//    @ApiOperation(value = "登录")
-    @RequestMapping("")
+    @ApiOperation(value = "登录")
+    @GetMapping("/login")
     @ResponseBody
     public CommonResult<Object> login(@RequestParam("username") String username, @RequestParam("password") String password) {
         String pw = (userService.login(username).getPassword());
