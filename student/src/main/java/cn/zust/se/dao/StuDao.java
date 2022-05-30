@@ -13,15 +13,15 @@ public interface StuDao {
     @Select("select * from stu")
     List<Stu> getsAll();
     @Select("select * from stu where uid=#{uid}")
-    Stu getStuByUid(Integer uid);
+    Stu getStuByUid(String  uid);
     @Select("select * from stu where name=#{name}")
     Stu getStuByName(String name);
     @Select("select * from stu where dormitory=#{dormitory}")
-    Stu getStudByDormitory(String dormitory);
+    List<Stu> getStudByDormitory(String dormitory);//通过寝室号找学生
     int create(Stu stu);
     @Delete("delete * from stu where id=#{id}")
     int delete(Integer id);
     @Update("update stu set dormitory=#{dormitory} where id=#{id}")
-    int updateDormitory(@Param("id") Integer id,@Param("dormitory") String dormitory);
+    int updateDormitory(@Param("id") Integer id,@Param("dormitory") String dormitory);//修改寝室
 
 }

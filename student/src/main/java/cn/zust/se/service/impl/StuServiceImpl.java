@@ -27,7 +27,7 @@ public class StuServiceImpl implements StuService {
     }
 
     @Override
-    public Stu getStuByUid(Integer uid) {
+    public Stu getStuByUid(String uid) {
         return stuDao.getStuByUid(uid);
     }
 
@@ -44,6 +44,16 @@ public class StuServiceImpl implements StuService {
     @Override
     public int delete(Integer id) {
         return stuDao.delete(id);
+    }
+
+    @Override
+    public int updateDormitory(Integer id, String dormitory) {
+        return stuDao.updateDormitory(id,dormitory);
+    }
+
+    @Override
+    public List<Stu> getStudByDormitory(String dormitory) {
+        return stuDao.getStudByDormitory(dormitory);
     }
 
 

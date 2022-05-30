@@ -21,8 +21,8 @@ public class StuController {
     @Autowired
     StuService stuService;
 
-    @ApiOperation(value = "获取学生信息")
-    @GetMapping("/students/{id}")
+    @ApiOperation(value = "根据id获取学生信息")
+    @GetMapping("/students/Id/{id}")
     public CommonResult<Stu> getStuById(@ApiParam("id") @PathVariable("id") Integer id){
         Stu stu = stuService.getStuById(id);
         if(stu!=null){
@@ -31,6 +31,27 @@ public class StuController {
             return new CommonResult<Stu>(400,"查找失败",null);
         }
     }
+    @ApiOperation(value = "根据学号获取学生信息")
+    @GetMapping("/students/uid/{uid}")
+    public CommonResult<Stu> getStuByUid(@ApiParam("uid") @PathVariable("uid") String uid){
+        Stu stu = stuService.getStuByUid(uid);
+        if(stu!=null){
+            return new CommonResult<Stu>(200,"查询成功",stu);
+        }else {
+            return new CommonResult<Stu>(400,"查找失败",null);
+        }
+    }
+    @ApiOperation(value = "根据名字获取学生信息")
+    @GetMapping("/students/name/{name}")
+    public CommonResult<Stu> getStuByName(@ApiParam("name") @PathVariable("name") String name){
+        Stu stu = stuService.getStuByName(name);
+        if(stu!=null){
+            return new CommonResult<Stu>(200,"查询成功",stu);
+        }else {
+            return new CommonResult<Stu>(400,"查找失败",null);
+        }
+    }
+
 //    @ApiOperation(value = "获取所有学生信息")
 //    @PostMapping("/show")
 //    public CommonResult<List> show(){
