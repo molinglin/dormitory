@@ -1,9 +1,7 @@
 package cn.zust.se.dao;
 
 import cn.zust.se.eneity.Stu;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -18,8 +16,12 @@ public interface StuDao {
     Stu getStuByUid(Integer uid);
     @Select("select * from stu where name=#{name}")
     Stu getStuByName(String name);
-
+    @Select("select * from stu where dormitory=#{dormitory}")
+    Stu getStudByDormitory(String dormitory);
     int create(Stu stu);
     @Delete("delete * from stu where id=#{id}")
     int delete(Integer id);
+    @Update("update stu set dormitory=#{dormitory} where id=#{id}")
+    int updateDormitory(@Param("id") Integer id,@Param("dormitory") String dormitory);
+
 }

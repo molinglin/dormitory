@@ -18,4 +18,5 @@ public class Stu implements Serializable {
     private String college;
     private String major;
     private String classes;
+    private String dormitory;
 }
