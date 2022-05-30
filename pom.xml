@@ -10,13 +10,13 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>common</module>
-        <module>student</module>
         <module>masterConsumer</module>
         <module>adminConsumer</module>
         <module>dormitoryAllocation</module>
         <module>lookupProvider</module>
         <module>user</module>
         <module>building</module>
+        <module>student</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

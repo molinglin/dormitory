@@ -10,4 +10,4 @@ spring:
 mybatis:
   mapper-locations:
     - classpath:mapper/StuMapper.xml
-  type-aliases-package: cn.zust.se.entity
+  type-aliases-package: cn.zust.se.eneity
