@@ -3,7 +3,7 @@ package cn.zust.se.eneity;
 import lombok.Data;
 
 @Data
-public class master {
+public class Master {
     private Integer id;
     private String did;
     private String name;
