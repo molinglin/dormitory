@@ -51,7 +51,16 @@ public class StuController {
             return new CommonResult<Stu>(400,"查找失败",null);
         }
     }
-
+    @ApiOperation(value = "根据寝室号获取学生列表")
+    @GetMapping("/students/dormitory/{dormitory}")
+    public CommonResult<List> getStuByDormitory(@ApiParam("dormitory") @PathVariable("dormitory") String dormitory){
+        List<Stu> students= stuService.getStudByDormitory(dormitory);
+        if(students!=null){
+            return new CommonResult<List>(200,"查询成功",students);
+        }else {
+            return new CommonResult<List>(400,"查找失败",null);
+        }
+    }
 //    @ApiOperation(value = "获取所有学生信息")
 //    @PostMapping("/show")
 //    public CommonResult<List> show(){

@@ -29,7 +29,7 @@ public class SwaggerConfig {
         return new ApiInfoBuilder()
                 .title("学生的接口文档")
                 .description("学生相关接口的文档")
-                .termsOfServiceUrl("http://localhost:9001")
+                .termsOfServiceUrl("http://localhost:9001/swagger-ui.html")
                 .version("1.0")
                 .build();
     }
