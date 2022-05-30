@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3308/yt?serverTimezone=UTC&characterEncoding=utf-8&userUnicode=true&useSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
+server:
+  port: 8084
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
