@@ -14,4 +14,19 @@ public class UserServiceImpl implements UserService {
     public User login(String username) {
         return userDao.login(username);
     }
+
+    @Override
+    public Integer updateMaster(String did, String phone, Integer building_id) {
+        return userDao.updateMaster(did, phone, building_id);
+    }
+
+    @Override
+    public Integer updateStu(String uid, String phone, String college, String major, String classes) {
+        return userDao.updateStu(uid, phone, college, major, classes);
+    }
+
+    @Override
+    public Integer updateUserPw(String username, String password) {
+        return userDao.updateUserPw(username,password);
+    }
 }
