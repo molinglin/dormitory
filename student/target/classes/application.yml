@@ -11,3 +11,7 @@ mybatis:
   mapper-locations:
     - classpath:mapper/StuMapper.xml
   type-aliases-package: cn.zust.se.eneity
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true

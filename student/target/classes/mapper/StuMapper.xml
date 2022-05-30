@@ -4,6 +4,6 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.zust.se.dao.StuDao">
     <insert id="create" parameterType="Stu" useGeneratedKeys="true" keyProperty="id">
-        insert into stu(uid,name,gender,phone,college,major,classes) values(#{uid},#{name},#{gender},#{phone},#{college},#{major},#{classes});
+        insert into stu(uid,name,gender,phone,college,major,classes,dormitory) values(#{uid},#{name},#{gender},#{phone},#{college},#{major},#{classes},#{dormitory});
     </insert>
 </mapper>
