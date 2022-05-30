@@ -6,5 +6,4 @@ import org.springframework.stereotype.Repository;
 @Mapper
 @Repository
 public interface userDao {
-    public
 }
