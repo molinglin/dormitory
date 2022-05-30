@@ -6,7 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="masterConsumer" />
+        <module name="dormitoryAllocation" />
+        <module name="adminConsumer" />
         <module name="common" />
+        <module name="lookupProvider" />
+        <module name="stuConsumer" />
+        <module name="user" />
       </profile>
     </annotationProcessing>
   </component>
