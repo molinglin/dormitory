@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 @Mapper
 @Repository
-public interface userDao {
+public interface UserDao {
     @Select("select * from user where username=#{username}")
     User login(String username,String password);
 }
