@@ -13,7 +13,7 @@ import java.util.Objects;
 public class UserController {
     @Resource
     UserService userService;
-    @ApiOperation(value = "登录")
+//    @ApiOperation(value = "登录")
     @GetMapping("/login")
     @ResponseBody
     public CommonResult<Object> login(@RequestParam("username") String username, @RequestParam("password") String password) {
