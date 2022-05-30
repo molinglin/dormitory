@@ -14,6 +14,7 @@
         <module name="student" />
         <module name="lookupProvider" />
         <module name="user" />
+        <module name="building" />
       </profile>
     </annotationProcessing>
   </component>
