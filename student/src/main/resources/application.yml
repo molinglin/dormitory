@@ -1,6 +1,8 @@
 server:
   port: 9001
 spring:
+  application:
+    name: dormitory-student-service
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
@@ -8,11 +10,14 @@ spring:
     username: root
     password: 123456
   cloud:
-    zookeeper:
+    nacos:
       discovery:
-         register: true
-         enabled: true
-      connect-string: localhost:2181
+        server-addr: localhost:8848
+#    zookeeper:
+#      discovery:
+#         register: true
+#         enabled: true
+#      connect-string: localhost:2181
 mybatis:
   mapper-locations:
     - classpath:mapper/StuMapper.xml
