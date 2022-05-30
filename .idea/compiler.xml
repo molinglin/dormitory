@@ -7,7 +7,6 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="masterConsumer" />
         <module name="dormitoryAllocation" />
         <module name="adminConsumer" />
         <module name="common" />
@@ -15,8 +14,12 @@
         <module name="lookupProvider" />
         <module name="user" />
         <module name="building" />
+        <module name="master" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="masterConsumer" target="8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

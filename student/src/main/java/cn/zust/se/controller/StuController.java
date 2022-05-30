@@ -57,6 +57,7 @@ public class StuController {
     @ApiOperation(value = "添加学生")
     @PostMapping("/students")
     public CommonResult create(@RequestBody Stu stu){
+
         int i = stuService.create(stu);
         if(i!=0){
             return new CommonResult(200,"添加成功",i);
