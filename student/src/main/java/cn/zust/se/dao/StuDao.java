@@ -1,6 +1,7 @@
 package cn.zust.se.dao;
 
 import cn.zust.se.eneity.Stu;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -17,4 +18,8 @@ public interface StuDao {
     Stu getStuByUid(Integer uid);
     @Select("select * from stu where name=#{name}")
     Stu getStuByName(String name);
+
+    int create(Stu stu);
+    @Delete("delete * from stu where id=#{id}")
+    int delete(Integer id);
 }
