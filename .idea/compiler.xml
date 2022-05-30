@@ -10,10 +10,13 @@
         <module name="dormitoryAllocation" />
         <module name="adminConsumer" />
         <module name="common" />
+        <module name="student" />
         <module name="lookupProvider" />
-        <module name="stuConsumer" />
         <module name="user" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="student" target="8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

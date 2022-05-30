@@ -10,12 +10,13 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>common</module>
-        <module>stuConsumer</module>
+        <module>student</module>
         <module>masterConsumer</module>
         <module>adminConsumer</module>
         <module>dormitoryAllocation</module>
         <module>lookupProvider</module>
         <module>user</module>
+        <module>student</module>
     </modules>
 
     <properties>
