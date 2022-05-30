@@ -20,14 +20,14 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="adminConsumer" options="-parameters" />
-      <module name="building" options="-parameters" />
-      <module name="common" options="-parameters" />
-      <module name="dormitoryAllocation" options="-parameters" />
-      <module name="lookupProvider" options="-parameters" />
-      <module name="masterConsumer" options="-parameters" />
-      <module name="student" options="-parameters" />
-      <module name="user" options="-parameters" />
+      <module name="adminConsumer" options="" />
+      <module name="building" options="" />
+      <module name="common" options="" />
+      <module name="dormitoryAllocation" options="" />
+      <module name="lookupProvider" options="" />
+      <module name="masterConsumer" options="" />
+      <module name="student" options="" />
+      <module name="user" options="" />
     </option>
   </component>
 </project>
