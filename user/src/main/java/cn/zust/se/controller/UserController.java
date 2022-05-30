@@ -2,19 +2,20 @@ package cn.zust.se.controller;
 
 import cn.zust.se.eneity.CommonResult;
 import cn.zust.se.service.UserService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.checkerframework.checker.units.qual.C;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.Objects;
-
+@Api(value = "用户接口")
 @RestController
 @RequestMapping("/user")
 public class UserController {
     @Resource
     UserService userService;
-//    @ApiOperation(value = "登录")
+    @ApiOperation(value = "登录")
     @GetMapping("/login")
     @ResponseBody
     public CommonResult<Object> login(@RequestParam("username") String username, @RequestParam("password") String password) {
@@ -32,6 +33,7 @@ public class UserController {
         return commonResult;
     }
 
+    @ApiOperation("修改密码")
     @GetMapping("/updateUserPw")
     @ResponseBody
     public CommonResult<Object> updateUserPw(@RequestParam("username") String username, @RequestParam("password") String password){
@@ -44,6 +46,7 @@ public class UserController {
         }
     }
 
+    @ApiOperation("修改学生信息")
     @GetMapping("/updateStu")
     @ResponseBody
     public CommonResult<Object> updateStu(@RequestParam("uid") String uid,@RequestParam("phone") String phone,@RequestParam("college") String college,@RequestParam("major") String major,@RequestParam("classes") String classes){
@@ -54,6 +57,7 @@ public class UserController {
         }
     }
 
+    @ApiOperation("修改宿管信息")
     @GetMapping("/updateMaster")
     @ResponseBody
     public CommonResult<Object> updateMaster(@RequestParam("did")String did,@RequestParam("phone")String phone,@RequestParam("building_id")Integer building_id){
