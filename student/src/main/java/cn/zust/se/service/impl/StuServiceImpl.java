@@ -3,6 +3,8 @@ package cn.zust.se.service.impl;
 import cn.zust.se.dao.StuDao;
 import cn.zust.se.eneity.Stu;
 import cn.zust.se.service.StuService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,4 +45,6 @@ public class StuServiceImpl implements StuService {
     public int delete(Integer id) {
         return stuDao.delete(id);
     }
+
+
 }
