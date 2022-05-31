@@ -1,6 +1,8 @@
 package cn.zust.se.service.impl;
 
 import cn.zust.se.dao.UserDao;
+import cn.zust.se.eneity.Master;
+import cn.zust.se.eneity.Stu;
 import cn.zust.se.eneity.User;
 import cn.zust.se.service.UserService;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public User login(String username) {
         return userDao.login(username);
+    }
+
+    @Override
+    public Stu selStu(String uid) {
+        return userDao.selStu(uid);
+    }
+
+    @Override
+    public Master selMaster(String did) {
+        return userDao.selMaster(did);
     }
 
     @Override
