@@ -1,5 +1,7 @@
 package cn.zust.se.service;
 
+import cn.zust.se.eneity.Master;
+import cn.zust.se.eneity.Stu;
 import cn.zust.se.eneity.User;
 
 public interface UserService {
@@ -7,4 +9,6 @@ public interface UserService {
     Integer updateUserPw(String username,String password);
     Integer updateStu(String uid,String phone,String college,String major,String classes);
     Integer updateMaster(String did,String phone,Integer building_id);
+    Stu selStu(String uid);
+    Master selMaster(String did);
 }
