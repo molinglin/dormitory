@@ -11,6 +11,7 @@
         <module name="bed" />
         <module name="common" />
         <module name="student" />
+        <module name="information" />
         <module name="user" />
         <module name="building" />
         <module name="master" />
