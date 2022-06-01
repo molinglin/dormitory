@@ -7,7 +7,6 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.checkerframework.checker.units.qual.C;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,7 +28,7 @@ public class BedController {
         PageHelper.startPage(pageNum,5);
         List<Bed> beds=bedService.selEmptyBeds();
         PageInfo<Bed> pageInfo=new PageInfo<>(beds);
-        if(beds!=null){
+        if(beds.size()!=0){
             return new CommonResult(200,"success",pageInfo.getList());
         }else {
             return new CommonResult (400,"fail",null);
@@ -42,7 +41,7 @@ public class BedController {
         PageHelper.startPage(pageNum,5);
         List<Bed> beds=bedService.selEmptyBedsByBuilding(buildingid);
         PageInfo<Bed> pageInfo=new PageInfo<>(beds);
-        if(beds!=null){
+        if(beds.size()!=0){
             return new CommonResult(200,"success",pageInfo.getList());
         }else {
             return new CommonResult (400,"fail",null);
@@ -55,7 +54,7 @@ public class BedController {
         PageHelper.startPage(pageNum,5);
         List<Bed> beds=bedService.selEmptyBedsByFloor(floor);
         PageInfo<Bed> pageInfo=new PageInfo<>(beds);
-        if(beds!=null){
+        if(beds.size()!=0){
             return new CommonResult(200,"success",pageInfo.getList());
         }else {
             return new CommonResult (400,"fail",null);
@@ -68,7 +67,7 @@ public class BedController {
         PageHelper.startPage(pageNum,5);
         List<Bed> beds=bedService.selEmptyBedsByBAndF(buildingid,floor);
         PageInfo<Bed> pageInfo=new PageInfo<>(beds);
-        if(beds!=null){
+        if(beds.size()!=0){
             return new CommonResult(200,"success",pageInfo.getList());
         }else {
             return new CommonResult (400,"fail",null);
@@ -81,7 +80,7 @@ public class BedController {
         PageHelper.startPage(pageNum,5);
         List<Bed> beds=bedService.selAllBeds();
         PageInfo<Bed> pageInfo=new PageInfo<>(beds);
-        if(beds!=null){
+        if(beds.size()!=0){
             return new CommonResult(200,"success",pageInfo.getList());
         }else {
             return new CommonResult (400,"fail",null);
@@ -94,7 +93,7 @@ public class BedController {
         PageHelper.startPage(pageNum,5);
         List<Bed> beds=bedService.selBedsByBuilding(buildingid);
         PageInfo<Bed> pageInfo=new PageInfo<>(beds);
-        if(beds!=null){
+        if(beds.size()!=0){
             return new CommonResult(200,"success",pageInfo.getList());
         }else {
             return new CommonResult (400,"fail",null);
@@ -107,7 +106,7 @@ public class BedController {
         PageHelper.startPage(pageNum,5);
         List<Bed> beds=bedService.selBedsByFloor(floor);
         PageInfo<Bed> pageInfo=new PageInfo<>(beds);
-        if(beds!=null){
+        if(beds.size()!=0){
             return new CommonResult(200,"success",pageInfo.getList());
         }else {
             return new CommonResult (400,"fail",null);
@@ -120,7 +119,7 @@ public class BedController {
         PageHelper.startPage(pageNum,1);
         List<Bed> beds=bedService.selBedsByBAndF(buildingid,floor);
         PageInfo<Bed> pageInfo=new PageInfo<>(beds);
-        if(beds!=null){
+        if(beds.size()!=0){
             return new CommonResult(200,"success",pageInfo.getList());
         }else {
             return new CommonResult (400,"fail",null);
