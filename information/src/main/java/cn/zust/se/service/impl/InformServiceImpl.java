@@ -3,9 +3,7 @@ package cn.zust.se.service.impl;
 import cn.zust.se.dao.InformDao;
 import cn.zust.se.eneity.Inform;
 import cn.zust.se.service.InformService;
-import jdk.nashorn.internal.ir.annotations.Reference;
 import org.springframework.stereotype.Service;
-
 import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
