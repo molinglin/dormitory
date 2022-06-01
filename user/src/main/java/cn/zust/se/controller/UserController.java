@@ -20,7 +20,7 @@ public class UserController {
     @ResponseBody
     public CommonResult<Object> login(@RequestParam("username") String username, @RequestParam("password") String password) {
         String pw = (userService.login(username).getPassword());
-        String type = (userService.login(username).getType());
+//        String type = (userService.login(username).getType());
         CommonResult<Object> commonResult = new CommonResult<>();
         if (Objects.equals(pw, password)) {
             commonResult.setCode(200);
