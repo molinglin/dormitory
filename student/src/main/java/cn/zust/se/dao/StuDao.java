@@ -23,5 +23,18 @@ public interface StuDao {
     int delete(Integer id);
     @Update("update stu set dormitory=#{dormitory} where id=#{id}")
     int updateDormitory(@Param("id") Integer id,@Param("dormitory") String dormitory);//修改寝室
-
+    @Update("update stu set buildingid=#{building} where id=#{id}")
+    int updateBuildingId(@Param("id") Integer id,@Param("buildingid") Integer buildingid);
+    @Update("update stu set bednum=#{bednum} where id=#{id}")
+    int updateBedNum(@Param("id") Integer id,@Param("bednum") Integer bednum);
+    @Update("update stu set gender=#{gender} where id=#{id}")
+    int updateGender(@Param("id") Integer id,@Param("gender") Integer gender);
+    @Update("update stu set name=#{name} where id=#{id}")
+    int updateName(@Param("id") Integer id,@Param("name") String name);
+    @Update("update stu set uid=#{uid} where id=#{id}")
+    int updateUid(@Param("id") Integer id,@Param("uid") String uid);
+    @Update("update stu set phone=#{phone} where id=#{id}")
+    int updatePhone(@Param("id") Integer id,@Param("uid") String phone);
+    @Update("update stu set college=#{college} where id=#{id}")
+    int updateCollege(@Param("id") Integer id,@Param("uid") String college);
 }
