@@ -19,7 +19,6 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="bed" target="8" />
       <module name="masterConsumer" target="8" />
     </bytecodeTargetLevel>
   </component>
