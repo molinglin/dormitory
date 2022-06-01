@@ -10,12 +10,13 @@
 
     <modules>
         <module>common</module>
-        <module>dormitoryAllocation</module>
+        <module>dormitoryManagement</module>
         <module>user</module>
         <module>building</module>
         <module>student</module>
         <module>master</module>
         <module>bed</module>
+        <module>dormitoryManagement</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
