@@ -62,8 +62,8 @@ public class UserController {
     @ApiOperation("修改宿管信息")
     @GetMapping("/updateMaster")
     @ResponseBody
-    public CommonResult<Object> updateMaster(@RequestParam("did")String did,@RequestParam("phone")String phone,@RequestParam("building_id")Integer building_id){
-        if(userService.updateMaster(did, phone, building_id)==1){
+    public CommonResult<Object> updateMaster(@RequestParam("did")String did,@RequestParam("phone")String phone,@RequestParam("buildingid")Integer buildingid){
+        if(userService.updateMaster(did, phone, buildingid)==1){
             return new CommonResult<>(200,"修改成功");
         }else {
             return new CommonResult<>(400,"修改失败");

@@ -19,8 +19,8 @@ public interface UserDao {
     Integer updateStu(@Param("uid") String uid,@Param("phone") String phone,@Param("college") String college,@Param("major") String major,@Param("classes") String classes);
     @Update("update user set password=#{password} where username=#{username}")
     Integer updateUserPw(@Param("username") String username,@Param("password") String password);
-    @Update("update master set phone=#{phone},building_id=#{building_id} where did=#{did}")
-    Integer updateMaster(@Param("did") String did,@Param("phone") String phone,@Param("building_id") Integer building_id);
+    @Update("update master set phone=#{phone},buildingid=#{buildingid} where did=#{did}")
+    Integer updateMaster(@Param("did") String did,@Param("phone") String phone,@Param("buildingid") Integer buildingid);
     @Select("select * from stu where uid=#{uid}")
     Stu selStu(String uid);
     @Select("select * from master where did=#{did}")

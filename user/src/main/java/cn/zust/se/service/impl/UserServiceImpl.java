@@ -28,8 +28,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Integer updateMaster(String did, String phone, Integer building_id) {
-        return userDao.updateMaster(did, phone, building_id);
+    public Integer updateMaster(String did, String phone, Integer buildingid) {
+        return userDao.updateMaster(did, phone, buildingid);
     }
 
     @Override
