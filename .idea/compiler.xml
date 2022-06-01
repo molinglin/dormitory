@@ -20,7 +20,6 @@
     <bytecodeTargetLevel>
       <module name="adminConsumer" target="8" />
       <module name="imformation" target="8" />
-      <module name="information" target="8" />
       <module name="masterConsumer" target="8" />
     </bytecodeTargetLevel>
   </component>
