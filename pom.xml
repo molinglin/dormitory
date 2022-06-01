@@ -10,13 +10,12 @@
 
     <modules>
         <module>common</module>
-        <module>adminConsumer</module>
         <module>dormitoryAllocation</module>
-        <module>lookupProvider</module>
         <module>user</module>
         <module>building</module>
         <module>student</module>
         <module>master</module>
+        <module>bed</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

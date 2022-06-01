@@ -20,7 +20,7 @@ public class UserController {
     @ResponseBody
     public CommonResult<Object> login(@RequestParam("username") String username, @RequestParam("password") String password) {
         String pw = (userService.login(username).getPassword());
-        String type = (userService.login(username).getType());
+//        String type = (userService.login(username).getType());
         CommonResult<Object> commonResult = new CommonResult<>();
         if (Objects.equals(pw, password)) {
             commonResult.setCode(200);
@@ -39,8 +39,10 @@ public class UserController {
     public CommonResult<Object> updateUserPw(@RequestParam("username") String username, @RequestParam("password") String password){
         String pw=(userService.login(username).getPassword());
         if (!Objects.equals(pw, password)){
-            userService.updateUserPw(username,password);
-            return new CommonResult<>(200,"修改成功");
+            if(userService.updateUserPw(username,password)==1){
+                return new CommonResult<>(200,"修改成功");
+            }else
+                return new CommonResult<>(400,"修改失败");
         }else {
             return new CommonResult<>(400,"密码相同");
         }
