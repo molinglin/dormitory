@@ -1,13 +1,10 @@
 package cn.zust.se.dao;
 
 import cn.zust.se.eneity.Application;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
-
+@Mapper
 public interface ApplicationDao {
     @Select("select * from application where id=#{id}")
     Application selectApplication(Integer id);
