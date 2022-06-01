@@ -16,7 +16,7 @@
         <module>student</module>
         <module>master</module>
         <module>bed</module>
-        <module>dormitoryManagement</module>
+        <module>information</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

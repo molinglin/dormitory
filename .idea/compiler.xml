@@ -11,6 +11,7 @@
         <module name="dormitoryManagement" />
         <module name="common" />
         <module name="student" />
+        <module name="information" />
         <module name="user" />
         <module name="building" />
         <module name="master" />
@@ -20,7 +21,6 @@
       <module name="adminConsumer" target="8" />
       <module name="imformation" target="8" />
       <module name="information" target="8" />
-      <module name="lookupProvider" target="8" />
       <module name="masterConsumer" target="8" />
     </bytecodeTargetLevel>
   </component>
@@ -29,7 +29,7 @@
       <module name="adminConsumer" options="" />
       <module name="building" options="" />
       <module name="common" options="" />
-      <module name="dormitoryManagement" options="" />
+      <module name="dormitoryAllocation" options="" />
       <module name="imformation" options="" />
       <module name="masterConsumer" options="" />
       <module name="student" options="" />
