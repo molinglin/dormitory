@@ -2,6 +2,7 @@ package cn.zust.se.controller;
 
 import cn.zust.se.eneity.CommonResult;
 import cn.zust.se.eneity.Stu;
+import cn.zust.se.service.ImportService;
 import cn.zust.se.service.StuService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -9,17 +10,22 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.models.auth.In;
+import org.checkerframework.checker.units.qual.A;
 import org.checkerframework.checker.units.qual.C;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Map;
 
 @Api(value = "学生controller",tags ={"学生接口"})
 @RestController
 public class StuController {
     @Autowired
     StuService stuService;
+    @Autowired
+    ImportService importService;
 
     @ApiOperation(value = "根据id获取学生信息")
     @GetMapping("/students/Id/{id}")
@@ -83,6 +89,17 @@ public class StuController {
             return new CommonResult(200,"添加成功",i);
         }else {
             return new CommonResult(400,"添加失败",null);
+        }
+    }
+
+    @ApiOperation(value="Excel",notes="返回导入情况接口")
+    @PostMapping(value = "/students/excel")
+    public CommonResult excelProTbZbzs(@RequestParam("file") MultipartFile file){
+        Integer state = (Integer) importService.importStu(file).get("state");
+        if(state.equals(200)){
+            return new CommonResult<>(200,"添加成功",state);
+        }else {
+            return new CommonResult<>(500,"添加失败",null);
         }
     }
 }

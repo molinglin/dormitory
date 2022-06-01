@@ -6,4 +6,21 @@
     <insert id="create" parameterType="Stu" useGeneratedKeys="true" keyProperty="id">
         insert into stu(uid,name,gender,phone,college,major,classes,dormitory,buildingid,bednum) values(#{uid},#{name},#{gender},#{phone},#{college},#{major},#{classes},#{dormitory},#{buildingid},#{bednum});
     </insert>
+    <insert id="insertList" parameterType="java.util.List">
+        insert into stu(uid,name,gender,phone,college,major,classes,dormitory,buildingid,bednum) VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.uid},
+            #{item.name},
+            #{item.gender},
+            #{item.phone},
+            #{item.college},
+            #{item.major},
+            #{item.classes},
+            #{item.dormitory},
+            #{item.buildingid},
+            #{item.bednum}
+            )
+        </foreach>
+    </insert>
 </mapper>
