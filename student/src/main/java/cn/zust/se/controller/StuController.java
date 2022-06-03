@@ -74,7 +74,7 @@ public class StuController {
         List<Stu> stus = stuService.getsAll();
         PageInfo<Stu> pageInfo=new PageInfo<>(stus);
 
-        if(stus!=null){
+        if(!pageInfo.getList().isEmpty()){
             return new CommonResult<List>(200,"成功",pageInfo.getList());
         }else {
             return new CommonResult<>(400,"失败",null);
