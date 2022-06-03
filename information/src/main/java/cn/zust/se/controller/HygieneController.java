@@ -99,7 +99,7 @@ public class HygieneController {
         }
     }
 
-    @ApiOperation("添加成绩")
+    @ApiOperation("添加卫生成绩")
     @PostMapping("/insertHy")
     public CommonResult insertHy(Integer times,Integer buildingid,String dormitory,Integer result){
         if (hygieneService.insertHy(times, buildingid, dormitory, result)==1){
@@ -109,7 +109,7 @@ public class HygieneController {
         }
     }
 
-    @ApiOperation("批量添加")
+    @ApiOperation("excel批量导入卫生信息")
     @PostMapping("/insertHyByExcel")
     public CommonResult insertHyByExcel(@RequestParam("file")MultipartFile file){
         Integer state= (Integer) hygieneService.insertHyByExcel(file).get("state");
