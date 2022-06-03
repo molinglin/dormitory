@@ -1,6 +1,7 @@
 package cn.zust.se.dao;
 
 import cn.zust.se.eneity.Hygiene;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -23,4 +24,7 @@ public interface HygieneDao {
     List<Hygiene> selHyByBAndD(@Param("buildingid")Integer buildingid,@Param("dormitory")String dormitory);
     @Select("select * from hygiene where buildingid=#{buildingid} and times=#{times} and dormitory=#{dormitory}")
     List<Hygiene> selHyByBAndTAndD(@Param("buildingid") Integer buildingid,@Param("times") Integer times,@Param("dormitory") String dormitory);
+    @Insert("insert into hygiene(times,buildingid,dormitory,result) values (#{times},#{buildingid},#{dormitory},#{result}) ")
+    Integer insertHy(@Param("times") Integer times,@Param("buildingid")Integer buildingid,@Param("dormitory")String dormitory,@Param("result")Integer result);
+    Integer insertHyByExcel(List<Hygiene> hygiene);
 }
