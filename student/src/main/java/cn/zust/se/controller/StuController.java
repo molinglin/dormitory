@@ -102,4 +102,16 @@ public class StuController {
             return new CommonResult<>(500,"添加失败",null);
         }
     }
+    @ApiOperation(value="修改寝室信息",notes="修改寝室")
+    @PostMapping(value = "/students/update")
+    public CommonResult update(@RequestParam("id") Integer id,@RequestParam("dormitory") String dormitory,@RequestParam("buildingid") Integer buildingid,@RequestParam("bednum") Integer bednum){
+        int i = stuService.updateDormitory(id, dormitory);
+        int j = stuService.updateBuild(id,buildingid);
+        int k = stuService.updateBed(id, bednum);
+        if(i!=0&&j!=0&&k!=0){
+            return new CommonResult(200,"修改成功",1);
+        }else {
+            return new CommonResult(400,"修改失败",0);
+        }
+    }
 }

@@ -52,6 +52,16 @@ public class StuServiceImpl implements StuService {
     }
 
     @Override
+    public int updateBuild(Integer id, Integer buildingid) {
+        return stuDao.updateBuildingId(id,buildingid);
+    }
+
+    @Override
+    public int updateBed(Integer id, Integer bednum) {
+        return stuDao.updateBedNum(id,bednum);
+    }
+
+    @Override
     public List<Stu> getStudByDormitory(String dormitory) {
         return stuDao.getStudByDormitory(dormitory);
     }

@@ -26,3 +26,6 @@ pagehelper:
   helper-dialect: mysql
   reasonable: true
   support-methods-arguments: true
+feign:
+  client:
+    default-config: full

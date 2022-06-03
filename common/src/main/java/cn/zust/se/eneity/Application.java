@@ -8,7 +8,7 @@ public class Application {
     private String uid;
     private Integer buildingid;
     private String dormitory;
-    private String bednum;
+    private Integer bednum;
     private Integer access;
     private Integer type;
 }

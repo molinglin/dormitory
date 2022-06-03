@@ -14,5 +14,7 @@ public interface StuService {
     int create(Stu stu);
     int delete(Integer id);
     int updateDormitory( Integer id,  String dormitory);//修改寝室
+    int updateBuild( Integer id,  Integer buildingid);//修改建筑
+    int updateBed(Integer id,Integer bednum);
     List<Stu> getStudByDormitory(String dormitory);
 }

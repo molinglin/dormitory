@@ -4,6 +4,7 @@ import cn.zust.se.eneity.Application;
 import cn.zust.se.eneity.CommonResult;
 import cn.zust.se.eneity.Stu;
 import cn.zust.se.service.ApplicationService;
+import cn.zust.se.service.StuService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
@@ -23,6 +24,8 @@ import java.util.List;
 public class ApplicationController {
     @Autowired
     ApplicationService applicationService;
+    @Autowired
+    StuService stuService;
 
     @ApiOperation(value = "分页显示所有请求")
     @GetMapping("/")
@@ -112,6 +115,17 @@ public class ApplicationController {
     @ApiOperation(value = "同意申请")
     @GetMapping("/agree/{id}")
     private CommonResult agree(@PathVariable("id") Integer id){
+        Application application = applicationService.selectById(id);
+        Stu stu = stuService.getStuByUid(application.getUid()).getData();
+        Integer sid=stu.getId();
+        if(application.getType()==0){//换宿申请
+            CommonResult result = stuService.update(sid, application.getDormitory(), application.getBuildingid(), application.getBednum());
+            if(result.getCode()==400){
+                return new CommonResult(400,"修改失败",0);
+            }
+        }else {
+            stuService.update(sid,null,null,null);
+        }
         int i = applicationService.agree(id);
         if(i!=0){
             return new CommonResult(200,"同意成功",i);
