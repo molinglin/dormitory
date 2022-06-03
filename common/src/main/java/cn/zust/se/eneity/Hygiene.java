@@ -7,7 +7,7 @@ import java.util.Date;
 @Data
 public class Hygiene {
     public Integer id;
-    public Integer time;
+    public Integer times;
     public Integer buildingid;
     public String dormitory;
     public Integer result;
