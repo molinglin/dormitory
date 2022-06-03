@@ -60,8 +60,8 @@ public class HygieneServiceImpl implements HygieneService {
         List<Hygiene> hygienes = new ArrayList<>();
         try{
             if (!file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".")).equals(".xls") && !file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".")).equals(".xlsx")) {
-                resultMap.put("mete", "文件类型有误！请上传Excle文件");
-                throw new Exception("文件类型有误！请上传Excle文件");
+                resultMap.put("mete", "文件类型有误！请上传Excel文件");
+                throw new Exception("文件类型有误！请上传Excel文件");
             }
             List<List<Object>> olist = ImportExcelUtil.getListByExcel(file.getInputStream(), file.getOriginalFilename());
             resultMap.put("导入成功", 200);
@@ -76,7 +76,7 @@ public class HygieneServiceImpl implements HygieneService {
                     resultMap.put("mete", "时间不能为空");
                     throw new Exception("时间不能为空");
                 }
-                hygiene.setTime(Integer.parseInt(String.valueOf(list.get(0))));
+                hygiene.setTimes(Integer.parseInt(String.valueOf(list.get(0))));
 
                 if (String.valueOf(list.get(1)) == null || String.valueOf(list.get(1)).equals("")) {
                     resultMap.put("mete", "楼宇号不能为空");

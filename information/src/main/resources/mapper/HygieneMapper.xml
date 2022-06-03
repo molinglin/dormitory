@@ -6,12 +6,12 @@
     <insert id="insertHyByExcel" parameterType="java.util.List">
         insert into hygiene(times,buildingid,dormitory,result) values
         <foreach collection="list" item="item" separator=",">
-            {
-            #{item.times}
-            #{item.buildingid}
-            #{item.dormitory}
+            (
+            #{item.times},
+            #{item.buildingid},
+            #{item.dormitory},
             #{item.result}
-            }
+            )
         </foreach>
     </insert>
 </mapper>
