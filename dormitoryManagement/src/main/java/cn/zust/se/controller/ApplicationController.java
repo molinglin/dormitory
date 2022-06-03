@@ -47,6 +47,18 @@ public class ApplicationController {
             return new CommonResult<>(400,"失败",null);
         }
     }
+    @ApiOperation(value = "分页显示待办请求")
+    @GetMapping("/NoAccessPage")
+    public CommonResult<List<Application>> findNoAccessPage(@ApiParam(value = "pageNum") @RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum){
+        PageHelper.startPage(pageNum,5);
+        List<Application> applications = applicationService.selectsNoAccess();
+        PageInfo<Application> pageInfo=new PageInfo<>(applications);
+        if(!pageInfo.getList().isEmpty()){
+            return new CommonResult<>(200, "成功", pageInfo.getList());
+        }else {
+            return new CommonResult<>(400,"失败",null);
+        }
+    }
     @ApiOperation(value = "根据id查找请求")
     @GetMapping("/{id}")
     public CommonResult<Application> findById(@ApiParam("id")  @PathVariable("id") Integer id){
@@ -95,6 +107,26 @@ public class ApplicationController {
             return new CommonResult(200,"删除成功",i);
         }else {
             return new CommonResult(400,"删除失败",i);
+        }
+    }
+    @ApiOperation(value = "同意申请")
+    @GetMapping("/agree/{id}")
+    private CommonResult agree(@PathVariable("id") Integer id){
+        int i = applicationService.agree(id);
+        if(i!=0){
+            return new CommonResult(200,"同意成功",i);
+        }else {
+            return new CommonResult(400,"同意失败",i);
+        }
+    }
+    @ApiOperation(value = "拒绝申请")
+    @GetMapping("/reject/{id}")
+    private CommonResult reject(@PathVariable("id") Integer id){
+        int i = applicationService.reject(id);
+        if(i!=0){
+            return new CommonResult(200,"拒绝成功",i);
+        }else {
+            return new CommonResult(400,"拒绝失败",i);
         }
     }
 }

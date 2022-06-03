@@ -18,6 +18,6 @@ public interface ApplicationDao {
     int insert(Application application);
     @Update("update application set access=#{access} where id=#{id}")
     int updateAccess(@Param("id") Integer id,@Param("access") Integer access);
-    @Delete("delete * from application where id=#{id}")
+    @Delete("delete  from application where id=#{id}")
     int delete(Integer id);
 }

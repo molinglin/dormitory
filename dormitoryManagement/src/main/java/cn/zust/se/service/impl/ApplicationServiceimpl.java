@@ -70,5 +70,16 @@ public class ApplicationServiceimpl implements ApplicationService {
         return applicationDao.selectById(id);
     }
 
+    @Override
+    public int agree(Integer id) {
+        return applicationDao.updateAccess(id, 1);
+
+    }
+
+    @Override
+    public int reject(Integer id) {
+        return applicationDao.updateAccess(id,2);
+    }
+
 
 }

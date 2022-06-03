@@ -20,7 +20,7 @@ public interface StuDao {
     List<Stu> getStudByDormitory(String dormitory);//通过寝室号找学生
     int create(Stu stu);
     int insertList(List<Stu> list);
-    @Delete("delete * from stu where id=#{id}")
+    @Delete("delete  from stu where id=#{id}")
     int delete(Integer id);
     @Update("update stu set dormitory=#{dormitory} where id=#{id}")
     int updateDormitory(@Param("id") Integer id,@Param("dormitory") String dormitory);//修改寝室

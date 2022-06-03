@@ -15,4 +15,6 @@ public interface ApplicationService {
     List<Application> selectsAccess();//已通过请求
     List<Application> selectByUid(Integer uid);
     Application selectById(Integer id);
+    int agree(Integer id);//同意请求
+    int reject(Integer id);//拒绝
 }
