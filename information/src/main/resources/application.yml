@@ -18,5 +18,5 @@ pagehelper:
   support-methods-arguments: true
 mybatis:
   mapper-locations:
-    - classpath:mapper/HygieneMapper.xml
+    - classpath:mapper/InformationMapper.xml
   type-aliases-package: cn.zust.se.eneity
