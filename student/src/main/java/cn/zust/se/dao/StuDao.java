@@ -14,8 +14,8 @@ public interface StuDao {
     List<Stu> getsAll();
     @Select("select * from stu where uid=#{uid}")
     Stu getStuByUid(String  uid);
-    @Select("select * from stu where name=#{name}")
-    Stu getStuByName(String name);
+    @Select("select * from stu where name like CONCAT('%',#{name},'%')")
+    List<Stu> getStuByName(String name);
     @Select("select * from stu where dormitory=#{dormitory}")
     List<Stu> getStudByDormitory(String dormitory);//通过寝室号找学生
     int create(Stu stu);

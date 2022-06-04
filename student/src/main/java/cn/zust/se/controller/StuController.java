@@ -49,12 +49,12 @@ public class StuController {
     }
     @ApiOperation(value = "根据名字获取学生信息")
     @GetMapping("/students/name/{name}")
-    public CommonResult<Stu> getStuByName(@ApiParam("name") @PathVariable("name") String name){
-        Stu stu = stuService.getStuByName(name);
-        if(stu!=null){
-            return new CommonResult<Stu>(200,"查询成功",stu);
+    public CommonResult<List<Stu>> getStuByName(@ApiParam("name") @PathVariable("name") String name){
+        List<Stu> students = stuService.getStuByName(name);
+        if(!students.isEmpty()){
+            return new CommonResult<>(200,"查询成功",students);
         }else {
-            return new CommonResult<Stu>(400,"查找失败",null);
+            return new CommonResult<>(400,"查找失败",null);
         }
     }
 //    @ApiOperation(value = "获取所有学生信息")

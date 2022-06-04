@@ -32,7 +32,7 @@ public class StuServiceImpl implements StuService {
     }
 
     @Override
-    public Stu getStuByName(String name) {
+    public List<Stu> getStuByName(String name) {
         return stuDao.getStuByName(name);
     }
 
