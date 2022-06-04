@@ -14,4 +14,9 @@
             )
         </foreach>
     </insert>
+
+<!--    <insert id="insertLack" parameterType="Lack" useGeneratedKeys="true" keyProperty="id">-->
+<!--        insert into lack(uid,time,buildingid,dormitory) values(#{uid},#{time},#{buildingid},#{dormitory});-->
+<!--    </insert>-->
+
 </mapper>
