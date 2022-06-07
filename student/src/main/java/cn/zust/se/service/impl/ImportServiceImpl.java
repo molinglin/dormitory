@@ -103,6 +103,7 @@ public class ImportServiceImpl implements ImportService {
 
                 }
                 stu.setBednum(Integer.parseInt(String.valueOf(list.get(9))));
+                stu.setStatus(0);
                 students.add(stu);
             }
 
