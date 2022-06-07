@@ -21,4 +21,5 @@ public class Stu implements Serializable {
     private String dormitory;
     private Integer buildingid;
     private Integer bednum;
+    private Integer status;
 }
