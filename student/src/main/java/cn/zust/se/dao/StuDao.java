@@ -13,7 +13,7 @@ public interface StuDao {
     @Select("select * from stu")
     List<Stu> getsAll();
     @Select("select * from stu where uid=#{uid}")
-    Stu getStuByUid(String  uid);
+    List<Stu> getStuByUid(String  uid);
     @Select("select * from stu where name like CONCAT('%',#{name},'%')")
     List<Stu> getStuByName(String name);
     @Select("select * from stu where dormitory like CONCAT('%',#{dormitory},'%')")

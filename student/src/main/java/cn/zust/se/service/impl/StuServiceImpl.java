@@ -27,7 +27,7 @@ public class StuServiceImpl implements StuService {
     }
 
     @Override
-    public Stu getStuByUid(String uid) {
+    public List<Stu> getStuByUid(String uid) {
         return stuDao.getStuByUid(uid);
     }
 

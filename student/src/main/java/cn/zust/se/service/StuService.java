@@ -10,7 +10,7 @@ import java.util.List;
 public interface StuService {
     Stu getStuById(Integer id);
     List<Stu> getsAll();
-    Stu getStuByUid(String uid);
+    List<Stu> getStuByUid(String uid);
     List<Stu> getStuByName(String name);
     List<Stu> getStudnan();
     List<Stu> getStudnv();
