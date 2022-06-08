@@ -32,4 +32,9 @@ public class LackServiceImpl implements LackService {
     public List<Lack> selLackByBuilding(Integer buildingid) {
         return lackDao.selLackByBuilding(buildingid);
     }
+
+    @Override
+    public Integer delLack(Integer id) {
+        return lackDao.delLack(id);
+    }
 }

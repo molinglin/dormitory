@@ -1,10 +1,7 @@
 package cn.zust.se.dao;
 
 import cn.zust.se.eneity.Lack;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
@@ -21,4 +18,6 @@ public interface LackDao {
     List<Lack> selLackByUid(String uid);
     @Select("select * from (select * from lack order by time desc)temp1 where buildingid=#{buildingid}")
     List<Lack> selLackByBuilding(Integer buildingid);
+    @Delete("delete from lack where id=#{id}")
+    Integer delLack(Integer id);
 }

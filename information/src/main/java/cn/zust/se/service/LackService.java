@@ -12,4 +12,5 @@ public interface LackService {
     List<Lack> selAllLack();
     List<Lack> selLackByUid(String uid);
     List<Lack> selLackByBuilding(Integer buildingid);
+    Integer delLack(Integer id);
 }

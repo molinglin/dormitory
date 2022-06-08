@@ -14,7 +14,7 @@
         <module>user</module>
         <module>building</module>
         <module>student</module>
-        <module>master</module>
+<!--        <module>master</module>-->
         <module>bed</module>
         <module>information</module>
     </modules>

@@ -66,4 +66,13 @@ public class LackController {
         }
     }
 
+    @ApiOperation("删除缺寝记录")
+    @DeleteMapping("/delLack")
+    public CommonResult delLack(Integer id){
+        if(lackService.delLack(id) == 1){
+            return new CommonResult<>(200,"success");
+        }else {
+            return new CommonResult<>(400,"fail");
+        }
+    }
 }

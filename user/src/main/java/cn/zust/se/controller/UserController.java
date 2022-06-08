@@ -39,7 +39,7 @@ public class UserController {
     }
 
     @ApiOperation("修改密码")
-    @GetMapping("/updateUserPw")
+    @PutMapping("/updateUserPw")
     @ResponseBody
     public CommonResult<Object> updateUserPw(@RequestParam("username") String username, @RequestParam("password") String password){
         String pw=(userService.login(username).getPassword());
@@ -54,7 +54,7 @@ public class UserController {
     }
 
     @ApiOperation("修改学生信息")
-    @GetMapping("/updateStu")
+    @PutMapping("/updateStu")
     @ResponseBody
     public CommonResult<Object> updateStu(@RequestParam("uid") String uid,@RequestParam("phone") String phone,@RequestParam("college") String college,@RequestParam("major") String major,@RequestParam("classes") String classes){
         if(userService.updateStu(uid, phone, college, major, classes)==1){
@@ -65,7 +65,7 @@ public class UserController {
     }
 
     @ApiOperation("修改宿管信息")
-    @GetMapping("/updateMaster")
+    @PutMapping("/updateMaster")
     @ResponseBody
     public CommonResult<Object> updateMaster(@RequestParam("did")String did,@RequestParam("phone")String phone,@RequestParam("buildingid")Integer buildingid){
         if(userService.updateMaster(did, phone, buildingid)==1){
@@ -76,7 +76,7 @@ public class UserController {
     }
 
     @ApiOperation("修改宿管权限")
-    @GetMapping("/updatePer")
+    @PutMapping("/updatePer")
     public CommonResult updatePer(String buildingid,String did){
         if(userService.updatePermissions(buildingid, did)==1){
             return new CommonResult<>(200,"success");
