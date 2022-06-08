@@ -26,6 +26,8 @@ public class HygieneController {
     public CommonResult selAllHy(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize){
         PageHelper.startPage(pageNum,pageSize);
         List<Hygiene> hygiene=hygieneService.selAllHy();
+        Integer count=hygieneService.selAllHy().size();
+//        System.out.println(count);
         PageInfo<Hygiene> pageInfo=new PageInfo<>(hygiene);
         if(hygiene.isEmpty()){
             return new CommonResult(400,"fail",null);
