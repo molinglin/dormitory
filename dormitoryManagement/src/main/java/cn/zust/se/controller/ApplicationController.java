@@ -29,8 +29,8 @@ public class ApplicationController {
 
     @ApiOperation(value = "分页显示所有请求")
     @GetMapping("/")
-    public CommonResult pageshow(@ApiParam(value = "pageNum") @RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum){
-        PageHelper.startPage(pageNum,5);
+    public CommonResult pageshow(@ApiParam(value = "pageNum") @RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@ApiParam("pageSize") @RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize){
+        PageHelper.startPage(pageNum,pageSize);
         List<Application> applications = applicationService.selects();
         PageInfo<Application> pageInfo=new PageInfo<>(applications);
 
@@ -52,8 +52,8 @@ public class ApplicationController {
     }
     @ApiOperation(value = "分页显示待办请求")
     @GetMapping("/NoAccessPage")
-    public CommonResult<List<Application>> findNoAccessPage(@ApiParam(value = "pageNum") @RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum){
-        PageHelper.startPage(pageNum,5);
+    public CommonResult<List<Application>> findNoAccessPage(@ApiParam(value = "pageNum") @RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@ApiParam("pageSize") @RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize){
+        PageHelper.startPage(pageNum,pageSize);
         List<Application> applications = applicationService.selectsNoAccess();
         PageInfo<Application> pageInfo=new PageInfo<>(applications);
         if(!pageInfo.getList().isEmpty()){
