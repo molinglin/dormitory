@@ -41,4 +41,9 @@ public class UserServiceImpl implements UserService {
     public Integer updateUserPw(String username, String password) {
         return userDao.updateUserPw(username,password);
     }
+
+    @Override
+    public Integer updatePermissions(String buildingid, String did) {
+        return userDao.updatePermissions(buildingid, did);
+    }
 }

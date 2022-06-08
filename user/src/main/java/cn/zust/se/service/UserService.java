@@ -11,4 +11,5 @@ public interface UserService {
     Integer updateMaster(String did,String phone,Integer buildingid);
     Stu selStu(String uid);
     Master selMaster(String did);
+    Integer updatePermissions(String buildingid,String did);
 }
