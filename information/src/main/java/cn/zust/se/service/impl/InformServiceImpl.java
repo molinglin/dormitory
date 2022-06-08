@@ -37,4 +37,9 @@ public class InformServiceImpl implements InformService {
     public Integer insertInform(Date time, String publisher, String content) {
         return informDao.insertInform(time, publisher, content);
     }
+
+    @Override
+    public List<Inform> selInforms(String publisher, Date time) {
+        return informDao.selInforms(publisher, time);
+    }
 }

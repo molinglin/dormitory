@@ -13,4 +13,5 @@ public interface InformService {
     List<Inform> selInformByPublisher(String publisher);
     List<Inform> selInformByTime(Date time);
     List<Inform> selInformByPAndT(String publisher,Date time);
+    List<Inform> selInforms(String publisher,Date time);
 }
