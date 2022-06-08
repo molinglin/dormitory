@@ -69,8 +69,8 @@ public class StuController {
 //    }
     @ApiOperation(value = "分页")
     @GetMapping("/students")
-    public CommonResult pageshow(@ApiParam(value = "pageNum") @RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum){
-        PageHelper.startPage(pageNum,5);
+    public CommonResult pageshow(@ApiParam(value = "pageNum") @RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@ApiParam("pageSize") @RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize){
+        PageHelper.startPage(pageNum,pageSize);
         List<Stu> stus = stuService.getsAll();
         PageInfo<Stu> pageInfo=new PageInfo<>(stus);
 

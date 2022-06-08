@@ -7,7 +7,7 @@
         insert into stu(uid,name,gender,phone,college,major,classes,dormitory,buildingid,bednum) values(#{uid},#{name},#{gender},#{phone},#{college},#{major},#{classes},#{dormitory},#{buildingid},#{bednum});
     </insert>
     <insert id="insertList" parameterType="java.util.List">
-        insert into stu(uid,name,gender,phone,college,major,classes,dormitory,buildingid,bednum) VALUES
+        insert into stu(uid,name,gender,phone,college,major,classes,dormitory,buildingid,bednum,status) VALUES
         <foreach collection="list" item="item" separator=",">
             (
             #{item.uid},
@@ -19,7 +19,8 @@
             #{item.classes},
             #{item.dormitory},
             #{item.buildingid},
-            #{item.bednum}
+            #{item.bednum},
+            #{item.status}
             )
         </foreach>
     </insert>
