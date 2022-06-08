@@ -27,4 +27,6 @@ public interface HygieneDao {
     @Insert("insert into hygiene(times,buildingid,dormitory,result) values (#{times},#{buildingid},#{dormitory},#{result}) ")
     Integer insertHy(@Param("times") Integer times,@Param("buildingid")Integer buildingid,@Param("dormitory")String dormitory,@Param("result")Integer result);
     Integer insertHyByExcel(List<Hygiene> hygiene);
+    @Select("select * from hygiene where (times=#{times} or #{times} is null) and (buildingid=#{buildingid} or #{buildingid} is null) and (dormitory=#{dormitory} or #{dormitory} is null) and (result between #{result1} and #{result2})")
+    List<Hygiene> selHygiene(@Param("times") Integer times,@Param("buildingid") Integer buildingid,@Param("dormitory") String dormitory,@Param("result1") Integer result1,@Param("result2") Integer result2);
 }

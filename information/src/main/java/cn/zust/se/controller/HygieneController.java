@@ -101,6 +101,19 @@ public class HygieneController {
         }
     }
 
+    @ApiOperation("联合查找卫生信息")
+    @GetMapping("/selHygiene")
+    public CommonResult selHygiene(Integer times,Integer buildingid,String dormitory,@RequestParam(defaultValue = "0",value = "result1")Integer result1,@RequestParam(defaultValue = "100",value = "result2")Integer result2,@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize){
+        PageHelper.startPage(pageNum,pageSize);
+        List<Hygiene> hygiene=hygieneService.selHygiene(times, buildingid, dormitory, result1, result2);
+        PageInfo<Hygiene> pageInfo=new PageInfo<>(hygiene);
+        if(hygiene.isEmpty()){
+            return new CommonResult(400,"fail",null);
+        }else {
+            return new CommonResult<>(200,"success",pageInfo.getList());
+        }
+    }
+
     @ApiOperation("添加卫生成绩")
     @PostMapping("/insertHy")
     public CommonResult insertHy(Integer times,Integer buildingid,String dormitory,Integer result){

@@ -28,4 +28,5 @@ public interface BedDao {
     List<Bed> selBedsByFloor(String floor);
     @Select("select * from bed where buildingid=#{buildingid} and dormitory like #{floor}")
     List<Bed> selBedsByBAndF(@Param("buildingid") Integer buildingid,@Param("floor") String floor);
+    List<Bed> selBeds();
 }
