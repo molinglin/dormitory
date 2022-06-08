@@ -29,8 +29,8 @@ public class LackController {
 
     @ApiOperation("按时间次序查找所有记录")
     @GetMapping("/selAllLack")
-    public CommonResult selAllLack(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum){
-        PageHelper.startPage(pageNum,5);
+    public CommonResult selAllLack(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize){
+        PageHelper.startPage(pageNum,pageSize);
         List<Lack> lacks=lackService.selAllLack();
         PageInfo<Lack> pageInfo=new PageInfo<>(lacks);
         if(lacks.isEmpty()){
@@ -42,8 +42,8 @@ public class LackController {
 
     @ApiOperation("按时间次序与学号查找所有记录")
     @GetMapping("/selLackByUid")
-    public CommonResult selLackByUid(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,String uid){
-        PageHelper.startPage(pageNum,5);
+    public CommonResult selLackByUid(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize,String uid){
+        PageHelper.startPage(pageNum,pageSize);
         List<Lack> lacks=lackService.selLackByUid(uid);
         PageInfo<Lack> pageInfo=new PageInfo<>(lacks);
         if(lacks.isEmpty()){
@@ -55,8 +55,8 @@ public class LackController {
 
     @ApiOperation("按时间次序与楼宇查找所有记录")
     @GetMapping("/selLackByB")
-    public CommonResult selLackByB(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,Integer buildingid){
-        PageHelper.startPage(pageNum,5);
+    public CommonResult selLackByB(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize,Integer buildingid){
+        PageHelper.startPage(pageNum,pageSize);
         List<Lack> lacks=lackService.selLackByBuilding(buildingid);
         PageInfo<Lack> pageInfo=new PageInfo<>(lacks);
         if(lacks.isEmpty()){
