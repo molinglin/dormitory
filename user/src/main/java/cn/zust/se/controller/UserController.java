@@ -1,6 +1,8 @@
 package cn.zust.se.controller;
 
 import cn.zust.se.eneity.CommonResult;
+import cn.zust.se.eneity.Master;
+import cn.zust.se.eneity.Stu;
 import cn.zust.se.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -8,6 +10,7 @@ import org.checkerframework.checker.units.qual.C;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.Objects;
 @Api(value = "用户接口")
 @RestController
@@ -23,9 +26,15 @@ public class UserController {
         String type = (userService.login(username).getType());
         CommonResult<Object> commonResult = new CommonResult<>();
         if(Objects.equals(type, "1")){
-            commonResult.setData(userService.selStu(username));
+            Stu stu=userService.selStu(username);
+            stu.setType(type);
+            commonResult.setData(stu);
         } else if (Objects.equals(type,"2")) {
-            commonResult.setData(userService.selMaster(username));
+            Master master=userService.selMaster(username);
+            master.setType(type);
+            commonResult.setData(master);
+        }else if(Objects.equals(type,"0")){
+
         }
         if (Objects.equals(pw, password)) {
             commonResult.setCode(200);
