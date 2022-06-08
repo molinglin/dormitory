@@ -37,6 +37,16 @@ public class StuServiceImpl implements StuService {
     }
 
     @Override
+    public List<Stu> getStudnan() {
+        return stuDao.getStudnan();
+    }
+
+    @Override
+    public List<Stu> getStudnv() {
+        return stuDao.getStudnv();
+    }
+
+    @Override
     public int create(Stu stu) {
         return stuDao.create(stu);
     }
@@ -59,6 +69,11 @@ public class StuServiceImpl implements StuService {
     @Override
     public int updateBed(Integer id, Integer bednum) {
         return stuDao.updateBedNum(id,bednum);
+    }
+
+    @Override
+    public int update(Stu stu) {
+        return stuDao.update(stu);
     }
 
     @Override

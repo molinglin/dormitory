@@ -143,4 +143,9 @@ public class ApplicationController {
             return new CommonResult(400,"拒绝失败",i);
         }
     }
+//    @PostMapping("/allocation")
+//    public CommonResult allocation(){
+//        List<Stu> men = stuService.getMen();
+//        stuService.getWomen();
+//    }
 }

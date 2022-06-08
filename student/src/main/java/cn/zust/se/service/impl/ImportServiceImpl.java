@@ -85,24 +85,9 @@ public class ImportServiceImpl implements ImportService {
                     throw new Exception("导入失败,班级不能为空");
                 }
                stu.setClasses(String.valueOf(list.get(6)));
-
-                if (String.valueOf(list.get(7)) == null || String.valueOf(list.get(7)).equals("")) {
-                    resultMap.put("mete", "宿舍号不能为空");
-                    continue;
-                }
-                stu.setDormitory(String.valueOf(list.get(7)));
-
-                if (String.valueOf(list.get(8)) == null || String.valueOf(list.get(8)).equals("")) {
-                    resultMap.put("mete", "导入失败,建筑id不能为空");
-                    throw new Exception("导入失败,建筑id不能为空");
-                }
-                stu.setBuildingid(Integer.parseInt(String.valueOf(list.get(8))));
-                if (String.valueOf(list.get(9)) == null || String.valueOf(list.get(9)).equals("")) {
-                    resultMap.put("mete", "导入失败,床号不能为空");
-                    throw new Exception("导入失败,床号不能为空");
-
-                }
-                stu.setBednum(Integer.parseInt(String.valueOf(list.get(9))));
+                stu.setDormitory(null);
+                stu.setBuildingid(null);
+                stu.setBednum(null);
                 stu.setStatus(0);
                 students.add(stu);
             }

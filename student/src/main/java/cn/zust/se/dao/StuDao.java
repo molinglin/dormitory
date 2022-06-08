@@ -16,8 +16,12 @@ public interface StuDao {
     Stu getStuByUid(String  uid);
     @Select("select * from stu where name like CONCAT('%',#{name},'%')")
     List<Stu> getStuByName(String name);
-    @Select("select * from stu where dormitory=#{dormitory}")
+    @Select("select * from stu where dormitory like CONCAT('%',#{dormitory},'%')")
     List<Stu> getStudByDormitory(String dormitory);//通过寝室号找学生
+    @Select("select * from stu where gender ='男' and status=0 order by college")
+    List<Stu> getStudnan();
+    @Select("select * from stu where gender ='女' and status=0 order by college")
+    List<Stu> getStudnv();
     int create(Stu stu);
     int insertList(List<Stu> list);
     @Delete("delete  from stu where id=#{id}")
@@ -38,4 +42,8 @@ public interface StuDao {
     int updatePhone(@Param("id") Integer id,@Param("uid") String phone);
     @Update("update stu set college=#{college} where id=#{id}")
     int updateCollege(@Param("id") Integer id,@Param("uid") String college);
+    @Update("update stu set uid=#{uid} and name=#{name} and gender=#{gender} and phone=#{phone}" +
+            "and college=#{college} and major=#{major} and classes=#{classes} and dormitory=#{dormitory}" +
+            "and buildingid=#{buildingid} and bednum=#{bednum} and status=#{status} where id=#{id}")
+    int update(Stu stu);
 }

@@ -113,5 +113,29 @@ public class StuController {
         }else {
             return new CommonResult(400,"修改失败",0);
         }
+
+    }
+    @ApiOperation(value = "查找男生")
+    @GetMapping("/students/man")
+    public List<Stu> getMen(){
+        List<Stu> students = stuService.getStudnan();
+        return students;
+    }
+    @ApiOperation(value = "查找女生")
+    @GetMapping("/students/women")
+    public List<Stu> getWomen(){
+        List<Stu> students = stuService.getStudnv();
+        return students;
+    }
+    @ApiOperation(value = "修改学生信息")
+    @PostMapping("/students/updateStu")
+    public CommonResult<Integer> update(@RequestBody Stu stu){
+        int update = stuService.update(stu);
+        if(update!=0){
+            return new CommonResult<>(200,"成功",1);
+        }else {
+            return new CommonResult<>(400,"失败",0);
+        }
+
     }
 }
