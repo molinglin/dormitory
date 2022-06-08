@@ -2,6 +2,7 @@ package cn.zust.se.controller;
 
 import cn.zust.se.eneity.CommonResult;
 import cn.zust.se.eneity.Lack;
+import cn.zust.se.eneity.Lacks;
 import cn.zust.se.service.LackService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -74,5 +75,21 @@ public class LackController {
         }else {
             return new CommonResult<>(400,"fail");
         }
+    }
+
+    @ApiOperation("联合查询缺寝记录")
+    @GetMapping("/selLacks")
+    public CommonResult selLacks(String name,@RequestParam(defaultValue = "2000/1/1",value = "time1") Date time1,@RequestParam(defaultValue = "2100/1/1",value = "time2") Date time2, Integer buildingid, String dormitory,@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize){
+        PageHelper.startPage(pageNum,pageSize);
+        List<Lacks> lacks=lackService.selLacks(name, time1, time2, buildingid, dormitory);
+        Integer count=lackService.selLacks(name, time1, time2, buildingid, dormitory).size();
+        System.out.println(count);
+        PageInfo<Lacks> pageInfo=new PageInfo<>(lacks);
+        if(lacks.isEmpty()){
+            return new CommonResult(400,"fail",null);
+        }else {
+            return new CommonResult<>(200,"success",pageInfo.getList());
+        }
+//    return new CommonResult<>(200,"success",lackService.selLacks(name, time1, time2, buildingid, dormitory));
     }
 }
