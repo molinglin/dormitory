@@ -27,13 +27,23 @@ public class StuServiceImpl implements StuService {
     }
 
     @Override
-    public Stu getStuByUid(String uid) {
+    public List<Stu> getStuByUid(String uid) {
         return stuDao.getStuByUid(uid);
     }
 
     @Override
     public List<Stu> getStuByName(String name) {
         return stuDao.getStuByName(name);
+    }
+
+    @Override
+    public List<Stu> getStudnan() {
+        return stuDao.getStudnan();
+    }
+
+    @Override
+    public List<Stu> getStudnv() {
+        return stuDao.getStudnv();
     }
 
     @Override
@@ -62,8 +72,33 @@ public class StuServiceImpl implements StuService {
     }
 
     @Override
+    public int update(Stu stu) {
+        return stuDao.update(stu);
+    }
+
+    @Override
     public List<Stu> getStudByDormitory(String dormitory) {
         return stuDao.getStudByDormitory(dormitory);
+    }
+
+    @Override
+    public List<Stu> getStuByUandN(String uid, String name) {
+        return stuDao.getStuByUandN(uid,name);
+    }
+
+    @Override
+    public List<Stu> getStuByUandD(String uid, String dormitory) {
+        return stuDao.getStuByUandD(uid,dormitory);
+    }
+
+    @Override
+    public List<Stu> getStuByNandD(String name, String dormitory) {
+        return stuDao.getStuByNandD(name,dormitory);
+    }
+
+    @Override
+    public List<Stu> getStuByAll(String uid, String name, String dormitory) {
+        return stuDao.getStuByAll(uid,name,dormitory);
     }
 
 

@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Component
 @FeignClient("dormitory-student-service")
 public interface StuService {
@@ -17,4 +19,8 @@ public interface StuService {
     public CommonResult<Stu> getStuByUid(@ApiParam("uid") @PathVariable("uid") String uid);
     @PostMapping(value = "/students/update")
     public CommonResult update(@RequestParam("id") Integer id,@RequestParam("dormitory") String dormitory, @RequestParam("buildingid") Integer buildingid, @RequestParam("bednum") Integer bednum);
+    @GetMapping("/students/man")
+    public List<Stu> getMen();
+    @GetMapping("/students/women")
+    public List<Stu> getWomen();
 }

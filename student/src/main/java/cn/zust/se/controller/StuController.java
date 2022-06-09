@@ -16,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -26,6 +28,50 @@ public class StuController {
     StuService stuService;
     @Autowired
     ImportService importService;
+
+
+    @ApiOperation(value = "查找学生")
+    @GetMapping("/students")
+    public CommonResult<PageInfo> getStu(@ApiParam("uid") @RequestParam(value = "uid",required = false) String uid,@ApiParam(value = "pageNum") @RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@ApiParam("pageSize") @RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize,@ApiParam("name") @RequestParam(value = "name",required = false) String name,@ApiParam("dormitory") @RequestParam(value = "dormitory",required = false) String dormitory){
+        if(uid==null&&name==null&&dormitory==null){
+            return new CommonResult<>(400,"输入不能为空");
+        }
+        PageHelper.startPage(pageNum,pageSize);
+        List<Stu> students=new ArrayList<>();
+        if(uid!=null){
+            if(name==null&&dormitory==null){
+//                students1=stuService.getStuByUid(uid);
+//                if(students1!=null){
+//                    return new CommonResult<>(200,"查找成功",students1);
+//                }else {
+//                    return new CommonResult<>(400,"查找失败",students2)
+//                }
+                students=stuService.getStuByUid(uid);
+            }
+            if(name!=null&&dormitory==null)
+                students=stuService.getStuByUandN(uid,name);
+            if (name==null&&dormitory!=null)
+                students=stuService.getStuByUandD(uid,dormitory);
+            if (name!=null&&dormitory!=null)
+                students=stuService.getStuByAll(uid,name,dormitory);
+        }
+        if(name!=null){
+            if(uid==null&&dormitory==null)
+                students=stuService.getStuByName(name);
+            if(uid==null&&dormitory!=null)
+                students=stuService.getStuByNandD(name,dormitory);
+        }
+
+        if (dormitory!=null)
+            students=stuService.getStudByDormitory(dormitory);
+        PageInfo<Stu> pageInfo=new PageInfo<>(students);
+        if (!pageInfo.getList().isEmpty()){
+            return new CommonResult<>(200,"查找成功",pageInfo);
+        }else {
+            return new CommonResult<>(400,"查找失败",null);
+        }
+
+    }
 
     @ApiOperation(value = "根据id获取学生信息")
     @GetMapping("/students/Id/{id}")
@@ -39,20 +85,27 @@ public class StuController {
     }
     @ApiOperation(value = "根据学号获取学生信息")
     @GetMapping("/students/uid/{uid}")
-    public CommonResult<Stu> getStuByUid(@ApiParam("uid") @PathVariable("uid") String uid){
-        Stu stu = stuService.getStuByUid(uid);
-        if(stu!=null){
-            return new CommonResult<Stu>(200,"查询成功",stu);
+    public CommonResult<List<Stu>> getStuByUid(@ApiParam("uid") @PathVariable("uid") String uid,@ApiParam(value = "pageNum") @RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@ApiParam("pageSize") @RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize){
+
+        PageHelper.startPage(pageNum,pageSize);
+        List<Stu> students = stuService.getStuByUid(uid);
+        Integer pages=students.size();
+        PageInfo<Stu> pageInfo=new PageInfo<>(students);
+        if(!students.isEmpty()){
+            return new CommonResult<>(200,"查询成功",pageInfo.getList());
         }else {
-            return new CommonResult<Stu>(400,"查找失败",null);
+            return new CommonResult<>(400,"查找失败",null);
         }
     }
     @ApiOperation(value = "根据名字获取学生信息")
     @GetMapping("/students/name/{name}")
-    public CommonResult<List<Stu>> getStuByName(@ApiParam("name") @PathVariable("name") String name){
+    public CommonResult<List<Stu>> getStuByName(@ApiParam("name") @PathVariable("name") String name,@ApiParam(value = "pageNum") @RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@ApiParam("pageSize") @RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize){
+
+        PageHelper.startPage(pageNum,pageSize);
         List<Stu> students = stuService.getStuByName(name);
+        PageInfo<Stu> pageInfo=new PageInfo<>(students);
         if(!students.isEmpty()){
-            return new CommonResult<>(200,"查询成功",students);
+            return new CommonResult<>(200,"查询成功",pageInfo.getList());
         }else {
             return new CommonResult<>(400,"查找失败",null);
         }
@@ -67,13 +120,12 @@ public class StuController {
 //            return new CommonResult<List>(400,"失败",null);
 //        }
 //    }
-    @ApiOperation(value = "分页")
-    @GetMapping("/students")
+    @ApiOperation(value = "测试分页")
+    @GetMapping("/teststudents")
     public CommonResult pageshow(@ApiParam(value = "pageNum") @RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@ApiParam("pageSize") @RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize){
         PageHelper.startPage(pageNum,pageSize);
         List<Stu> stus = stuService.getsAll();
         PageInfo<Stu> pageInfo=new PageInfo<>(stus);
-
         if(!pageInfo.getList().isEmpty()){
             return new CommonResult<List>(200,"成功",pageInfo.getList());
         }else {
@@ -113,5 +165,29 @@ public class StuController {
         }else {
             return new CommonResult(400,"修改失败",0);
         }
+
+    }
+    @ApiOperation(value = "查找男生")
+    @GetMapping("/students/man")
+    public List<Stu> getMen(){
+        List<Stu> students = stuService.getStudnan();
+        return students;
+    }
+    @ApiOperation(value = "查找女生")
+    @GetMapping("/students/women")
+    public List<Stu> getWomen(){
+        List<Stu> students = stuService.getStudnv();
+        return students;
+    }
+    @ApiOperation(value = "修改学生信息")
+    @PostMapping("/students/updateStu")
+    public CommonResult<Integer> update(@RequestBody Stu stu){
+        int update = stuService.update(stu);
+        if(update!=0){
+            return new CommonResult<>(200,"成功",1);
+        }else {
+            return new CommonResult<>(400,"失败",0);
+        }
+
     }
 }
