@@ -1,7 +1,6 @@
 package cn.zust.se.controller;
 
 import cn.zust.se.eneity.Bed;
-import cn.zust.se.eneity.Beds;
 import cn.zust.se.eneity.CommonResult;
 import cn.zust.se.service.BedService;
 import com.github.pagehelper.PageHelper;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 
 import static cn.zust.se.util.StartPage.startPage;
@@ -134,6 +132,7 @@ public class BedController {
     @GetMapping("/selBeds")
     public CommonResult selBeds(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum, @RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize, String buildingid, String dormitory, String bedNum, String name, String empty){
         List<Bed> beds=bedService.selBeds(buildingid, dormitory, bedNum, name, empty);
+        Integer total=beds.size();
         List<Bed> beds1=startPage(beds,pageNum,pageSize);
 //        PageHelper.startPage(pageNum,pageSize);
 //        List<Bed> beds1=new ArrayList<>();

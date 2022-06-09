@@ -88,7 +88,7 @@ public class LackController {
         if(lacks.isEmpty()){
             return new CommonResult(400,"fail",null);
         }else {
-            return new CommonResult<>(200,"success",pageInfo.getList());
+            return new CommonResult<>(200,"success",pageInfo);
         }
 //    return new CommonResult<>(200,"success",lackService.selLacks(name, time1, time2, buildingid, dormitory));
     }

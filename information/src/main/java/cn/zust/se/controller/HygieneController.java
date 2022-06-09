@@ -110,7 +110,7 @@ public class HygieneController {
         if(hygiene.isEmpty()){
             return new CommonResult(400,"fail",null);
         }else {
-            return new CommonResult<>(200,"success",pageInfo.getList());
+            return new CommonResult<>(200,"success",pageInfo);
         }
     }
 

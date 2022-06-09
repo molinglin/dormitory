@@ -1,7 +1,6 @@
 package cn.zust.se.service;
 
 import cn.zust.se.eneity.Bed;
-import cn.zust.se.eneity.Beds;
 
 import java.util.List;
 

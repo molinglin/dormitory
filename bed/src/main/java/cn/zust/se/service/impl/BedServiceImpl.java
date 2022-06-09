@@ -2,7 +2,6 @@ package cn.zust.se.service.impl;
 
 import cn.zust.se.dao.BedDao;
 import cn.zust.se.eneity.Bed;
-import cn.zust.se.eneity.Beds;
 import cn.zust.se.service.BedService;
 import org.springframework.stereotype.Service;
 

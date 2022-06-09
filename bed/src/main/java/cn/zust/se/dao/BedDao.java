@@ -1,7 +1,6 @@
 package cn.zust.se.dao;
 
 import cn.zust.se.eneity.Bed;
-import cn.zust.se.eneity.Beds;
 import cn.zust.se.eneity.Stu;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

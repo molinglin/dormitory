@@ -11,4 +11,5 @@ public class Bed {
     private String bednum;
     private String uid;
     private String empty;
+//    private Integer total;
 }
