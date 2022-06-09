@@ -46,6 +46,7 @@ public class UserController {
         } else {
             commonResult.setCode(400);
             commonResult.setMsg("账户名或密码错误");
+            commonResult.setData(null);
         }
         return commonResult;
     }
