@@ -32,9 +32,9 @@ public class InformController {
     }
 
     @ApiOperation("查询所有通知")
-    @GetMapping("/selInforms")
-    public CommonResult selInforms(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum){
-        PageHelper.startPage(pageNum,5);
+    @GetMapping("/selAllInforms")
+    public CommonResult selAllInforms(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize){
+        PageHelper.startPage(pageNum,pageSize);
         List<Inform> informs=informService.selAllInform();
         PageInfo<Inform> pageInfo=new PageInfo<>(informs);
         if(informs.isEmpty()){
@@ -46,8 +46,8 @@ public class InformController {
 
     @ApiOperation("查询某人发布的通知")
     @GetMapping("/selInformsByP")
-    public CommonResult selInformsByP(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,String publisher){
-        PageHelper.startPage(pageNum,5);
+    public CommonResult selInformsByP(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize,String publisher){
+        PageHelper.startPage(pageNum,pageSize);
         List<Inform> informs=informService.selInformByPublisher(publisher);
         PageInfo<Inform> pageInfo=new PageInfo<>(informs);
         if(informs.isEmpty()){
@@ -59,8 +59,8 @@ public class InformController {
 
     @ApiOperation("查询某个时间后的通知")
     @GetMapping("/selInformsByT")
-    public CommonResult selInformsByT(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,Date time){
-        PageHelper.startPage(pageNum,5);
+    public CommonResult selInformsByT(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize,Date time){
+        PageHelper.startPage(pageNum,pageSize);
         List<Inform> informs=informService.selInformByTime(time);
         PageInfo<Inform> pageInfo=new PageInfo<>(informs);
         if(informs.isEmpty()){
@@ -72,9 +72,22 @@ public class InformController {
 
     @ApiOperation("查询某人某个时间后发布的通知")
     @GetMapping("/selInformsByPAndT")
-    public CommonResult selInformsByPAndT(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,String publisher,Date time){
-        PageHelper.startPage(pageNum,5);
+    public CommonResult selInformsByPAndT(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize,String publisher,Date time){
+        PageHelper.startPage(pageNum,pageSize);
         List<Inform> informs=informService.selInformByPAndT(publisher,time);
+        PageInfo<Inform> pageInfo=new PageInfo<>(informs);
+        if(informs.isEmpty()){
+            return new CommonResult(400,"fail",null);
+        }else {
+            return new CommonResult<>(200,"success",pageInfo.getList());
+        }
+    }
+
+    @ApiOperation("通知联合查询")
+    @GetMapping("/selInforms")
+    public CommonResult selInforms(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize,String publisher,Date time){
+        PageHelper.startPage(pageNum,pageSize);
+        List<Inform> informs=informService.selInforms(publisher,time);
         PageInfo<Inform> pageInfo=new PageInfo<>(informs);
         if(informs.isEmpty()){
             return new CommonResult(400,"fail",null);

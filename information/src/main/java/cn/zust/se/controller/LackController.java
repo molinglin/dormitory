@@ -2,6 +2,7 @@ package cn.zust.se.controller;
 
 import cn.zust.se.eneity.CommonResult;
 import cn.zust.se.eneity.Lack;
+import cn.zust.se.eneity.Lacks;
 import cn.zust.se.service.LackService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -29,8 +30,8 @@ public class LackController {
 
     @ApiOperation("按时间次序查找所有记录")
     @GetMapping("/selAllLack")
-    public CommonResult selAllLack(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum){
-        PageHelper.startPage(pageNum,5);
+    public CommonResult selAllLack(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize){
+        PageHelper.startPage(pageNum,pageSize);
         List<Lack> lacks=lackService.selAllLack();
         PageInfo<Lack> pageInfo=new PageInfo<>(lacks);
         if(lacks.isEmpty()){
@@ -42,8 +43,8 @@ public class LackController {
 
     @ApiOperation("按时间次序与学号查找所有记录")
     @GetMapping("/selLackByUid")
-    public CommonResult selLackByUid(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,String uid){
-        PageHelper.startPage(pageNum,5);
+    public CommonResult selLackByUid(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize,String uid){
+        PageHelper.startPage(pageNum,pageSize);
         List<Lack> lacks=lackService.selLackByUid(uid);
         PageInfo<Lack> pageInfo=new PageInfo<>(lacks);
         if(lacks.isEmpty()){
@@ -55,8 +56,8 @@ public class LackController {
 
     @ApiOperation("按时间次序与楼宇查找所有记录")
     @GetMapping("/selLackByB")
-    public CommonResult selLackByB(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,Integer buildingid){
-        PageHelper.startPage(pageNum,5);
+    public CommonResult selLackByB(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize,Integer buildingid){
+        PageHelper.startPage(pageNum,pageSize);
         List<Lack> lacks=lackService.selLackByBuilding(buildingid);
         PageInfo<Lack> pageInfo=new PageInfo<>(lacks);
         if(lacks.isEmpty()){
@@ -66,4 +67,29 @@ public class LackController {
         }
     }
 
+    @ApiOperation("删除缺寝记录")
+    @DeleteMapping("/delLack")
+    public CommonResult delLack(Integer id){
+        if(lackService.delLack(id) == 1){
+            return new CommonResult<>(200,"success");
+        }else {
+            return new CommonResult<>(400,"fail");
+        }
+    }
+
+    @ApiOperation("联合查询缺寝记录")
+    @GetMapping("/selLacks")
+    public CommonResult selLacks(String name,@RequestParam(defaultValue = "2000/1/1",value = "time1") Date time1,@RequestParam(defaultValue = "2100/1/1",value = "time2") Date time2, Integer buildingid, String dormitory,@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize){
+        PageHelper.startPage(pageNum,pageSize);
+        List<Lacks> lacks=lackService.selLacks(name, time1, time2, buildingid, dormitory);
+        Integer count=lackService.selLacks(name, time1, time2, buildingid, dormitory).size();
+        System.out.println(count);
+        PageInfo<Lacks> pageInfo=new PageInfo<>(lacks);
+        if(lacks.isEmpty()){
+            return new CommonResult(400,"fail",null);
+        }else {
+            return new CommonResult<>(200,"success",pageInfo.getList());
+        }
+//    return new CommonResult<>(200,"success",lackService.selLacks(name, time1, time2, buildingid, dormitory));
+    }
 }

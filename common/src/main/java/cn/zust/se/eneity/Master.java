@@ -9,4 +9,5 @@ public class Master {
     private String name;
     private String phone;
     private Integer building_id;
+    private String type;
 }

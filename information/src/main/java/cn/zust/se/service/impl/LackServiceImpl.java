@@ -2,6 +2,7 @@ package cn.zust.se.service.impl;
 
 import cn.zust.se.dao.LackDao;
 import cn.zust.se.eneity.Lack;
+import cn.zust.se.eneity.Lacks;
 import cn.zust.se.service.LackService;
 import org.springframework.stereotype.Service;
 
@@ -31,5 +32,15 @@ public class LackServiceImpl implements LackService {
     @Override
     public List<Lack> selLackByBuilding(Integer buildingid) {
         return lackDao.selLackByBuilding(buildingid);
+    }
+
+    @Override
+    public Integer delLack(Integer id) {
+        return lackDao.delLack(id);
+    }
+
+    @Override
+    public List<Lacks> selLacks(String name, Date time1, Date time2, Integer buildingid, String dormitory) {
+        return lackDao.selLacks(name, time1, time2, buildingid, dormitory);
     }
 }

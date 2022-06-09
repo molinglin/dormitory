@@ -25,4 +25,6 @@ public interface UserDao {
     Stu selStu(String uid);
     @Select("select * from master where did=#{did}")
     Master selMaster(String did);
+    @Update("update master set buildingid=#{buildingid} where did=#{did}")
+    Integer updatePermissions(@Param("buildingid")String buildingid,@Param("did") String did);
 }

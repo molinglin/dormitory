@@ -23,9 +23,11 @@ public class HygieneController {
 
     @ApiOperation("查找所有卫生信息")
     @GetMapping("/selAllHy")
-    public CommonResult selAllHy(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum){
-        PageHelper.startPage(pageNum,5);
+    public CommonResult selAllHy(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize){
+        PageHelper.startPage(pageNum,pageSize);
         List<Hygiene> hygiene=hygieneService.selAllHy();
+        Integer count=hygieneService.selAllHy().size();
+//        System.out.println(count);
         PageInfo<Hygiene> pageInfo=new PageInfo<>(hygiene);
         if(hygiene.isEmpty()){
             return new CommonResult(400,"fail",null);
@@ -36,8 +38,8 @@ public class HygieneController {
 
     @ApiOperation("按楼宇查找卫生信息")
     @GetMapping("/selHyByBuilding")
-    public CommonResult selHyByBuilding(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,Integer buildingid){
-        PageHelper.startPage(pageNum,5);
+    public CommonResult selHyByBuilding(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize,Integer buildingid){
+        PageHelper.startPage(pageNum,pageSize);
         List<Hygiene> hygiene=hygieneService.selHyByBuilding(buildingid);
         PageInfo<Hygiene> pageInfo=new PageInfo<>(hygiene);
         if(hygiene.isEmpty()){
@@ -49,8 +51,8 @@ public class HygieneController {
 
     @ApiOperation("按时间查找卫生信息")
     @GetMapping("/selHyByTimes")
-    public CommonResult selHyByTimes(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,Integer times){
-        PageHelper.startPage(pageNum,5);
+    public CommonResult selHyByTimes(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize,Integer times){
+        PageHelper.startPage(pageNum,pageSize);
         List<Hygiene> hygiene=hygieneService.selHyByTimes(times);
         PageInfo<Hygiene> pageInfo=new PageInfo<>(hygiene);
         if(hygiene.isEmpty()){
@@ -62,8 +64,8 @@ public class HygieneController {
 
     @ApiOperation("按楼宇与时间查找卫生信息")
     @GetMapping("/selHyByBAndT")
-    public CommonResult selHyByBAndT(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,Integer buildingid,Integer times){
-        PageHelper.startPage(pageNum,5);
+    public CommonResult selHyByBAndT(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize,Integer buildingid,Integer times){
+        PageHelper.startPage(pageNum,pageSize);
         List<Hygiene> hygiene=hygieneService.selHyByBAndT(buildingid, times);
         PageInfo<Hygiene> pageInfo=new PageInfo<>(hygiene);
         if(hygiene.isEmpty()){
@@ -75,8 +77,8 @@ public class HygieneController {
 
     @ApiOperation("按楼宇与寝室查找卫生信息")
     @GetMapping("/selHyByBAndD")
-    public CommonResult selHyByBAndT(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,Integer buildingid,String dormitory){
-        PageHelper.startPage(pageNum,5);
+    public CommonResult selHyByBAndT(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize,Integer buildingid,String dormitory){
+        PageHelper.startPage(pageNum,pageSize);
         List<Hygiene> hygiene=hygieneService.selHyByBAndD(buildingid, dormitory);
         PageInfo<Hygiene> pageInfo=new PageInfo<>(hygiene);
         if(hygiene.isEmpty()){
@@ -88,9 +90,22 @@ public class HygieneController {
 
     @ApiOperation("按楼宇时间寝室查找卫生信息")
     @GetMapping("/selHyByBAndTAndD")
-    public CommonResult selHyByBAndTAndD(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,Integer buildingid,Integer times,String dormitory){
-        PageHelper.startPage(pageNum,5);
+    public CommonResult selHyByBAndTAndD(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize,Integer buildingid,Integer times,String dormitory){
+        PageHelper.startPage(pageNum,pageSize);
         List<Hygiene> hygiene=hygieneService.selHyByBAndTAndD(buildingid, times, dormitory);
+        PageInfo<Hygiene> pageInfo=new PageInfo<>(hygiene);
+        if(hygiene.isEmpty()){
+            return new CommonResult(400,"fail",null);
+        }else {
+            return new CommonResult<>(200,"success",pageInfo.getList());
+        }
+    }
+
+    @ApiOperation("联合查找卫生信息")
+    @GetMapping("/selHygiene")
+    public CommonResult selHygiene(Integer times,Integer buildingid,String dormitory,@RequestParam(defaultValue = "0",value = "result1")Integer result1,@RequestParam(defaultValue = "100",value = "result2")Integer result2,@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize){
+        PageHelper.startPage(pageNum,pageSize);
+        List<Hygiene> hygiene=hygieneService.selHygiene(times, buildingid, dormitory, result1, result2);
         PageInfo<Hygiene> pageInfo=new PageInfo<>(hygiene);
         if(hygiene.isEmpty()){
             return new CommonResult(400,"fail",null);

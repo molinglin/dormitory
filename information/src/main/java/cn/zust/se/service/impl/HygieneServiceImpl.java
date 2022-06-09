@@ -55,6 +55,11 @@ public class HygieneServiceImpl implements HygieneService {
     }
 
     @Override
+    public List<Hygiene> selHygiene(Integer times, Integer buildingid, String dormitory, Integer result1, Integer result2) {
+        return hygieneDao.selHygiene(times, buildingid, dormitory, result1, result2);
+    }
+
+    @Override
     public Map<String, Object> insertHyByExcel(MultipartFile file) {
         Map<String,Object> resultMap=new HashMap<>();
         List<Hygiene> hygienes = new ArrayList<>();

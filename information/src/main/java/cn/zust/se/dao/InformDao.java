@@ -24,4 +24,6 @@ public interface InformDao {
     List<Inform> selInformByTime(Date time);
     @Select("select * from inform where publisher=#{publisher} and time > #{time}")
     List<Inform> selInformByPAndT(@Param("publisher") String publisher,@Param("time") Date time);
+    @Select("select * from inform where (publisher=#{publisher} or #{publisher} is null) and (time > #{time} or #{time} is null) order by time desc")
+    List<Inform> selInforms(@Param("publisher") String publisher,@Param("time") Date time);
 }

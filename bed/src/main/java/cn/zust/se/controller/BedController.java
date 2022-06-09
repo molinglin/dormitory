@@ -24,8 +24,8 @@ public class BedController {
 
     @ApiOperation("查找所有空床位")
     @GetMapping("/selE")
-    public CommonResult selE(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum){
-        PageHelper.startPage(pageNum,5);
+    public CommonResult selE(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize){
+        PageHelper.startPage(pageNum,pageSize);
         List<Bed> beds=bedService.selEmptyBeds();
         PageInfo<Bed> pageInfo=new PageInfo<>(beds);
         if(beds.size()!=0){
@@ -37,8 +37,8 @@ public class BedController {
 
     @ApiOperation("按楼宇查找空床位")
     @GetMapping("/selEByBuild")
-    public CommonResult selEByBuild(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,Integer buildingid){
-        PageHelper.startPage(pageNum,5);
+    public CommonResult selEByBuild(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize,Integer buildingid){
+        PageHelper.startPage(pageNum,pageSize);
         List<Bed> beds=bedService.selEmptyBedsByBuilding(buildingid);
         PageInfo<Bed> pageInfo=new PageInfo<>(beds);
         if(beds.size()!=0){
@@ -50,8 +50,8 @@ public class BedController {
 
     @ApiOperation("按楼层查找空床位")
     @GetMapping("/selEByFloor")
-    public CommonResult selEByFloor(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,String floor){
-        PageHelper.startPage(pageNum,5);
+    public CommonResult selEByFloor(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize,String floor){
+        PageHelper.startPage(pageNum,pageSize);
         List<Bed> beds=bedService.selEmptyBedsByFloor(floor);
         PageInfo<Bed> pageInfo=new PageInfo<>(beds);
         if(beds.size()!=0){
@@ -63,8 +63,8 @@ public class BedController {
 
     @ApiOperation("按楼宇和楼层查找所有空床位")
     @GetMapping("/selEByBAndF")
-    public CommonResult selEByBAndF(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,Integer buildingid,String floor){
-        PageHelper.startPage(pageNum,5);
+    public CommonResult selEByBAndF(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize,Integer buildingid,String floor){
+        PageHelper.startPage(pageNum,pageSize);
         List<Bed> beds=bedService.selEmptyBedsByBAndF(buildingid,floor);
         PageInfo<Bed> pageInfo=new PageInfo<>(beds);
         if(beds.size()!=0){
@@ -76,8 +76,8 @@ public class BedController {
 
     @ApiOperation("查找所有床位")
     @GetMapping("/selAll")
-    public CommonResult selAllBeds(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum){
-        PageHelper.startPage(pageNum,5);
+    public CommonResult selAllBeds(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize){
+        PageHelper.startPage(pageNum,pageSize);
         List<Bed> beds=bedService.selAllBeds();
         PageInfo<Bed> pageInfo=new PageInfo<>(beds);
         if(beds.size()!=0){
@@ -89,8 +89,8 @@ public class BedController {
 
     @ApiOperation("按楼宇查找所有床位")
     @GetMapping("/selAllByBuild")
-    public CommonResult selAllByBuild(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,Integer buildingid){
-        PageHelper.startPage(pageNum,5);
+    public CommonResult selAllByBuild(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize,Integer buildingid){
+        PageHelper.startPage(pageNum,pageSize);
         List<Bed> beds=bedService.selBedsByBuilding(buildingid);
         PageInfo<Bed> pageInfo=new PageInfo<>(beds);
         if(beds.size()!=0){
@@ -102,8 +102,8 @@ public class BedController {
 
     @ApiOperation("按楼层查找所有床位")
     @GetMapping("/selAllByFloor")
-    public CommonResult selAllByFloor(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,String floor){
-        PageHelper.startPage(pageNum,5);
+    public CommonResult selAllByFloor(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize,String floor){
+        PageHelper.startPage(pageNum,pageSize);
         List<Bed> beds=bedService.selBedsByFloor(floor);
         PageInfo<Bed> pageInfo=new PageInfo<>(beds);
         if(beds.size()!=0){
@@ -115,8 +115,8 @@ public class BedController {
 
     @ApiOperation("按楼宇和楼层查找所有床位")
     @GetMapping("/selAllByBAndF")
-    public CommonResult selAllByBAndF(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,Integer buildingid,String floor){
-        PageHelper.startPage(pageNum,1);
+    public CommonResult selAllByBAndF(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize,Integer buildingid,String floor){
+        PageHelper.startPage(pageNum,pageSize);
         List<Bed> beds=bedService.selBedsByBAndF(buildingid,floor);
         PageInfo<Bed> pageInfo=new PageInfo<>(beds);
         if(beds.size()!=0){
