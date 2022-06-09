@@ -2,11 +2,14 @@ package cn.zust.se.service.impl;
 
 import cn.zust.se.dao.BedDao;
 import cn.zust.se.eneity.Bed;
+import cn.zust.se.eneity.Beds;
 import cn.zust.se.service.BedService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class BedServiceImpl implements BedService {
@@ -55,5 +58,44 @@ public class BedServiceImpl implements BedService {
     public List<Bed> selBedsByBAndF(Integer buildingid, String floor) {
         String fl4=floor+"%";
         return bedDao.selBedsByBAndF(buildingid,fl4);
+    }
+
+    @Override
+    public List<Bed> selBeds(String buildingid, String dormitory, String bedNum, String name, String empty) {
+        List<Bed> bed=bedDao.selBeds(buildingid, dormitory, bedNum);
+//        List<Beds> beds=new ArrayList<>();
+        for (int i=0;i<bed.size();i++){
+            if(bed.get(i).getUid()!=null){
+                String name1=bedDao.getStuByUid(bed.get(i).getUid()).getName();
+                bed.get(i).setUid(name1);
+            }
+        }
+        for (int i=0;i<bed.size();i++){
+            if(name!=null && Objects.equals(bed.get(i).getUid(), name) ){
+                List<Bed> bed1=new ArrayList<>();
+                bed1.add(bed.get(i));
+                return bed1;
+            }
+        }
+        for(int i=0;i<bed.size();i++){
+            List<Bed> bed2=new ArrayList<>();
+            if(Objects.equals(empty, "Y")){
+                if(Objects.equals(bed.get(i).getEmpty(), "Y")){
+                    bed2.add(bed.get(i));
+                }
+                return bed2;
+            } else if (Objects.equals(empty,"N")) {
+                if(Objects.equals(bed.get(i).getEmpty(), "N")){
+                    bed2.add(bed.get(i));
+                }
+                return bed2;
+            }else {
+                return bed;
+            }
+
+        }
+        return bed;
+
+//        return bedDao.selBeds(buildingid, dormitory, bedNum);
     }
 }

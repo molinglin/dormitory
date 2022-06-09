@@ -1,6 +1,7 @@
 package cn.zust.se.controller;
 
 import cn.zust.se.eneity.Bed;
+import cn.zust.se.eneity.Beds;
 import cn.zust.se.eneity.CommonResult;
 import cn.zust.se.service.BedService;
 import com.github.pagehelper.PageHelper;
@@ -118,6 +119,19 @@ public class BedController {
     public CommonResult selAllByBAndF(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize,Integer buildingid,String floor){
         PageHelper.startPage(pageNum,pageSize);
         List<Bed> beds=bedService.selBedsByBAndF(buildingid,floor);
+        PageInfo<Bed> pageInfo=new PageInfo<>(beds);
+        if(beds.size()!=0){
+            return new CommonResult(200,"success",pageInfo.getList());
+        }else {
+            return new CommonResult (400,"fail",null);
+        }
+    }
+
+    @ApiOperation("联合查询床位")
+    @GetMapping("/selBeds")
+    public CommonResult selBeds(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum, @RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize, String buildingid, String dormitory, String bedNum, String name, String empty){
+        PageHelper.startPage(pageNum,pageSize);
+        List<Bed> beds=bedService.selBeds(buildingid, dormitory, bedNum, name, empty);
         PageInfo<Bed> pageInfo=new PageInfo<>(beds);
         if(beds.size()!=0){
             return new CommonResult(200,"success",pageInfo.getList());

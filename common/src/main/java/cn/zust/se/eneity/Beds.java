@@ -3,12 +3,12 @@ package cn.zust.se.eneity;
 import lombok.Data;
 
 @Data
-public class Bed {
+public class Beds {
     private Integer id;
     private String bid;
     private String buildingid;
     private String dormitory;
     private String bednum;
-    private String uid;
+    private String name;
     private String empty;
 }

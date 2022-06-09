@@ -1,5 +1,6 @@
 package cn.zust.se.controller;
 
+import cn.zust.se.eneity.Admin;
 import cn.zust.se.eneity.CommonResult;
 import cn.zust.se.eneity.Master;
 import cn.zust.se.eneity.Stu;
@@ -34,7 +35,9 @@ public class UserController {
             master.setType(type);
             commonResult.setData(master);
         }else if(Objects.equals(type,"0")){
-
+            Admin admin=new Admin();
+            admin.setType(type);
+            commonResult.setData(admin);
         }
         if (Objects.equals(pw, password)) {
             commonResult.setCode(200);
