@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
+
+import static cn.zust.se.util.StartPage.startPage;
 
 @Api(value = "bed接口")
 @RestController
@@ -130,13 +133,30 @@ public class BedController {
     @ApiOperation("联合查询床位")
     @GetMapping("/selBeds")
     public CommonResult selBeds(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum, @RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize, String buildingid, String dormitory, String bedNum, String name, String empty){
-        PageHelper.startPage(pageNum,pageSize);
         List<Bed> beds=bedService.selBeds(buildingid, dormitory, bedNum, name, empty);
-        PageInfo<Bed> pageInfo=new PageInfo<>(beds);
+        List<Bed> beds1=startPage(beds,pageNum,pageSize);
+//        PageHelper.startPage(pageNum,pageSize);
+//        List<Bed> beds1=new ArrayList<>();
+//        beds1.addAll(beds);
+//        PageInfo<Bed> pageInfo=new PageInfo<>(beds1);
+//        pageInfo.getList()
         if(beds.size()!=0){
-            return new CommonResult(200,"success",pageInfo.getList());
+            return new CommonResult(200,"success",beds1);
         }else {
             return new CommonResult (400,"fail",null);
         }
     }
+
+//    @ApiOperation("联合查询床位")
+//    @GetMapping("/selBedss")
+//    public CommonResult selBedss(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum, @RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize, String buildingid, String dormitory, String bedNum){
+//        PageHelper.startPage(pageNum,pageSize);
+//        List<Bed> beds=bedService.selBedss(buildingid, dormitory, bedNum);
+//        PageInfo<Bed> pageInfo=new PageInfo<>(beds);
+//        if(beds.size()!=0){
+//            return new CommonResult(200,"success",pageInfo.getList());
+//        }else {
+//            return new CommonResult (400,"fail",null);
+//        }
+//    }
 }

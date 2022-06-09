@@ -63,9 +63,12 @@ public class BedServiceImpl implements BedService {
     @Override
     public List<Bed> selBeds(String buildingid, String dormitory, String bedNum, String name, String empty) {
         List<Bed> bed=bedDao.selBeds(buildingid, dormitory, bedNum);
+//        System.out.println(bed);
 //        List<Beds> beds=new ArrayList<>();
         for (int i=0;i<bed.size();i++){
-            if(bed.get(i).getUid()!=null){
+            if (bed.get(i).getUid() == null || Objects.equals(bed.get(i).getUid(), "")) {
+                bed.get(i).setUid("");
+            } else {
                 String name1=bedDao.getStuByUid(bed.get(i).getUid()).getName();
                 bed.get(i).setUid(name1);
             }
@@ -77,25 +80,41 @@ public class BedServiceImpl implements BedService {
                 return bed1;
             }
         }
-        for(int i=0;i<bed.size();i++){
-            List<Bed> bed2=new ArrayList<>();
-            if(Objects.equals(empty, "Y")){
-                if(Objects.equals(bed.get(i).getEmpty(), "Y")){
+
+        List<Bed> bed2=new ArrayList<>();
+        if(Objects.equals(empty, "Y")) {
+            for (int i = 0; i < bed.size(); i++) {
+                if (Objects.equals(bed.get(i).getEmpty(), "Y"))
                     bed2.add(bed.get(i));
-                }
-                return bed2;
-            } else if (Objects.equals(empty,"N")) {
-                if(Objects.equals(bed.get(i).getEmpty(), "N")){
+            }
+            return bed2;
+        }else if (Objects.equals(empty,"N")) {
+            for (int i = 0; i < bed.size(); i++) {
+                if (Objects.equals(bed.get(i).getEmpty(), "N"))
                     bed2.add(bed.get(i));
-                }
-                return bed2;
-            }else {
+            }
+            return bed2;
+        }
+            else {
                 return bed;
             }
-
-        }
-        return bed;
-
 //        return bedDao.selBeds(buildingid, dormitory, bedNum);
     }
+
+//    @Override
+//    public List<Bed> selBedss(String buildingid, String dormitory, String bedNum) {
+//        List<Bed> bed=bedDao.selBeds(buildingid, dormitory, bedNum);
+//        List<Bed> beds=new ArrayList<>();
+//        beds.addAll(bed);
+////        System.out.println(bed.size());
+//        for (int i=0;i<bed.size();i++){
+//            if (Objects.equals(bed.get(i).getUid(), "") || bed.get(i)==null) {
+//                beds.get(i).setUid("");
+//            } else {
+//                String name1=bedDao.getStuByUid(bed.get(i).getUid()).getName();
+//                beds.get(i).setUid(name1);
+//            }
+//        }
+//        return beds;
+//    }
 }
