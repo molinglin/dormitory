@@ -85,14 +85,14 @@ public class StuController {
     }
     @ApiOperation(value = "根据学号获取学生信息")
     @GetMapping("/students/uid/{uid}")
-    public CommonResult<List<Stu>> getStuByUid(@ApiParam("uid") @PathVariable("uid") String uid,@ApiParam(value = "pageNum") @RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@ApiParam("pageSize") @RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize){
+    public CommonResult<PageInfo> getStuByUid(@ApiParam("uid") @PathVariable("uid") String uid,@ApiParam(value = "pageNum") @RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@ApiParam("pageSize") @RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize){
 
         PageHelper.startPage(pageNum,pageSize);
         List<Stu> students = stuService.getStuByUid(uid);
         Integer pages=students.size();
         PageInfo<Stu> pageInfo=new PageInfo<>(students);
         if(!students.isEmpty()){
-            return new CommonResult<>(200,"查询成功",pageInfo.getList());
+            return new CommonResult<>(200,"查询成功",pageInfo);
         }else {
             return new CommonResult<>(400,"查找失败",null);
         }
@@ -127,7 +127,7 @@ public class StuController {
         List<Stu> stus = stuService.getsAll();
         PageInfo<Stu> pageInfo=new PageInfo<>(stus);
         if(!pageInfo.getList().isEmpty()){
-            return new CommonResult<List>(200,"成功",pageInfo.getList());
+            return new CommonResult<>(200,"成功",pageInfo);
         }else {
             return new CommonResult<>(400,"失败",null);
         }

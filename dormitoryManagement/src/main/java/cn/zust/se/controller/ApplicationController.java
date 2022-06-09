@@ -35,7 +35,7 @@ public class ApplicationController {
         PageInfo<Application> pageInfo=new PageInfo<>(applications);
 
         if(!pageInfo.getList().isEmpty()){
-            return new CommonResult<List>(200,"成功",pageInfo.getList());
+            return new CommonResult<>(200,"成功",pageInfo);
         }else {
             return new CommonResult<>(400,"失败",null);
         }
@@ -52,12 +52,12 @@ public class ApplicationController {
     }
     @ApiOperation(value = "分页显示待办请求")
     @GetMapping("/NoAccessPage")
-    public CommonResult<List<Application>> findNoAccessPage(@ApiParam(value = "pageNum") @RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@ApiParam("pageSize") @RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize){
+    public CommonResult<PageInfo> findNoAccessPage(@ApiParam(value = "pageNum") @RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@ApiParam("pageSize") @RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize){
         PageHelper.startPage(pageNum,pageSize);
         List<Application> applications = applicationService.selectsNoAccess();
         PageInfo<Application> pageInfo=new PageInfo<>(applications);
         if(!pageInfo.getList().isEmpty()){
-            return new CommonResult<>(200, "成功", pageInfo.getList());
+            return new CommonResult<>(200, "成功", pageInfo);
         }else {
             return new CommonResult<>(400,"失败",null);
         }
