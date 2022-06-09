@@ -16,4 +16,6 @@ public class CommonResult<T> {
     public CommonResult(Integer code, String msg){
         this(code,msg,null);
     }
+
+
 }

@@ -21,4 +21,8 @@ public interface StuService {
     int updateBed(Integer id,Integer bednum);
     int update(Stu stu);
     List<Stu> getStudByDormitory(String dormitory);
+    List<Stu> getStuByUandN(String uid,String name);
+    List<Stu> getStuByUandD(String uid, String dormitory);
+    List<Stu> getStuByNandD(String name,String dormitory);
+    List<Stu> getStuByAll( String uid,String name, String dormitory);
 }

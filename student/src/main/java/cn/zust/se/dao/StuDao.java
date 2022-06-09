@@ -12,12 +12,20 @@ public interface StuDao {
     Stu getStuById(Integer id);
     @Select("select * from stu")
     List<Stu> getsAll();
-    @Select("select * from stu where uid=#{uid}")
+    @Select("select * from stu where uid like CONCAT('%',#{uid},'%')")
     List<Stu> getStuByUid(String  uid);
     @Select("select * from stu where name like CONCAT('%',#{name},'%')")
     List<Stu> getStuByName(String name);
     @Select("select * from stu where dormitory like CONCAT('%',#{dormitory},'%')")
     List<Stu> getStudByDormitory(String dormitory);//通过寝室号找学生
+    @Select("select * from stu where uid like CONCAT('%',#{uid},'%') and name like CONCAT('%',#{name},'%')")
+    List<Stu> getStuByUandN(@Param("uid") String uid,@Param("name") String name);
+    @Select("select * from stu where uid like CONCAT('%',#{uid},'%') and dormitory like CONCAT('%',#{dormitory},'%')")
+    List<Stu> getStuByUandD(@Param("uid") String uid,@Param("dormitory") String dormitory);
+    @Select("select * from stu where name like CONCAT('%',#{name},'%') and dormitory like CONCAT('%',#{dormitory},'%')")
+    List<Stu> getStuByNandD(@Param("name") String name,@Param("dormitory") String dormitory);
+    @Select("select * from stu where uid like CONCAT('%',#{uid},'%') name like CONCAT('%',#{name},'%') and dormitory like CONCAT('%',#{dormitory},'%')")
+    List<Stu> getStuByAll(@Param("uid") String uid,@Param("name") String name,@Param("dormitory") String dormitory);
     @Select("select * from stu where gender ='男' and status=0 order by college")
     List<Stu> getStudnan();
     @Select("select * from stu where gender ='女' and status=0 order by college")

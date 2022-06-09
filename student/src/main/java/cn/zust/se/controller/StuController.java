@@ -16,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -26,6 +28,50 @@ public class StuController {
     StuService stuService;
     @Autowired
     ImportService importService;
+
+
+    @ApiOperation(value = "查找学生")
+    @GetMapping("/students")
+    public CommonResult<PageInfo> getStu(@ApiParam("uid") @RequestParam(value = "uid",required = false) String uid,@ApiParam(value = "pageNum") @RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@ApiParam("pageSize") @RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize,@ApiParam("name") @RequestParam(value = "name",required = false) String name,@ApiParam("dormitory") @RequestParam(value = "dormitory",required = false) String dormitory){
+        if(uid==null&&name==null&&dormitory==null){
+            return new CommonResult<>(400,"输入不能为空");
+        }
+        PageHelper.startPage(pageNum,pageSize);
+        List<Stu> students=new ArrayList<>();
+        if(uid!=null){
+            if(name==null&&dormitory==null){
+//                students1=stuService.getStuByUid(uid);
+//                if(students1!=null){
+//                    return new CommonResult<>(200,"查找成功",students1);
+//                }else {
+//                    return new CommonResult<>(400,"查找失败",students2)
+//                }
+                students=stuService.getStuByUid(uid);
+            }
+            if(name!=null&&dormitory==null)
+                students=stuService.getStuByUandN(uid,name);
+            if (name==null&&dormitory!=null)
+                students=stuService.getStuByUandD(uid,dormitory);
+            if (name!=null&&dormitory!=null)
+                students=stuService.getStuByAll(uid,name,dormitory);
+        }
+        if(name!=null){
+            if(uid==null&&dormitory==null)
+                students=stuService.getStuByName(name);
+            if(uid==null&&dormitory!=null)
+                students=stuService.getStuByNandD(name,dormitory);
+        }
+
+        if (dormitory!=null)
+            students=stuService.getStudByDormitory(dormitory);
+        PageInfo<Stu> pageInfo=new PageInfo<>(students);
+        if (!pageInfo.getList().isEmpty()){
+            return new CommonResult<>(200,"查找成功",pageInfo);
+        }else {
+            return new CommonResult<>(400,"查找失败",null);
+        }
+
+    }
 
     @ApiOperation(value = "根据id获取学生信息")
     @GetMapping("/students/Id/{id}")
@@ -43,6 +89,7 @@ public class StuController {
 
         PageHelper.startPage(pageNum,pageSize);
         List<Stu> students = stuService.getStuByUid(uid);
+        Integer pages=students.size();
         PageInfo<Stu> pageInfo=new PageInfo<>(students);
         if(!students.isEmpty()){
             return new CommonResult<>(200,"查询成功",pageInfo.getList());
@@ -73,8 +120,8 @@ public class StuController {
 //            return new CommonResult<List>(400,"失败",null);
 //        }
 //    }
-    @ApiOperation(value = "分页")
-    @GetMapping("/students")
+    @ApiOperation(value = "测试分页")
+    @GetMapping("/teststudents")
     public CommonResult pageshow(@ApiParam(value = "pageNum") @RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@ApiParam("pageSize") @RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize){
         PageHelper.startPage(pageNum,pageSize);
         List<Stu> stus = stuService.getsAll();
