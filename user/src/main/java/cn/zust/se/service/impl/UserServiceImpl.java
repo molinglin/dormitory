@@ -8,6 +8,8 @@ import cn.zust.se.service.UserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
     @Resource
@@ -45,5 +47,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public Integer updatePermissions(String buildingid, String did) {
         return userDao.updatePermissions(buildingid, did);
+    }
+
+    @Override
+    public List<Master> selAllMaster() {
+        return userDao.selAllMaster();
     }
 }

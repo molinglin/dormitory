@@ -97,4 +97,14 @@ public class UserController {
             return new CommonResult<>(400,"fail");
         }
     }
+
+    @ApiOperation("查找所有宿管")
+    @PutMapping("/selAllMaster")
+    public CommonResult selAllMaster(){
+        if(!userService.selAllMaster().isEmpty()){
+            return new CommonResult<>(200,"success",userService.selAllMaster());
+        }else {
+            return new CommonResult<>(400,"fail");
+        }
+    }
 }
