@@ -37,6 +37,7 @@ public class UserController {
         }else if(Objects.equals(type,"0")){
             Admin admin=new Admin();
             admin.setType(type);
+            admin.setUsername("admin");
             commonResult.setData(admin);
         }
         if (Objects.equals(pw, password)) {
