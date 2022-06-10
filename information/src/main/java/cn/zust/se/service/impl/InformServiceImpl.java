@@ -5,6 +5,7 @@ import cn.zust.se.eneity.Inform;
 import cn.zust.se.service.InformService;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -34,8 +35,9 @@ public class InformServiceImpl implements InformService {
     }
 
     @Override
-    public Integer insertInform(Date time, String publisher, String content) {
-        return informDao.insertInform(time, publisher, content);
+    public Integer insertInform(String time,String publisher, String content,String title) {
+
+        return informDao.insertInform(time, publisher, content,title);
     }
 
     @Override

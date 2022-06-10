@@ -10,4 +10,5 @@ public class Inform {
     public Date time;
     public String publisher;
     public String content;
+    public String title;
 }

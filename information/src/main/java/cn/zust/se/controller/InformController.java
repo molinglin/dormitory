@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -23,8 +24,11 @@ public class InformController {
 
     @ApiOperation("添加通知")
     @PostMapping("/insertInform")
-    public CommonResult insertInform(@Param("time") Date time,@Param("publisher") String publisher,@Param("content") String content){
-        if(informService.insertInform(time, publisher, content)==1){
+    public CommonResult insertInform(String publisher,String content,String title){
+        Date date=new Date();
+        SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd");
+        String time=dateFormat.format(date);
+        if(informService.insertInform(time,publisher,content,title)==1){
             return new CommonResult<>(200,"success",null);
         }else {
             return new CommonResult<>(400,"fail",null);

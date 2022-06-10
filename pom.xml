@@ -12,7 +12,7 @@
         <module>common</module>
         <module>dormitoryManagement</module>
         <module>user</module>
-        <module>building</module>
+<!--        <module>building</module>-->
         <module>student</module>
 <!--        <module>master</module>-->
         <module>bed</module>
