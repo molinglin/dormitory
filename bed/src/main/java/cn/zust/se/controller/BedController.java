@@ -1,6 +1,7 @@
 package cn.zust.se.controller;
 
 import cn.zust.se.eneity.Bed;
+import cn.zust.se.eneity.Building;
 import cn.zust.se.eneity.CommonResult;
 import cn.zust.se.eneity.CommonResultBeds;
 import cn.zust.se.service.BedService;
@@ -149,6 +150,17 @@ public class BedController {
             return new CommonResultBeds<>(200,"success",total,beds1);
         }else {
             return new CommonResultBeds (400,"fail",0,null);
+        }
+    }
+
+    @ApiOperation(value = "获取所有楼宇信息")
+    @GetMapping ("/showBuilding")
+    public CommonResult<List> showBuilding(){
+        List<Building> builds =bedService.selBuildings();
+        if(builds!=null){
+            return new CommonResult<List>(200,"成功",builds);
+        }else {
+            return new CommonResult<List>(400,"失败",null);
         }
     }
 

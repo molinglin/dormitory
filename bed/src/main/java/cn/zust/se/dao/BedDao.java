@@ -1,6 +1,7 @@
 package cn.zust.se.dao;
 
 import cn.zust.se.eneity.Bed;
+import cn.zust.se.eneity.Building;
 import cn.zust.se.eneity.Stu;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -34,6 +35,8 @@ public interface BedDao {
             "where (bed.buildingid=#{buildingid} or #{buildingid} is null) and (bed.dormitory=#{dormitory} or #{dormitory} is null) and " +
             "(bed.bednum=#{bedNum} or #{bedNum} is null)  order by bid asc")
     List<Bed> selBeds(@Param("buildingid") String buildingid, @Param("dormitory") String dormitory,@Param("bedNum") String bedNum);
+    @Select("select * from building")
+    List<Building> selBuildings();
 }
 
 //    and (bed.empty=#{empty} or #{empty} is null)
