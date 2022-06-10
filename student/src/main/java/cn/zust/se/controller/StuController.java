@@ -64,6 +64,7 @@ public class StuController {
 
         if (dormitory!=null)
             students=stuService.getStudByDormitory(dormitory);
+
         PageInfo<Stu> pageInfo=new PageInfo<>(students);
         if (!pageInfo.getList().isEmpty()){
             return new CommonResult<>(200,"查找成功",pageInfo);
