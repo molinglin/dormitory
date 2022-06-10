@@ -20,6 +20,7 @@ import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @Api(value = "学生controller",tags ={"学生接口"})
 @RestController
@@ -32,9 +33,15 @@ public class StuController {
 
     @ApiOperation(value = "查找学生")
     @GetMapping("/students")
-    public CommonResult<PageInfo> getStu(@ApiParam("uid") @RequestParam(value = "uid",required = false) String uid,@ApiParam(value = "pageNum") @RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@ApiParam("pageSize") @RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize,@ApiParam("name") @RequestParam(value = "name",required = false) String name,@ApiParam("dormitory") @RequestParam(value = "dormitory",required = false) String dormitory){
+    public CommonResult<PageInfo> getStu(@ApiParam("uid") @RequestParam(value = "uid",required = false,defaultValue = "") String uid,@ApiParam(value = "pageNum") @RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@ApiParam("pageSize") @RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize,@ApiParam("name") @RequestParam(value = "name",required = false,defaultValue = "") String name,@ApiParam("dormitory") @RequestParam(value = "dormitory",required = false,defaultValue = "") String dormitory){
         PageHelper.startPage(pageNum,pageSize);
         List<Stu> students=new ArrayList<>();
+        if(uid.equals(""))
+            uid=null;
+        if(name.equals(""))
+            name=null;
+        if(dormitory.equals(""))
+            dormitory=null;
         if(uid==null&&name==null&&dormitory==null){
             students=stuService.getsAll();
         }
