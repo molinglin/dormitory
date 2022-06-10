@@ -14,8 +14,8 @@ import java.util.List;
 @Mapper
 @Repository
 public interface InformDao {
-    @Insert("insert into inform (time,publisher,content,title) values(#{time},#{publisher},#{content},#{title})")
-    Integer insertInform(@Param("time") String time,@Param("publisher") String publisher,@Param("content")String content,@Param("title")String title);
+    @Insert("insert into inform (time,publisher,content,title) values(now(),#{publisher},#{content},#{title})")
+    Integer insertInform(@Param("publisher") String publisher,@Param("content")String content,@Param("title")String title);
     @Select("select * from inform")
     List<Inform> selAllInform();
     @Select("select * from inform where publisher=#{publisher}")
