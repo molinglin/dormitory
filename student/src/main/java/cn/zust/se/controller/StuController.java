@@ -37,7 +37,7 @@ public class StuController {
         List<Stu> stus = stuService.getsAll();
         PageInfo<Stu> pageInfo1=new PageInfo<>(stus);
         if(uid==null&&name==null&&dormitory==null){
-            return new CommonResult<>(400,"输入不能为空",pageInfo1);
+            return new CommonResult<>(200,"",pageInfo1);
         }
         List<Stu> students=new ArrayList<>();
         if(uid!=null){
