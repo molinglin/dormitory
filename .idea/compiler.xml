@@ -9,15 +9,15 @@
         <outputRelativeToContentRoot value="true" />
         <module name="bed" />
         <module name="dormitoryManagement" />
+        <module name="information" />
         <module name="common" />
         <module name="student" />
-        <module name="information" />
         <module name="user" />
-        <module name="building" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="adminConsumer" target="1.8" />
+      <module name="building" target="1.8" />
       <module name="dormitoryAllocation" target="1.8" />
       <module name="imformation" target="8" />
       <module name="lookupProvider" target="1.8" />

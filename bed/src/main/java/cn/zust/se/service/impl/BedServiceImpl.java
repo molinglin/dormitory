@@ -2,6 +2,7 @@ package cn.zust.se.service.impl;
 
 import cn.zust.se.dao.BedDao;
 import cn.zust.se.eneity.Bed;
+import cn.zust.se.eneity.Building;
 import cn.zust.se.service.BedService;
 import org.springframework.stereotype.Service;
 
@@ -57,6 +58,11 @@ public class BedServiceImpl implements BedService {
     public List<Bed> selBedsByBAndF(Integer buildingid, String floor) {
         String fl4=floor+"%";
         return bedDao.selBedsByBAndF(buildingid,fl4);
+    }
+
+    @Override
+    public List<Building> selBuildings() {
+        return bedDao.selBuildings();
     }
 
     @Override
