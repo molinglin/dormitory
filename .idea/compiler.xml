@@ -17,11 +17,12 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="adminConsumer" target="8" />
-      <module name="dormitoryAllocation" target="8" />
+      <module name="adminConsumer" target="1.8" />
+      <module name="dormitoryAllocation" target="1.8" />
       <module name="imformation" target="8" />
+      <module name="lookupProvider" target="1.8" />
       <module name="master" target="8" />
-      <module name="masterConsumer" target="8" />
+      <module name="masterConsumer" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

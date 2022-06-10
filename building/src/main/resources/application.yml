@@ -1,11 +1,18 @@
 spring:
+  application:
+    name: service-building
   datasource:
     username: root
     password: root
     url: jdbc:mysql://localhost:3308/yt?serverTimezone=UTC&characterEncoding=utf-8&userUnicode=true&useSSL=false
     driver-class-name: com.mysql.jdbc.Driver
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        service: building
 server:
-  port: 8084
+  port: 8085
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
