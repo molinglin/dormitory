@@ -80,6 +80,8 @@ public class LackController {
     @ApiOperation("联合查询缺寝记录")
     @GetMapping("/selLacks")
     public CommonResult selLacks(String name,@RequestParam(defaultValue = "2000/1/1",value = "time1") Date time1,@RequestParam(defaultValue = "2100/1/1",value = "time2") Date time2, Integer buildingid, String dormitory,@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize){
+        if(name=="")name=null;
+        if(dormitory=="")dormitory=null;
         PageHelper.startPage(pageNum,pageSize);
         List<Lacks> lacks=lackService.selLacks(name, time1, time2, buildingid, dormitory);
         Integer count=lackService.selLacks(name, time1, time2, buildingid, dormitory).size();

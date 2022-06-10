@@ -86,6 +86,7 @@ public class InformController {
     @ApiOperation("通知联合查询")
     @GetMapping("/selInforms")
     public CommonResult selInforms(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize,String publisher,Date time){
+        if(publisher=="")publisher=null;
         PageHelper.startPage(pageNum,pageSize);
         List<Inform> informs=informService.selInforms(publisher,time);
         PageInfo<Inform> pageInfo=new PageInfo<>(informs);

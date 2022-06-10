@@ -132,6 +132,11 @@ public class BedController {
     @ApiOperation("联合查询床位")
     @GetMapping("/selBeds")
     public CommonResultBeds selBeds(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum, @RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize, String buildingid, String dormitory, String bedNum, String name, String empty){
+        if(buildingid=="")buildingid=null;
+        if(dormitory=="")dormitory=null;
+        if(bedNum=="")bedNum=null;
+        if(name=="")name=null;
+        if(empty=="")empty=null;
         List<Bed> beds=bedService.selBeds(buildingid, dormitory, bedNum, name, empty);
         Integer total=beds.size();
         List<Bed> beds1=startPage(beds,pageNum,pageSize);
