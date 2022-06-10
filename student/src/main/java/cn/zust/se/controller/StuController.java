@@ -33,10 +33,12 @@ public class StuController {
     @ApiOperation(value = "查找学生")
     @GetMapping("/students")
     public CommonResult<PageInfo> getStu(@ApiParam("uid") @RequestParam(value = "uid",required = false) String uid,@ApiParam(value = "pageNum") @RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@ApiParam("pageSize") @RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize,@ApiParam("name") @RequestParam(value = "name",required = false) String name,@ApiParam("dormitory") @RequestParam(value = "dormitory",required = false) String dormitory){
-        if(uid==null&&name==null&&dormitory==null){
-            return new CommonResult<>(400,"输入不能为空");
-        }
         PageHelper.startPage(pageNum,pageSize);
+        List<Stu> stus = stuService.getsAll();
+        PageInfo<Stu> pageInfo1=new PageInfo<>(stus);
+        if(uid==null&&name==null&&dormitory==null){
+            return new CommonResult<>(400,"输入不能为空",pageInfo1);
+        }
         List<Stu> students=new ArrayList<>();
         if(uid!=null){
             if(name==null&&dormitory==null){
