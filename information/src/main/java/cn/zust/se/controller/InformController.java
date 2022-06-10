@@ -24,7 +24,7 @@ public class InformController {
 
     @ApiOperation("添加通知")
     @PostMapping("/insertInform")
-    public CommonResult insertInform(Date time,String publisher,String content,String title){
+    public CommonResult insertInform(String time,String publisher,String content,String title){
 //        Date date=new Date();
 //        SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd");
 //        String time=dateFormat.format(date);
