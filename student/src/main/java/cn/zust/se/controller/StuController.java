@@ -86,6 +86,9 @@ public class StuController {
     @ApiOperation(value = "根据学号获取学生信息")
     @GetMapping("/students/uid/{uid}")
     public CommonResult<Stu> getStuByUid(@ApiParam("uid") @PathVariable("uid") String uid){
+        if(uid==null){
+            return new CommonResult<>(400,"学号不能为空",null);
+        }
         List<Stu> students = stuService.getStuByUid(uid);
         Stu stu = students.get(0);
         if(!students.isEmpty()){
