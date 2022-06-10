@@ -9,9 +9,9 @@
         <outputRelativeToContentRoot value="true" />
         <module name="bed" />
         <module name="dormitoryManagement" />
+        <module name="information" />
         <module name="common" />
         <module name="student" />
-        <module name="information" />
         <module name="user" />
       </profile>
     </annotationProcessing>
