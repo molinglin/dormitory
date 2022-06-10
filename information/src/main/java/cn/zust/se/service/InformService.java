@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 public interface InformService {
-    Integer insertInform(String time,String publisher, String content,String title);
+    Integer insertInform(Date time,String publisher, String content,String title);
     List<Inform> selAllInform();
     List<Inform> selInformByPublisher(String publisher);
     List<Inform> selInformByTime(Date time);
