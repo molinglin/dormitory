@@ -4,6 +4,8 @@ import cn.zust.se.eneity.Master;
 import cn.zust.se.eneity.Stu;
 import cn.zust.se.eneity.User;
 
+import java.util.List;
+
 public interface UserService {
     User login(String username);
     Integer updateUserPw(String username,String password);
@@ -12,4 +14,6 @@ public interface UserService {
     Stu selStu(String uid);
     Master selMaster(String did);
     Integer updatePermissions(String buildingid,String did);
+    List<Master> selAllMaster();
+
 }

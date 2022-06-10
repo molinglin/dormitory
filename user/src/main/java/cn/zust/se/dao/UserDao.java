@@ -10,6 +10,8 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Mapper
 @Repository
 public interface UserDao {
@@ -27,4 +29,6 @@ public interface UserDao {
     Master selMaster(String did);
     @Update("update master set buildingid=#{buildingid} where did=#{did}")
     Integer updatePermissions(@Param("buildingid")String buildingid,@Param("did") String did);
+    @Select("select * from master")
+    List<Master> selAllMaster();
 }
