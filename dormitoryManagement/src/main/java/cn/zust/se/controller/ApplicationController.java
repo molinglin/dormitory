@@ -11,6 +11,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.models.auth.In;
+import org.apache.commons.lang.ObjectUtils;
 import org.checkerframework.checker.units.qual.A;
 import org.checkerframework.checker.units.qual.C;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -117,6 +118,7 @@ public class ApplicationController {
     private CommonResult agree(@PathVariable("id") Integer id){
         Application application = applicationService.selectById(id);
         Stu stu = stuService.getStuByUid(application.getUid()).getData();
+        System.out.println(stu);
         Integer sid=stu.getId();
         if(application.getType()==0){//换宿申请
             CommonResult result = stuService.update(sid, application.getDormitory(), application.getBuildingid(), application.getBednum());
@@ -124,7 +126,7 @@ public class ApplicationController {
                 return new CommonResult(400,"修改失败",0);
             }
         }else {
-            stuService.update(sid,null,null,null);
+            stuService.update(sid, "null",0,0);
         }
         int i = applicationService.agree(id);
         if(i!=0){

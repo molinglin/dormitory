@@ -85,14 +85,11 @@ public class StuController {
     }
     @ApiOperation(value = "根据学号获取学生信息")
     @GetMapping("/students/uid/{uid}")
-    public CommonResult<PageInfo> getStuByUid(@ApiParam("uid") @PathVariable("uid") String uid,@ApiParam(value = "pageNum") @RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@ApiParam("pageSize") @RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize){
-
-        PageHelper.startPage(pageNum,pageSize);
+    public CommonResult<Stu> getStuByUid(@ApiParam("uid") @PathVariable("uid") String uid){
         List<Stu> students = stuService.getStuByUid(uid);
-        Integer pages=students.size();
-        PageInfo<Stu> pageInfo=new PageInfo<>(students);
+        Stu stu = students.get(0);
         if(!students.isEmpty()){
-            return new CommonResult<>(200,"查询成功",pageInfo);
+            return new CommonResult<>(200,"查询成功",stu);
         }else {
             return new CommonResult<>(400,"查找失败",null);
         }
