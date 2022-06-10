@@ -17,7 +17,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="adminConsumer" target="1.8" />
-      <module name="building" target="1.8" />
+      <module name="building" target="8" />
       <module name="dormitoryAllocation" target="1.8" />
       <module name="imformation" target="8" />
       <module name="lookupProvider" target="1.8" />

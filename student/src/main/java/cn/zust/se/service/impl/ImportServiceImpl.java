@@ -89,6 +89,7 @@ public class ImportServiceImpl implements ImportService {
                 stu.setBuildingid(null);
                 stu.setBednum(null);
                 stu.setStatus(0);
+                stuDao.insertUser(stu.getUid(),"123456","1");
                 students.add(stu);
             }
 

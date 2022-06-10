@@ -32,6 +32,8 @@ public interface StuDao {
     List<Stu> getStudnv();
     int create(Stu stu);
     int insertList(List<Stu> list);
+    @Insert("insert into user (username,password,type) values(#{uid},#{password},#{type})")
+    int insertUser(@Param("uid") String uid,@Param("password") String password,@Param("type") String type);
     @Delete("delete  from stu where id=#{id}")
     int delete(Integer id);
     @Update("update stu set dormitory=#{dormitory} where id=#{id}")
