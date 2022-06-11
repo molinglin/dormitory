@@ -14,8 +14,8 @@ public class QuestionServiceImpl implements QuestionService {
     @Resource
     QuestionDao  questionDao;
     @Override
-    public Integer insertQ(String uid, Integer sleep, Integer getup, Integer smoke) {
-        return questionDao.insertQ(uid, sleep, getup, smoke);
+    public Integer insertQ(String uid, Integer sleep, Integer getup, Integer temper) {
+        return questionDao.insertQ(uid, sleep, getup, temper);
     }
 
     @Override

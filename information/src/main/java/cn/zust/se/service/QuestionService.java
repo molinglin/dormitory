@@ -6,7 +6,7 @@ import cn.zust.se.eneity.Questionnaire;
 import java.util.List;
 
 public interface QuestionService {
-    Integer insertQ(String uid,Integer sleep,Integer getup,Integer smoke);
+    Integer insertQ(String uid,Integer sleep,Integer getup,Integer temper);
     List<Question> selQ(String uid);
     List<Questionnaire> selQByName(String name);
 

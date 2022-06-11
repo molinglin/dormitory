@@ -19,9 +19,9 @@ public class QuestionController {
     QuestionService questionService;
     @ApiOperation("插入问卷数据")
     @PostMapping("insertQ")
-    public CommonResult insertQ(String uid, Integer sleep, Integer getup, Integer smoke){
+    public CommonResult insertQ(String uid, Integer sleep, Integer getup, Integer temper){
         if(questionService.selQ(uid).isEmpty()){
-            Integer i=questionService.insertQ(uid, sleep, getup, smoke);
+            Integer i=questionService.insertQ(uid, sleep, getup, temper);
             if(i==1){
                 return new CommonResult<>(200,"success",null);
             }else return new CommonResult<>(400,"fail",null);

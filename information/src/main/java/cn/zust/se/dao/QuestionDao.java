@@ -13,8 +13,8 @@ import java.util.List;
 @Mapper
 @Repository
 public interface QuestionDao {
-    @Insert("insert into questionnaire values(#{uid},#{sleep},#{getup},#{smoke})")
-    Integer insertQ(@Param("uid") String uid,@Param("sleep") Integer sleep,@Param("getup") Integer getup,@Param("smoke") Integer smoke);
+    @Insert("insert into questionnaire values(#{uid},#{sleep},#{getup},#{temper})")
+    Integer insertQ(@Param("uid") String uid,@Param("sleep") Integer sleep,@Param("getup") Integer getup,@Param("smoke") Integer temper);
     @Select("select * from questionnaire where uid=#{uid}")
     List<Question> selQ(String uid);
     @Select("select questionnaire.uid,stu.name,questionnaire.sleep,questionnaire.getup,questionnaire.temper from questionnaire,stu " +
