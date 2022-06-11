@@ -17,5 +17,6 @@ public interface HygieneService {
     Integer insertHy(Integer times,Integer buildingid,String dormitory,Integer result);
     public Map<String,Object> insertHyByExcel(MultipartFile file);
     List<Hygiene> selHygiene(Integer times,Integer buildingid,String dormitory,Integer result1,Integer result2);
+    Integer updateHygiene(Integer result,Integer id);
 
 }

@@ -1,10 +1,7 @@
 package cn.zust.se.dao;
 
 import cn.zust.se.eneity.Hygiene;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -29,4 +26,6 @@ public interface HygieneDao {
     Integer insertHyByExcel(List<Hygiene> hygiene);
     @Select("select * from hygiene where (times=#{times} or #{times} is null) and (buildingid=#{buildingid} or #{buildingid} is null) and (dormitory=#{dormitory} or #{dormitory} is null) and (result between #{result1} and #{result2})")
     List<Hygiene> selHygiene(@Param("times") Integer times,@Param("buildingid") Integer buildingid,@Param("dormitory") String dormitory,@Param("result1") Integer result1,@Param("result2") Integer result2);
+    @Update("update hygiene set result=#{result} where id=#{id}")
+    Integer updateHygiene(@Param("result") Integer result,@Param("id") Integer id);
 }
