@@ -35,6 +35,12 @@ public class InformController {
         }
     }
 
+    @ApiOperation("修改通知")
+    @PostMapping("/updateInform")
+    public CommonResult updateInform(Integer id,String title,String content){
+        if()
+    }
+
     @ApiOperation("查询所有通知")
     @GetMapping("/selAllInforms")
     public CommonResult selAllInforms(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize){

@@ -70,7 +70,7 @@ public class UserController {
     @ApiOperation("修改学生信息")
     @PutMapping("/updateStu")
     @ResponseBody
-    public CommonResult<Object> updateStu(@RequestParam("uid") String uid,@RequestParam("phone") String phone,@RequestParam("college") String college,@RequestParam("major") String major,@RequestParam("classes") String classes){
+    public CommonResult<Object> updateStu(String uid,String phone,String college,String major,String classes){
         if(userService.updateStu(uid, phone, college, major, classes)==1){
             return new CommonResult<>(200,"修改成功");
         }else {
@@ -81,7 +81,7 @@ public class UserController {
     @ApiOperation("修改宿管信息")
     @PutMapping("/updateMaster")
     @ResponseBody
-    public CommonResult<Object> updateMaster(@RequestParam("did")String did,@RequestParam("phone")String phone,@RequestParam("buildingid")Integer buildingid){
+    public CommonResult<Object> updateMaster(String did,String phone,Integer buildingid){
         if(userService.updateMaster(did, phone, buildingid)==1){
             return new CommonResult<>(200,"修改成功");
         }else {
