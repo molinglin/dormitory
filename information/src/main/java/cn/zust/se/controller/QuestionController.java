@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Api("问卷调查")
 @RestController
@@ -18,7 +19,8 @@ public class QuestionController {
     @ApiOperation("插入问卷数据")
     @PostMapping("insertQ")
     public CommonResult insertQ(@RequestBody Question question){
-        if(questionService.selQ(question.getUid()).isEmpty()){
+        List<Question> questions = questionService.selQ(question.getUid());
+        if(questions.isEmpty()){
             Integer i=questionService.insertQ(question);
             if(i==1){
                 return new CommonResult<>(200,"success",null);
