@@ -9,12 +9,11 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.apache.xmlbeans.impl.xb.xsdschema.Public;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.net.Inet4Address;
 import java.util.List;
 
 import static cn.zust.se.util.StartPage.startPage;
@@ -132,10 +131,9 @@ public class BedController {
 
     @ApiOperation("联合查询床位")
     @GetMapping("/selBeds")
-    public CommonResultBeds selBeds(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum, @RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize, String buildingid, String dormitory, String bednum, String name, String empty){
+    public CommonResultBeds selBeds(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum, @RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize, String buildingid, String dormitory, Integer bednum, String name, String empty){
         if(buildingid=="")buildingid=null;
         if(dormitory=="")dormitory=null;
-        if(bednum=="")bednum=null;
         if(name=="")name=null;
         if(empty=="")empty=null;
         List<Bed> beds=bedService.selBeds(buildingid, dormitory, bednum, name, empty);
@@ -162,6 +160,11 @@ public class BedController {
         }else {
             return new CommonResult<List>(400,"失败",null);
         }
+    }
+    @PostMapping("/updateUandE")
+    public Integer update(@RequestParam("buildingid") String buildingid, @RequestParam("dormitory") String dormitory,@RequestParam("bednum") Integer bednum){
+        int i = bedService.updateUandE(buildingid, dormitory, bednum);
+        return i;
     }
 
 //    @ApiOperation("联合查询床位")

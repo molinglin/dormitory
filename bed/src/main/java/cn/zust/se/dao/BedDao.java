@@ -6,6 +6,7 @@ import cn.zust.se.eneity.Stu;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -34,9 +35,11 @@ public interface BedDao {
     @Select("select * from bed " +
             "where (bed.buildingid=#{buildingid} or #{buildingid} is null) and (bed.dormitory=#{dormitory} or #{dormitory} is null) and " +
             "(bed.bednum=#{bednum} or #{bednum} is null)  order by bid asc")
-    List<Bed> selBeds(@Param("buildingid") String buildingid, @Param("dormitory") String dormitory,@Param("bednum") String bednum);
+    List<Bed> selBeds(@Param("buildingid") String buildingid, @Param("dormitory") String dormitory,@Param("bednum") Integer bednum);
     @Select("select * from building")
     List<Building> selBuildings();
+    @Update("update bed set empty='Y' and uid='null' where buildingid=#{buildingid} and dormitory=#{dormitory} and bednum=#{bednum}")
+    int updateUandE(@Param("buildingid") String buildingid,@Param("dormitory") String dormitory,@Param("bednum") Integer bednum);
 }
 
 //    and (bed.empty=#{empty} or #{empty} is null)

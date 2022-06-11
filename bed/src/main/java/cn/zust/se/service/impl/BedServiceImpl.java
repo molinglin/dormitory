@@ -4,6 +4,7 @@ import cn.zust.se.dao.BedDao;
 import cn.zust.se.eneity.Bed;
 import cn.zust.se.eneity.Building;
 import cn.zust.se.service.BedService;
+import io.swagger.models.auth.In;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -66,7 +67,12 @@ public class BedServiceImpl implements BedService {
     }
 
     @Override
-    public List<Bed> selBeds(String buildingid, String dormitory, String bednum, String name, String empty) {
+    public int updateUandE(String buildingid, String dormitory, Integer bednum) {
+        return bedDao.updateUandE(buildingid,dormitory,bednum);
+    }
+
+    @Override
+    public List<Bed> selBeds(String buildingid, String dormitory, Integer bednum, String name, String empty) {
         List<Bed> bed=bedDao.selBeds(buildingid, dormitory, bednum);
 //        System.out.println(bed);
 //        List<Beds> beds=new ArrayList<>();

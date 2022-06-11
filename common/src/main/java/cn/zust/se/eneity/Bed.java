@@ -8,7 +8,7 @@ public class Bed {
     private String bid;
     private String buildingid;
     private String dormitory;
-    private String bednum;
+    private Integer bednum;
     private String uid;
     private String empty;
 //    private Integer total;

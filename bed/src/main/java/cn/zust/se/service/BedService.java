@@ -2,6 +2,7 @@ package cn.zust.se.service;
 
 import cn.zust.se.eneity.Bed;
 import cn.zust.se.eneity.Building;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -14,8 +15,8 @@ public interface BedService {
     List<Bed> selBedsByBuilding(Integer buildingid);
     List<Bed> selBedsByFloor(String floor);
     List<Bed> selBedsByBAndF(Integer buildingid,String floor);
-    List<Bed> selBeds(String buildingid, String dormitory, String bednum, String name, String empty);
+    List<Bed> selBeds(String buildingid, String dormitory, Integer bednum, String name, String empty);
     List<Building> selBuildings();
-
+    int updateUandE( String buildingid, String dormitory,  Integer bednum);
 //    List<Bed> selBedss(String buildingid, String dormitory, String bednum);
 }

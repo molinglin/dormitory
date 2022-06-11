@@ -2,6 +2,7 @@ package cn.zust.se.controller;
 
 import cn.zust.se.eneity.*;
 import cn.zust.se.service.ApplicationService;
+import cn.zust.se.service.BedService;
 import cn.zust.se.service.StuService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -25,6 +26,8 @@ public class ApplicationController {
     ApplicationService applicationService;
     @Autowired
     StuService stuService;
+    @Autowired
+    BedService bedService;
 
     @ApiOperation(value = "分页显示所有请求")
     @GetMapping("/")
@@ -134,7 +137,11 @@ public class ApplicationController {
                 return new CommonResult(400,"修改失败",0);
             }
         }else {
-            stuService.update(sid, "null",0,0);
+            String dormitory = stu.getDormitory();
+            Integer buildingid = stu.getBuildingid();
+            Integer bednum = stu.getBednum();
+            stuService.update(sid, null,0,0);
+            bedService.update(String.valueOf(buildingid),dormitory,bednum);
         }
         int i = applicationService.agree(id);
         if(i!=0){

@@ -70,6 +70,9 @@
             <!-- 特别注意版本问题 -->
             <version>1.2.3</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
     </dependencies>
 </project>
