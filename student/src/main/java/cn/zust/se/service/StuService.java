@@ -19,7 +19,9 @@ public interface StuService {
     int updateDormitory( Integer id,  String dormitory);//修改寝室
     int updateBuild( Integer id,  Integer buildingid);//修改建筑
     int updateBed(Integer id,Integer bednum);
-    int update(Stu stu);
+    int update(String uid,String name,String gender,String phone,String college,String major,String classes,
+               String dormitory,Integer buildingid,Integer bednum);
+//    int update(String bid);
     List<Stu> getStudByDormitory(String dormitory);
     List<Stu> getStuByUandN(String uid,String name);
     List<Stu> getStuByUandD(String uid, String dormitory);

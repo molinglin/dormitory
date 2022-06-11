@@ -189,8 +189,8 @@ public class StuController {
     }
     @ApiOperation(value = "修改学生信息")
     @PostMapping("/students/updateStu")
-    public CommonResult<Integer> update(@RequestBody Stu stu){
-        int update = stuService.update(stu);
+    public CommonResult<Integer> update(String uid, String name, String gender, String phone, String college, String major, String classes, String dormitory, Integer buildingid, Integer bednum){
+        int update = stuService.update(uid, name, gender, phone, college, major, classes, dormitory, buildingid, bednum);
         if(update!=0){
             return new CommonResult<>(200,"成功",1);
         }else {

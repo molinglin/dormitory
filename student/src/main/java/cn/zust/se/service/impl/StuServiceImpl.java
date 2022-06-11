@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class StuServiceImpl implements StuService {
@@ -71,9 +72,37 @@ public class StuServiceImpl implements StuService {
         return stuDao.updateBedNum(id,bednum);
     }
 
+//    @Override
+//    public int update(Stu stu) {
+//        if(stu.getBuildingid()==null && stu.getDormitory()==null && stu.getBednum()==null){
+//            stu.setStatus(0);
+//        }else if(stu.getBuildingid()!=null && stu.getDormitory()!=null && stu.getBednum()!=null){
+//            stu.setStatus(1);
+//        }else {
+//            return 0;
+//        }
+//        return stuDao.update(stu);
+//    }
+
+
     @Override
-    public int update(Stu stu) {
-        return stuDao.update(stu);
+    public int update(String uid, String name, String gender, String phone, String college, String major, String classes, String dormitory, Integer buildingid, Integer bednum) {
+        if(dormitory=="") dormitory=null;
+        if(buildingid==null && dormitory==null && bednum==null){
+            Integer status=0;
+            return stuDao.update2(uid,name,gender,phone,college,major,classes,status);
+        }else if(buildingid!=null && dormitory!=null && bednum!=null){
+            Integer status=1;
+            String bid= String.valueOf(buildingid)+dormitory+String.valueOf(bednum);
+            if(Objects.equals(stuDao.selBed2(bid).getEmpty(), "Y")){
+                stuDao.updateBed2(bid,uid);
+            }else {
+                return 0;
+            }
+            return stuDao.update(uid,name,gender,phone,college,major,classes,dormitory,buildingid,bednum,status);
+        }else {
+            return 0;
+        }
     }
 
     @Override
