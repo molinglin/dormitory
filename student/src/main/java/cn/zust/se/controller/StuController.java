@@ -196,6 +196,17 @@ public class StuController {
         }else {
             return new CommonResult<>(400,"失败",0);
         }
-
+    }
+    @ApiOperation("/删除学生信息")
+    @PostMapping("/students/delete/")
+    public CommonResult<Integer> delete(@RequestParam("id") Integer id) {
+        if (id == null)
+            return new CommonResult<>(400, "请传值");
+        int delete = stuService.delete(id);
+        if(delete!=0){
+            return new CommonResult<>(200,"删除成功",delete);
+        }else {
+            return new CommonResult<>(400,"删除失败",delete);
+        }
     }
 }
