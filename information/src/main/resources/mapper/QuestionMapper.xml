@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.zust.se.dao.QuestionDao">
+    <insert id="insertQ" parameterType="java.util.List">
+        insert into questionnaire(uid,sleep,getup,temper) values
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.uid},
+            #{item.sleep},
+            #{item.getup},
+            #{item.temper},
+            )
+        </foreach>
+    </insert>
+</mapper>
