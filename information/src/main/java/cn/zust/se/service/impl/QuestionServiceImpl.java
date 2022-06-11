@@ -2,6 +2,7 @@ package cn.zust.se.service.impl;
 
 import cn.zust.se.dao.QuestionDao;
 import cn.zust.se.eneity.Question;
+import cn.zust.se.eneity.Questionnaire;
 import cn.zust.se.service.QuestionService;
 import org.springframework.stereotype.Service;
 
@@ -20,5 +21,10 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public List<Question> selQ(String uid) {
         return questionDao.selQ(uid);
+    }
+
+    @Override
+    public List<Questionnaire> selQByName(String name) {
+        return questionDao.selQByName(name);
     }
 }
