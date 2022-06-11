@@ -8,6 +8,6 @@ public class Master {
     private String did;
     private String name;
     private String phone;
-    private Integer building_id;
+    private Integer buildingid;
     private String type;
 }
