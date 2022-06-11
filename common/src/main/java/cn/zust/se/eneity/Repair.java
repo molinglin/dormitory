@@ -12,4 +12,5 @@ public class Repair {
     public Integer buildingid;
     public String dormitory;
     public String intro;
+    public String complete;
 }

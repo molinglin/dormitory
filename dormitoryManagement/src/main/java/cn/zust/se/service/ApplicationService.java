@@ -2,6 +2,7 @@ package cn.zust.se.service;
 
 import cn.zust.se.dao.ApplicationDao;
 import cn.zust.se.eneity.Application;
+import cn.zust.se.eneity.Repair;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ public interface ApplicationService {
     List<Application> selects();//所有请求
     List<Application> selectsNoAccess();//未通过请求
     List<Application> selectsAccess();//已通过请求
+    List<Repair> selRepair();//维修
     List<Application> selectByUid(Integer uid);
     Application selectById(Integer id);
     int agree(Integer id);//同意请求

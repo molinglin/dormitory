@@ -1,8 +1,6 @@
 package cn.zust.se.controller;
 
-import cn.zust.se.eneity.Application;
-import cn.zust.se.eneity.CommonResult;
-import cn.zust.se.eneity.Stu;
+import cn.zust.se.eneity.*;
 import cn.zust.se.service.ApplicationService;
 import cn.zust.se.service.StuService;
 import com.github.pagehelper.PageHelper;
@@ -61,6 +59,16 @@ public class ApplicationController {
             return new CommonResult<>(200, "成功", pageInfo);
         }else {
             return new CommonResult<>(400,"失败",null);
+        }
+    }
+    @ApiOperation(value = "获取所有维修信息")
+    @GetMapping ("/showRepair")
+    public CommonResult<List> showRepair(){
+        List<Repair> repairs =applicationService.selRepair();
+        if(repairs!=null){
+            return new CommonResult<List>(200,"成功",repairs);
+        }else {
+            return new CommonResult<List>(400,"失败",null);
         }
     }
     @ApiOperation(value = "根据id查找请求")
