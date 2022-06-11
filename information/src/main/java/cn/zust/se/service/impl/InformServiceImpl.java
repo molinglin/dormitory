@@ -20,13 +20,18 @@ public class InformServiceImpl implements InformService {
     }
 
     @Override
-    public Integer updateInform(Integer id) {
-        return informDao.updateInform(id);
+    public Integer updateInform(Integer id, String title, String content) {
+        return informDao.updateInform(id, title, content);
     }
 
     @Override
     public Integer delInform(Integer id) {
         return informDao.delInform(id);
+    }
+
+    @Override
+    public Inform selInform(Integer id) {
+        return informDao.selInform(id);
     }
 
     @Override

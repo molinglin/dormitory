@@ -13,12 +13,12 @@ import java.util.List;
 public interface InformDao {
     Integer insertInform(Inform inform);
     @Update("update inform set title=#{title},content=#{content} where id=#{id}")
-    Integer updateInform(Integer id);
+    Integer updateInform(@Param("id") Integer id,@Param("title") String title,@Param("content") String content);
     @Delete("delete from inform where id=#{id}")
     Integer delInform(Integer id);
     @Select("select * from inform")
     List<Inform> selAllInform();
-    @Select("select * from inform where ")
+    @Select("select * from inform where id=#{id}")
     Inform selInform(Integer id);
     @Select("select * from inform where publisher=#{publisher}")
     List<Inform> selInformByPublisher(String publisher);

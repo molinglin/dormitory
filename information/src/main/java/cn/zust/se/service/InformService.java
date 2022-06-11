@@ -10,8 +10,9 @@ import java.util.List;
 
 public interface InformService {
     Integer insertInform(Inform inform);
-    Integer updateInform(Integer id);
+    Integer updateInform(Integer id,String title,String content);
     Integer delInform(Integer id);
+    Inform selInform(Integer id);
     List<Inform> selAllInform();
     List<Inform> selInformByPublisher(String publisher);
     List<Inform> selInformByTime(Date time);
