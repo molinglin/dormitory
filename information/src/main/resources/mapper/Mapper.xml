@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.zust.se.dao.InformDao">
+    <insert id="insertInform" useGeneratedKeys="true" keyProperty="id" parameterType="Inform">
+        insert into inform (title,time,publisher,content) values(#{title},now(),#{publisher},#{content})
+    </insert>
+</mapper>

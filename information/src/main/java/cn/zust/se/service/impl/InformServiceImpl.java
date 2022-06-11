@@ -35,9 +35,9 @@ public class InformServiceImpl implements InformService {
     }
 
     @Override
-    public Integer insertInform(String publisher, String content,String title) {
+    public Integer insertInform(Inform inform) {
 
-        return informDao.insertInform(publisher, content,title);
+        return informDao.insertInform(inform);
     }
 
     @Override

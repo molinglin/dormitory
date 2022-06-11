@@ -24,11 +24,11 @@ public class InformController {
 
     @ApiOperation("添加通知")
     @PostMapping("/insertInform")
-    public CommonResult insertInform(String publisher,String content,String title){
+    public CommonResult insertInform(@RequestBody Inform inform){
 //        Date date=new Date();
 //        SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd");
 //        String time=dateFormat.format(date);
-        if(informService.insertInform(publisher,content,title)==1){
+        if(informService.insertInform(inform)==1){
             return new CommonResult<>(200,"success",null);
         }else {
             return new CommonResult<>(400,"fail",null);
