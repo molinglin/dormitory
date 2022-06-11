@@ -1,5 +1,6 @@
 package cn.zust.se.dao;
 
+import cn.zust.se.eneity.Bed;
 import cn.zust.se.eneity.Stu;
 import org.apache.ibatis.annotations.*;
 
@@ -52,8 +53,13 @@ public interface StuDao {
     int updatePhone(@Param("id") Integer id,@Param("uid") String phone);
     @Update("update stu set college=#{college} where id=#{id}")
     int updateCollege(@Param("id") Integer id,@Param("uid") String college);
-    @Update("update stu set uid=#{uid} and name=#{name} and gender=#{gender} and phone=#{phone}" +
-            "and college=#{college} and major=#{major} and classes=#{classes} and dormitory=#{dormitory}" +
-            "and buildingid=#{buildingid} and bednum=#{bednum} and status=#{status} where id=#{id}")
-    int update(Stu stu);
+    @Update("update stu set name=#{name},gender=#{gender},phone=#{phone},college=#{college},major=#{major},classes=#{classes},dormitory=#{dormitory},buildingid=#{buildingid},bednum=#{bednum},status=#{status} where uid=#{uid}")
+    int update(@Param("uid") String uid,@Param("name") String name,@Param("gender") String gender,@Param("phone") String phone,@Param("college") String college,@Param("major") String major,@Param("classes") String classes,
+               @Param("dormitory") String dormitory,@Param("buildingid") Integer buildingid,@Param("bednum") Integer bednum,@Param("status") Integer status);
+    @Update("update stu set name=#{name},gender=#{gender},phone=#{phone},college=#{college},major=#{major},classes=#{classes},status=#{status} where uid=#{uid}")
+    int update2(@Param("uid") String uid,@Param("name") String name,@Param("gender") String gender,@Param("phone") String phone,@Param("college") String college,@Param("major") String major,@Param("classes") String classes,@Param("status") Integer status);
+    @Update("update bed set uid=#{uid},empty='N' where bid=#{bid}")
+    int updateBed2(@Param("bid") String bid,@Param("uid") String uid);
+    @Select("select * from bed where bid=#{bid}")
+    Bed selBed2(String bid);
 }
