@@ -40,13 +40,8 @@ public class ApplicationServiceimpl implements ApplicationService {
 
     @Override
     public List<Application> selectsNoAccess() {
-        List<Application> applications = applicationDao.selects();
-        List<Application> NoAccess=new ArrayList<>();
-        for (Application application:applications) {
-            if(application.getAccess()==0)
-                NoAccess.add(application);
-        }
-        return NoAccess;
+        List<Application> applications = applicationDao.selectNoAccess(0);
+        return applications;
     }
 
     @Override
