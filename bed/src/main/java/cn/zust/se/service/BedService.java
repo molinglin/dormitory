@@ -17,6 +17,6 @@ public interface BedService {
     List<Bed> selBedsByBAndF(Integer buildingid,String floor);
     List<Bed> selBeds(String buildingid, String dormitory, Integer bednum, String name, String empty);
     List<Building> selBuildings();
-    int updateUandE( String buildingid, String dormitory,  Integer bednum);
+    int updateUandE( String buildingid, String dormitory,Integer bednum);
 //    List<Bed> selBedss(String buildingid, String dormitory, String bednum);
 }

@@ -170,7 +170,7 @@ public class ApplicationController {
             String dormitory = stu.getDormitory();
             Integer buildingid = stu.getBuildingid();
             Integer bednum = stu.getBednum();
-            stuService.update(sid, null,0,0);
+            stuService.update(sid, "null",0,0);
             bedService.update(String.valueOf(buildingid),dormitory,bednum);
         }
         int i = applicationService.agree(id);

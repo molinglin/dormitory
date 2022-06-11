@@ -20,3 +20,7 @@ pagehelper:
   helper-dialect: mysql
   reasonable: true
   support-methods-arguments: true
+mybatis:
+  mapper-locations:
+    - classpath:mapper/**
+  type-aliases-package: cn.zust.se.eneity

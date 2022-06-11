@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Mapper
-@Repository
 public interface BedDao {
     @Select("select * from stu where uid=#{uid}")
     Stu getStuByUid(String  uid);
@@ -38,8 +37,8 @@ public interface BedDao {
     List<Bed> selBeds(@Param("buildingid") String buildingid, @Param("dormitory") String dormitory,@Param("bednum") Integer bednum);
     @Select("select * from building")
     List<Building> selBuildings();
-    @Update("update bed set empty='Y' and uid='null' where buildingid=#{buildingid} and dormitory=#{dormitory} and bednum=#{bednum}")
-    int updateUandE(@Param("buildingid") String buildingid,@Param("dormitory") String dormitory,@Param("bednum") Integer bednum);
+//    @Update("update bed set empty=#{empty} and uid=#{uid} where buildingid=#{buildingid} and dormitory=#{dormitory} and bednum=#{bednum}")
+    int updateUandE(@Param("buildingid") String building,@Param("dormitory") String dormitory,@Param("bednum") Integer bednum);
 }
 
 //    and (bed.empty=#{empty} or #{empty} is null)
