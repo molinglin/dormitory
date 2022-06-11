@@ -33,8 +33,8 @@ public interface BedDao {
     List<Bed> selBedsByBAndF(@Param("buildingid") Integer buildingid,@Param("floor") String floor);
     @Select("select * from bed " +
             "where (bed.buildingid=#{buildingid} or #{buildingid} is null) and (bed.dormitory=#{dormitory} or #{dormitory} is null) and " +
-            "(bed.bednum=#{bedNum} or #{bedNum} is null)  order by bid asc")
-    List<Bed> selBeds(@Param("buildingid") String buildingid, @Param("dormitory") String dormitory,@Param("bedNum") String bedNum);
+            "(bed.bednum=#{bednum} or #{bednum} is null)  order by bid asc")
+    List<Bed> selBeds(@Param("buildingid") String buildingid, @Param("dormitory") String dormitory,@Param("bednum") String bednum);
     @Select("select * from building")
     List<Building> selBuildings();
 }

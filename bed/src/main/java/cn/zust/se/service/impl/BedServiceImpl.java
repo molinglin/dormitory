@@ -66,8 +66,8 @@ public class BedServiceImpl implements BedService {
     }
 
     @Override
-    public List<Bed> selBeds(String buildingid, String dormitory, String bedNum, String name, String empty) {
-        List<Bed> bed=bedDao.selBeds(buildingid, dormitory, bedNum);
+    public List<Bed> selBeds(String buildingid, String dormitory, String bednum, String name, String empty) {
+        List<Bed> bed=bedDao.selBeds(buildingid, dormitory, bednum);
 //        System.out.println(bed);
 //        List<Beds> beds=new ArrayList<>();
         for (int i=0;i<bed.size();i++){

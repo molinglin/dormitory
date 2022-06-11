@@ -14,8 +14,8 @@ public interface BedService {
     List<Bed> selBedsByBuilding(Integer buildingid);
     List<Bed> selBedsByFloor(String floor);
     List<Bed> selBedsByBAndF(Integer buildingid,String floor);
-    List<Bed> selBeds(String buildingid, String dormitory, String bedNum, String name, String empty);
+    List<Bed> selBeds(String buildingid, String dormitory, String bednum, String name, String empty);
     List<Building> selBuildings();
 
-//    List<Bed> selBedss(String buildingid, String dormitory, String bedNum);
+//    List<Bed> selBedss(String buildingid, String dormitory, String bednum);
 }
