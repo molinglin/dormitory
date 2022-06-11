@@ -35,6 +35,28 @@ public class InformController {
         }
     }
 
+    @ApiOperation("修改通知")
+    @PostMapping("/updateInform")
+    public CommonResult updateInform(Integer id,String title,String content){
+        if(informService.selInform(id) == null){
+            return new CommonResult<>(400,"fail",null);
+        }else {
+            informService.updateInform(id, title, content);
+            return new CommonResult<>(200,"success",null);
+        }
+    }
+
+    @ApiOperation("删除通知")
+    @DeleteMapping("/delInform")
+    public CommonResult delInform(Integer id){
+        if(informService.selInform(id)==null){
+            return new CommonResult(400,"fail");
+        }else {
+            informService.delInform(id);
+            return new CommonResult<>(200,"del success",null);
+        }
+    }
+
     @ApiOperation("查询所有通知")
     @GetMapping("/selAllInforms")
     public CommonResult selAllInforms(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize){

@@ -2,10 +2,7 @@ package cn.zust.se.dao;
 
 import cn.zust.se.eneity.Inform;
 import io.swagger.models.auth.In;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
@@ -15,8 +12,14 @@ import java.util.List;
 @Repository
 public interface InformDao {
     Integer insertInform(Inform inform);
+    @Update("update inform set title=#{title},content=#{content} where id=#{id}")
+    Integer updateInform(@Param("id") Integer id,@Param("title") String title,@Param("content") String content);
+    @Delete("delete from inform where id=#{id}")
+    Integer delInform(Integer id);
     @Select("select * from inform")
     List<Inform> selAllInform();
+    @Select("select * from inform where id=#{id}")
+    Inform selInform(Integer id);
     @Select("select * from inform where publisher=#{publisher}")
     List<Inform> selInformByPublisher(String publisher);
     @Select("select * from inform where time > #{time}")
