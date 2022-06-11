@@ -71,6 +71,36 @@ public class ApplicationController {
             return new CommonResult<List>(400,"失败",null);
         }
     }
+    @ApiOperation(value = "新增维修请求")
+    @PostMapping("/insertRepair")
+    public CommonResult insertRepair(@RequestBody  Repair repair){
+        int i = applicationService.insertRepair(repair);
+        if(i!=0){
+            return new CommonResult(200,"添加成功",i);
+        }else {
+            return new CommonResult(400,"添加失败",i);
+        }
+    }
+    @ApiOperation(value = "处理报修")
+    @PutMapping("/upRepair/{id}")
+    public CommonResult upRepair(@ApiParam("id")  @PathVariable("id") Integer id){
+        int i = applicationService.upRepair(id);
+        if(i!=0){
+            return new CommonResult(200,"处理成功",i);
+        }else {
+            return new CommonResult(400,"处理失败",i);
+        }
+    }
+    @ApiOperation(value = "验收报修")
+    @PutMapping("/upRepair2/{id}")
+    public CommonResult upRepair2(@ApiParam("id")  @PathVariable("id") Integer id){
+        int i = applicationService.upRepair2(id);
+        if(i!=0){
+            return new CommonResult(200,"处理成功",i);
+        }else {
+            return new CommonResult(400,"处理失败",i);
+        }
+    }
     @ApiOperation(value = "根据id查找请求")
     @GetMapping("/{id}")
     public CommonResult<Application> findById(@ApiParam("id")  @PathVariable("id") Integer id){

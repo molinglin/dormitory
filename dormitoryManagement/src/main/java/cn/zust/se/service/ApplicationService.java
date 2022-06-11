@@ -9,6 +9,7 @@ import java.util.List;
 public interface ApplicationService {
 
     int changeDormitory(Application application);//换宿
+    int insertRepair(Repair repair);//报修
     int quitDormitory(Application application);//退宿
     int cancel(Integer id);//取消申请
     List<Application> selects();//所有请求
@@ -19,4 +20,6 @@ public interface ApplicationService {
     Application selectById(Integer id);
     int agree(Integer id);//同意请求
     int reject(Integer id);//拒绝
+    int upRepair(Integer id);
+    int upRepair2(Integer id);
 }

@@ -19,11 +19,17 @@ public interface ApplicationDao {
     Application selectById(Integer id);
     @Select("select * from application where access=#{access}")
     List<Application> selectNoAccess(Integer access);
+
     int insert(Application application);
+
+    int insertRepair(Repair repair);
     @Select("select * from repair")
     List<Repair> selRepair();
     @Update("update application set access=#{access} where id=#{id}")
     int updateAccess(@Param("id") Integer id,@Param("access") Integer access);
+    @Update("update repair set complete=#{complete} where id=#{id}")
+    int upRepair(@Param("id") Integer id,@Param("complete") String complete);
     @Delete("delete  from application where id=#{id}")
     int delete(Integer id);
+
 }

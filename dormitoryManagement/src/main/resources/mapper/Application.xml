@@ -6,4 +6,7 @@
     <insert id="insert" parameterType="Application" useGeneratedKeys="true" keyProperty="id">
         insert into application(uid,buildingid,dormitory,bednum,access,type) values (#{uid},#{buildingid},#{dormitory},#{bednum},#{access},#{type})
     </insert>
+    <insert id="insertRepair" parameterType="Repair" useGeneratedKeys="true" keyProperty="id">
+        insert into repair(uid,time,buildingid,dormitory,intro,complete) values (#{uid},#{time},#{buildingid},#{dormitory},#{intro},#{complete})
+    </insert>
 </mapper>
