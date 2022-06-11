@@ -57,8 +57,6 @@ public class ApplicationController {
         PageHelper.startPage(pageNum,pageSize);
         List<Application> applications = applicationService.selectsNoAccess();
         PageInfo<Application> pageInfo=new PageInfo<>(applications);
-        System.out.println(pageInfo.getList());
-        System.out.println(pageInfo.getPageSize());
         if(!pageInfo.getList().isEmpty()){
             return new CommonResult<>(200, "成功", pageInfo);
         }else {
