@@ -8,7 +8,7 @@ import java.util.Date;
 public class Repair {
     public Integer id;
     public String uid;
-    public Date time;
+    public String time;
     public Integer buildingid;
     public String dormitory;
     public String intro;

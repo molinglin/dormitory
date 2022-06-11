@@ -50,6 +50,12 @@ public class ApplicationServiceimpl implements ApplicationService {
         return applicationDao.selRepair();
     }
     @Override
+    public int insertRepair(Repair repair)
+    {
+        repair.setComplete("未完成");
+        return applicationDao.insertRepair(repair);
+    }
+    @Override
     public List<Application> selectsAccess() {
         List<Application> applications = applicationDao.selects();
         List<Application> Access=new ArrayList<>();
@@ -79,6 +85,13 @@ public class ApplicationServiceimpl implements ApplicationService {
     @Override
     public int reject(Integer id) {
         return applicationDao.updateAccess(id,2);
+    }
+    @Override
+    public int upRepair(Integer id){
+        return applicationDao.upRepair(id,"已上报");
+    }
+    public int upRepair2(Integer id){
+        return applicationDao.upRepair(id,"已完成");
     }
 
 
