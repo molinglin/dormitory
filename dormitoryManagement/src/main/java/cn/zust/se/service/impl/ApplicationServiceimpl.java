@@ -2,6 +2,7 @@ package cn.zust.se.service.impl;
 
 import cn.zust.se.dao.ApplicationDao;
 import cn.zust.se.eneity.Application;
+import cn.zust.se.eneity.Repair;
 import cn.zust.se.service.ApplicationService;
 import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,11 @@ public class ApplicationServiceimpl implements ApplicationService {
         List<Application> applications = applicationDao.selectNoAccess(0);
         return applications;
     }
-
+    @Override
+    public List<Repair> selRepair()
+    {
+        return applicationDao.selRepair();
+    }
     @Override
     public List<Application> selectsAccess() {
         List<Application> applications = applicationDao.selects();
