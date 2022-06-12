@@ -135,4 +135,13 @@ public class HygieneController {
             return new CommonResult<>(500,"添加失败",null);
         }
     }
+
+    @ApiOperation("修改卫生成绩")
+    @PutMapping("/updateHy")
+    public CommonResult updateHY(Integer result,Integer id){
+        Integer update=hygieneService.updateHygiene(result, id);
+        if(update == 1){
+            return new CommonResult<>(200,"success",null);
+        }else return new CommonResult<>(400,"fail",null);
+    }
 }
