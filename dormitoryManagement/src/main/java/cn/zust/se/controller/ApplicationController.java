@@ -165,6 +165,7 @@ public class ApplicationController {
             Bed bed = bedService.findBed(String.valueOf(application.getBuildingid()),application.getDormitory(),application.getBednum());
             System.out.println(bed);
             if(bed==null){
+                System.out.println("没有此床位");
                 return new CommonResult(400,"没有此床位");
             }
             if(bed.getEmpty().equals("N")){
@@ -172,31 +173,39 @@ public class ApplicationController {
                 System.out.println(data);
                 List<Application> applications = applicationService.selectByUidAndNoAccess(data.getUid());
                 if(applications.isEmpty()){
+                    System.out.println("对方未发起调换");
                     return new CommonResult(400,"对方未发起调换",null);
+
                 }
                 Application applicationData=applications.get(0);
                 if((!applicationData.getDormitory().equals(stu.getDormitory()))||(!applicationData.getBuildingid().equals(stu.getBuildingid()))||(!applicationData.getBednum().equals(stu.getBednum()))){
-                    return new CommonResult(400,"同意失败",null);
+                    System.out.println("对方申请不正确");
+                    return new CommonResult(400,"对方申请不正确",null);
                 }
                 int i1=bedService.update("N",stu.getUid(), String.valueOf(application.getBuildingid()),application.getDormitory(),application.getBednum());
                 int c1 = stuService.update(sid, application.getDormitory(), application.getBuildingid(), application.getBednum()).getCode();
                 int i2=bedService.update("N",data.getUid(), String.valueOf(stu.getBuildingid()),stu.getDormitory(),stu.getBednum());
                 int c2=stuService.update(data.getId(), stu.getDormitory(), stu.getBuildingid(), stu.getBednum()).getCode();
                 if(i1==0||i2==0||c1==400||c2==40){
+                    System.out.println("同意失败1");
                     return new CommonResult(400,"同意失败");
                 }
                 i=applicationService.agree(id);
                 j=applicationService.agree(applicationData.getId());
 //                return new CommonResult(400,"申请的寝室不为空");
             }else {
+                System.out.println("进入此循环");
                 bedService.update("Y","null",String.valueOf(buildingid),dormitory,bednum);//学生对应床位置为空
                 CommonResult result = stuService.update(sid, application.getDormitory(), application.getBuildingid(), application.getBednum());
                 Integer n = bedService.update("N", stu.getUid(), String.valueOf(application.getBuildingid()), application.getDormitory(), application.getBednum());
                 if(n==0){
-                    return new CommonResult(400,"修改失败");
+                    System.out.println("失败2");
+                    return new CommonResult(400,"失败");
                 }
                 if(result.getCode()==400){
-                    return new CommonResult(400,"修改失败",0);
+                    System.out.println("失败3");
+                    return new CommonResult(400,"失败",0);
+
                 }
                 i=applicationService.agree(id);
             }
@@ -207,9 +216,12 @@ public class ApplicationController {
         }
 
         if(i!=0){
+            System.out.println("同样成功");
             return new CommonResult(200,"同意成功",i);
         }else {
+            System.out.println("失败4");
             return new CommonResult(400,"同意失败",i);
+
         }
     }
     @ApiOperation(value = "拒绝申请")
