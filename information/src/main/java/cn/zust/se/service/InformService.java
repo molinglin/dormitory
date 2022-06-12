@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface InformService {
     Integer insertInform(Inform inform);
-    Integer updateInform(Integer id,String title,String content,String user);
+    Integer updateInform(Integer id,String title,String content);
     Integer delInform(Integer id);
     Inform selInform(Integer id);
     List<Inform> selAllInform();

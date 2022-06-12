@@ -21,13 +21,13 @@ public class InformServiceImpl implements InformService {
     }
 
     @Override
-    public Integer updateInform(Integer id, String title, String content,String user) {
-        if(Objects.equals(user, informDao.selInform(id).getPublisher())){
-            return informDao.updateInform(id, title, content);
-        }else {
-            return 0;
-        }
-
+    public Integer updateInform(Integer id, String title, String content) {
+//        if(Objects.equals(user, informDao.selInform(id).getPublisher())){
+//            return informDao.updateInform(id, title, content);
+//        }else {
+//            return 0;
+//        }
+        return informDao.updateInform(id, title, content);
     }
 
     @Override
