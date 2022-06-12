@@ -1,5 +1,6 @@
 package cn.zust.se.service;
 
+import cn.zust.se.eneity.Building;
 import cn.zust.se.eneity.Lack;
 import cn.zust.se.eneity.Lacks;
 import org.apache.ibatis.annotations.Param;
@@ -14,5 +15,7 @@ public interface LackService {
     List<Lack> selLackByUid(String uid);
     List<Lack> selLackByBuilding(Integer buildingid);
     Integer delLack(Integer id);
+    Lack selL(Integer id);
+    Building selB(Integer id);
     List<Lacks> selLacks(String name, Date time1, Date time2, Integer buildingid, String dormitory);
 }

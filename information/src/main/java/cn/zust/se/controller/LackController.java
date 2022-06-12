@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Api("缺寝管理接口")
 @RestController
@@ -69,12 +70,21 @@ public class LackController {
 
     @ApiOperation("删除缺寝记录")
     @DeleteMapping("/delLack")
-    public CommonResult delLack(Integer id){
-        if(lackService.delLack(id) == 1){
+    public CommonResult delLack(Integer id,String user){
+        if(Objects.equals(user, "admin")){
+            lackService.delLack(id);
+            return new CommonResult<>(200,"success");
+        }else if(Objects.equals(lackService.selB(lackService.selL(id).getBuildingid()).getMasterid(), user)){
+            lackService.delLack(id);
             return new CommonResult<>(200,"success");
         }else {
-            return new CommonResult<>(400,"fail");
+            return new CommonResult<>(400,"你没有权限删除此记录");
         }
+//        if(lackService.delLack(id) == 1){
+//            return new CommonResult<>(200,"success");
+//        }else {
+//            return new CommonResult<>(400,"fail");
+//        }
     }
 
     @ApiOperation("联合查询缺寝记录")

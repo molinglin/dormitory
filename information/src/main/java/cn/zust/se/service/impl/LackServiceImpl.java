@@ -1,6 +1,7 @@
 package cn.zust.se.service.impl;
 
 import cn.zust.se.dao.LackDao;
+import cn.zust.se.eneity.Building;
 import cn.zust.se.eneity.Lack;
 import cn.zust.se.eneity.Lacks;
 import cn.zust.se.service.LackService;
@@ -37,6 +38,16 @@ public class LackServiceImpl implements LackService {
     @Override
     public Integer delLack(Integer id) {
         return lackDao.delLack(id);
+    }
+
+    @Override
+    public Lack selL(Integer id) {
+        return lackDao.selL(id);
+    }
+
+    @Override
+    public Building selB(Integer id) {
+        return lackDao.selB(id);
     }
 
     @Override
