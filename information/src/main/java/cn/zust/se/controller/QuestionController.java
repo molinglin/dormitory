@@ -50,12 +50,17 @@ public class QuestionController {
         if(name=="")name=null;
         if(temper=="")temper=null;
         List<Questionnaire> questionnaires=questionService.selQs(uid, sleep, getup, temper, name);
-        Integer total=questionnaires.size();
-        List<Questionnaire> questionnaires1= StartPage.startPage(questionnaires,pageNum,pageSize);
-        if(!questionnaires.isEmpty()){
-            return new CommonResultBeds(200,"success",total,questionnaires1);
-        }else {
+        if(questionnaires==null){
             return new CommonResultBeds(400,"查无此人",null);
+        }else {
+            Integer total=questionnaires.size();
+            List<Questionnaire> questionnaires1= StartPage.startPage(questionnaires,pageNum,pageSize);
+            if(!questionnaires.isEmpty()){
+                return new CommonResultBeds(200,"success",total,questionnaires1);
+            }else {
+                return new CommonResultBeds(400,"查无此人",null);
+            }
         }
+
     }
 }
