@@ -38,7 +38,9 @@ public class InformController {
 
     @ApiOperation("修改通知")
     @PostMapping("/updateInform")
-    public CommonResult updateInform(Integer id,String title,String content,String user){
+    public CommonResult updateInform(@Param("id") Integer id,@Param("title") String title,@Param("content") String content,@Param("user") String user){
+        System.out.println(id);
+        System.out.println(user);
         if(informService.selInform(id)==null || !Objects.equals(informService.selInform(id).getPublisher(), user)){
             return new CommonResult<>(400,"不能修改其他人发布的通知",null);
 //            informService.updateInform(id, title, content,user);
