@@ -224,16 +224,16 @@ public class ApplicationController {
             return new CommonResult(400,"拒绝失败",i);
         }
     }
-    @ApiOperation("查看学生请求")
-    @GetMapping("/findStuA")
-    public CommonResult<List<StuApplication>> findStuApplication(){
-        List<StuApplication> noAccess = service.findNoAccess();
-        if(!noAccess.isEmpty()){
-            return new CommonResult<>(200,"查找成功",noAccess);
-        }else {
-            return new CommonResult<>(400,"查找失败",null);
-        }
-    }
+//    @ApiOperation("查看学生请求")
+//    @GetMapping("/findStuA")
+//    public CommonResult<List<StuApplication>> findStuApplication(){
+//        List<StuApplication> noAccess = service.findNoAccess();
+//        if(!noAccess.isEmpty()){
+//            return new CommonResult<>(200,"查找成功",noAccess);
+//        }else {
+//            return new CommonResult<>(400,"查找失败",null);
+//        }
+//    }
 //    @ApiOperation("学生端同意请求")
 //    @GetMapping("/stuagree/{id}")
 //    public CommonResult StuAgree(@PathVariable("id") Integer id){
