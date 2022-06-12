@@ -3,17 +3,12 @@ package cn.zust.se.controller;
 import cn.zust.se.eneity.*;
 import cn.zust.se.service.ApplicationService;
 import cn.zust.se.service.BedService;
-import cn.zust.se.service.StuApplicationService;
 import cn.zust.se.service.StuService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import io.swagger.models.auth.In;
-import org.apache.commons.lang.ObjectUtils;
-import org.checkerframework.checker.units.qual.A;
-import org.checkerframework.checker.units.qual.C;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
