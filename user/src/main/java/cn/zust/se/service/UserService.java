@@ -10,7 +10,7 @@ public interface UserService {
     User login(String username);
     Integer updateUserPw(String username,String password);
     Integer updateStu(String uid,String phone,String college,String major,String classes);
-    Integer updateMaster(String did,String phone,Integer buildingid);
+    Integer updateMaster(String did,String name,String phone,Integer buildingid);
     Stu selStu(String uid);
     Master selMaster(String did);
     Integer updatePermissions(String buildingid,String did);
