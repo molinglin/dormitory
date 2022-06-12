@@ -23,7 +23,7 @@ spring:
 #      connect-string: localhost:2181
 mybatis:
   mapper-locations:
-    - classpath:mapper/Application.xml
+    - classpath:mapper/**
   type-aliases-package: cn.zust.se.eneity
 pagehelper:
   helper-dialect: mysql

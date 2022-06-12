@@ -3,6 +3,7 @@ package cn.zust.se.controller;
 import cn.zust.se.eneity.*;
 import cn.zust.se.service.ApplicationService;
 import cn.zust.se.service.BedService;
+import cn.zust.se.service.StuApplicationService;
 import cn.zust.se.service.StuService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -28,6 +29,8 @@ public class ApplicationController {
     StuService stuService;
     @Autowired
     BedService bedService;
+    @Autowired
+    StuApplicationService service;
 
     @ApiOperation(value = "分页显示所有请求")
     @GetMapping("/")
@@ -157,6 +160,7 @@ public class ApplicationController {
     @ApiOperation(value = "管理员同意申请")
     @GetMapping("/agree/{id}")
     private CommonResult agree(@PathVariable("id") Integer id){
+        int i=0,j=0;
         Application application = applicationService.selectById(id);
         Stu stu = stuService.getStuByUid(application.getUid()).getData();
         System.out.println(stu);
@@ -166,27 +170,49 @@ public class ApplicationController {
         Integer bednum = stu.getBednum();
         if(application.getType()==0){//换宿申请
             Bed bed = bedService.findBed(String.valueOf(application.getBuildingid()),application.getDormitory(),application.getBednum());
+            System.out.println(bed);
             if(bed==null){
                 return new CommonResult(400,"没有此床位");
             }
             if(bed.getEmpty().equals("N")){
                 Stu data = stuService.getStuByUid(bed.getUid()).getData();//调换对象
+                System.out.println(data);
+                List<Application> applications = applicationService.selectByUidAndNoAccess(data.getUid());
+                if(applications.isEmpty()){
+                    return new CommonResult(400,"对方未发起调换",null);
+                }
+                Application applicationData=applications.get(0);
+                if((!applicationData.getDormitory().equals(stu.getDormitory()))||(!applicationData.getBuildingid().equals(stu.getBuildingid()))||(!applicationData.getBednum().equals(stu.getBednum()))){
+                    return new CommonResult(400,"修改失败",null);
+                }
+                int i1=bedService.update("N",stu.getUid(), String.valueOf(application.getBuildingid()),application.getDormitory(),application.getBednum());
+                int c1 = stuService.update(sid, application.getDormitory(), application.getBuildingid(), application.getBednum()).getCode();
+                int i2=bedService.update("N",data.getUid(), String.valueOf(stu.getBuildingid()),stu.getDormitory(),stu.getBednum());
+                int c2=stuService.update(data.getId(), stu.getDormitory(), stu.getBuildingid(), stu.getBednum()).getCode();
+                if(i1==0||i2==0||c1==400||c2==40){
+                    return new CommonResult(400,"修改失败");
+                }
+                i=applicationService.agree(id);
+                j=applicationService.agree(applicationData.getId());
 //                return new CommonResult(400,"申请的寝室不为空");
-            }
-            bedService.update("Y","null",String.valueOf(buildingid),dormitory,bednum);//学生对应床位置为空
-            CommonResult result = stuService.update(sid, application.getDormitory(), application.getBuildingid(), application.getBednum());
-            Integer n = bedService.update("N", stu.getUid(), String.valueOf(application.getBuildingid()), application.getDormitory(), application.getBednum());
-            if(n==0){
-                return new CommonResult(400,"修改失败");
-            }
-            if(result.getCode()==400){
-                return new CommonResult(400,"修改失败",0);
+            }else {
+                bedService.update("Y","null",String.valueOf(buildingid),dormitory,bednum);//学生对应床位置为空
+                CommonResult result = stuService.update(sid, application.getDormitory(), application.getBuildingid(), application.getBednum());
+                Integer n = bedService.update("N", stu.getUid(), String.valueOf(application.getBuildingid()), application.getDormitory(), application.getBednum());
+                if(n==0){
+                    return new CommonResult(400,"修改失败");
+                }
+                if(result.getCode()==400){
+                    return new CommonResult(400,"修改失败",0);
+                }
+                i=applicationService.agree(id);
             }
         }else {
+            i = applicationService.agree(id);
             bedService.update("Y","null",String.valueOf(buildingid),dormitory,bednum);//学生对应床位置为空
             stuService.update(sid, "null",0,0);
         }
-        int i = applicationService.agree(id);
+
         if(i!=0){
             return new CommonResult(200,"同意成功",i);
         }else {
@@ -203,6 +229,40 @@ public class ApplicationController {
             return new CommonResult(400,"拒绝失败",i);
         }
     }
+    @ApiOperation("查看学生请求")
+    @GetMapping("/findStuA")
+    public CommonResult<List<StuApplication>> findStuApplication(){
+        List<StuApplication> noAccess = service.findNoAccess();
+        if(!noAccess.isEmpty()){
+            return new CommonResult<>(200,"查找成功",noAccess);
+        }else {
+            return new CommonResult<>(400,"查找失败",null);
+        }
+    }
+//    @ApiOperation("学生端同意请求")
+//    @GetMapping("/stuagree/{id}")
+//    public CommonResult StuAgree(@PathVariable("id") Integer id){
+//        StuApplication s = service.findById(id);
+//        Stu stu1 = stuService.getStuByUid(s.getUid1()).getData();
+//        Stu stu2 = stuService.getStuByUid(s.getUid2()).getData();
+//        Application application = applicationService.selectById(s.getApplicationid());
+//        Bed bed1 = bedService.findBed(String.valueOf(stu1.getBuildingid()), stu1.getDormitory(), stu1.getBednum());
+//        Bed bed2=bedService.findBed(String.valueOf(stu2.getBuildingid()),stu2.getDormitory(),stu2.getBednum());
+//        CommonResult update1 = stuService.update(stu1.getId(), stu2.getDormitory(), stu2.getBuildingid(), stu2.getBednum());
+//        CommonResult update2=stuService.update(stu2.getId(), stu1.getDormitory(), stu1.getBuildingid(), stu1.getBednum());
+//        Integer n1 = bedService.update("N", stu1.getUid(), String.valueOf(stu2.getBuildingid()), stu2.getDormitory(), stu2.getBednum());
+//        Integer n2=bedService.update("N",stu2.getUid(), String.valueOf(stu1.getBuildingid()),stu1.getDormitory(),stu1.getBednum());
+//        if((update1.getCode()==400)||(update2.getCode()==400)||n1==0||n2==0){
+//            return new CommonResult(400,"修改失败",null);
+//        }
+//        int agree1 = service.agree(id);
+//        int agree = applicationService.agree(s.getApplicationid());
+//        if(agree1!=0&&agree!=0){
+//            return new CommonResult(200,"修改成功");
+//        }else {
+//            return new CommonResult(400,"修改失败");
+//        }
+//    }
 //    @PostMapping("/allocation")
 //    public CommonResult allocation(){
 //        List<Stu> men = stuService.getMen();

@@ -94,5 +94,10 @@ public class ApplicationServiceimpl implements ApplicationService {
         return applicationDao.upRepair(id,"已完成");
     }
 
+    @Override
+    public List<Application> selectByUidAndNoAccess(String uid) {
+        return applicationDao.selectByUidAndNoAccess(uid,0);
+    }
+
 
 }
