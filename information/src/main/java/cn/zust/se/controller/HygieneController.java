@@ -139,9 +139,13 @@ public class HygieneController {
     @ApiOperation("修改卫生成绩")
     @PutMapping("/updateHy")
     public CommonResult updateHY(Integer result,Integer id){
-        Integer update=hygieneService.updateHygiene(result, id);
-        if(update == 1){
-            return new CommonResult<>(200,"success",null);
-        }else return new CommonResult<>(400,"fail",null);
+        if(result>100 || result<0){
+            return new CommonResult<>(400,"成绩范围有误",null);
+        }else {
+            Integer update=hygieneService.updateHygiene(result, id);
+            if(update == 1){
+                return new CommonResult<>(200,"success",null);
+            }else return new CommonResult<>(400,"fail",null);
+        }
     }
 }
