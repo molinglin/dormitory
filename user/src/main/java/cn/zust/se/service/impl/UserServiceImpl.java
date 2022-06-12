@@ -30,8 +30,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Integer updateMaster(String did, String phone, Integer buildingid) {
-        return userDao.updateMaster(did, phone, buildingid);
+    public Integer updateMaster(String did,String name, String phone, Integer buildingid) {
+        return userDao.updateMaster(did,name, phone, buildingid);
     }
 
     @Override
