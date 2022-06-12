@@ -1,8 +1,11 @@
 package cn.zust.se.controller;
 
 import cn.zust.se.eneity.CommonResult;
+import cn.zust.se.eneity.CommonResultBeds;
 import cn.zust.se.eneity.Question;
+import cn.zust.se.eneity.Questionnaire;
 import cn.zust.se.service.QuestionService;
+import cn.zust.se.util.StartPage;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
@@ -37,6 +40,21 @@ public class QuestionController {
             return new CommonResult<>(200,"success",questionService.selQByName(name));
         }else {
             return new CommonResult<>(400,"查无此人",null);
+        }
+    }
+
+    @ApiOperation("联合查询问卷")
+    @GetMapping("/selQs")
+    public CommonResultBeds selQs(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum, @RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize, String uid, Integer sleep, Integer getup, String temper, String name){
+        if(uid=="")uid=null;
+        if(name=="")name=null;
+        List<Questionnaire> questionnaires=questionService.selQs(uid, sleep, getup, temper, name);
+        Integer total=questionnaires.size();
+        List<Questionnaire> questionnaires1= StartPage.startPage(questionnaires,pageNum,pageSize);
+        if(questionnaires!=null){
+            return new CommonResultBeds(200,"success",total,questionnaires1);
+        }else {
+            return new CommonResultBeds(400,"查无此人",null);
         }
     }
 }

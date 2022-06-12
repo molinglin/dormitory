@@ -14,6 +14,7 @@ import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Api(value = "信息查看接口")
 @RestController
@@ -37,9 +38,13 @@ public class InformController {
 
     @ApiOperation("修改通知")
     @PostMapping("/updateInform")
-    public CommonResult updateInform(Integer id,String title,String content){
-        if(informService.selInform(id) == null){
-            return new CommonResult<>(400,"fail",null);
+    public CommonResult updateInform(@Param("id") Integer id,@Param("title") String title,@Param("content") String content,@Param("user") String user){
+        System.out.println(id);
+        System.out.println(user);
+        if(informService.selInform(id)==null || !Objects.equals(informService.selInform(id).getPublisher(), user)){
+            return new CommonResult<>(400,"不能修改其他人发布的通知",null);
+//            informService.updateInform(id, title, content,user);
+//            return new CommonResult<>(200,"success",null);
         }else {
             informService.updateInform(id, title, content);
             return new CommonResult<>(200,"success",null);
@@ -48,8 +53,8 @@ public class InformController {
 
     @ApiOperation("删除通知")
     @DeleteMapping("/delInform")
-    public CommonResult delInform(Integer id){
-        if(informService.selInform(id)==null){
+    public CommonResult delInform(Integer id,String user){
+        if(informService.selInform(id)==null || !Objects.equals(informService.selInform(id).getPublisher(), user)){
             return new CommonResult(400,"fail");
         }else {
             informService.delInform(id);

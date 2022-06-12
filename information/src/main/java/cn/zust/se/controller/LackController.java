@@ -84,8 +84,8 @@ public class LackController {
         if(dormitory=="")dormitory=null;
         PageHelper.startPage(pageNum,pageSize);
         List<Lacks> lacks=lackService.selLacks(name, time1, time2, buildingid, dormitory);
-        Integer count=lackService.selLacks(name, time1, time2, buildingid, dormitory).size();
-        System.out.println(count);
+//        Integer count=lackService.selLacks(name, time1, time2, buildingid, dormitory).size();
+//        System.out.println(count);
         PageInfo<Lacks> pageInfo=new PageInfo<>(lacks);
         if(lacks.isEmpty()){
             return new CommonResult(400,"fail",null);
