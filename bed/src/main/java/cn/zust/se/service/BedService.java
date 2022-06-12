@@ -17,5 +17,6 @@ public interface BedService {
     List<Bed> selBeds(String buildingid, String dormitory, String bednum, String name, String empty);
     List<Building> selBuildings();
 
+
 //    List<Bed> selBedss(String buildingid, String dormitory, String bednum);
 }
