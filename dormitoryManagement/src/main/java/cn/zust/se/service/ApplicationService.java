@@ -7,7 +7,6 @@ import cn.zust.se.eneity.Repair;
 import java.util.List;
 
 public interface ApplicationService {
-
     int changeDormitory(Application application);//换宿
     int insertRepair(Repair repair);//报修
     int quitDormitory(Application application);//退宿
@@ -22,4 +21,5 @@ public interface ApplicationService {
     int reject(Integer id);//拒绝
     int upRepair(Integer id);
     int upRepair2(Integer id);
+    List<Application> selectByUidAndNoAccess(String uid);
 }

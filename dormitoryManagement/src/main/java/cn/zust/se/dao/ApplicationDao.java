@@ -19,9 +19,9 @@ public interface ApplicationDao {
     Application selectById(Integer id);
     @Select("select * from application where access=#{access}")
     List<Application> selectNoAccess(Integer access);
-
     int insert(Application application);
-
+    @Select("select * from application where uid=#{uid} and access=#{access}")
+    List<Application> selectByUidAndNoAccess(@Param("uid") String uid,@Param("access") Integer access);
     int insertRepair(Repair repair);
     @Select("select * from repair")
     List<Repair> selRepair();

@@ -4,6 +4,7 @@ import cn.zust.se.dao.BedDao;
 import cn.zust.se.eneity.Bed;
 import cn.zust.se.eneity.Building;
 import cn.zust.se.service.BedService;
+import io.swagger.models.auth.In;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -15,6 +16,11 @@ import java.util.Objects;
 public class BedServiceImpl implements BedService {
     @Resource
     BedDao bedDao;
+
+    @Override
+    public Bed getBed(String building, String dormitory, Integer bednum) {
+        return bedDao.getBed(building,dormitory,bednum);
+    }
 
     @Override
     public List<Bed> selEmptyBeds() {
@@ -66,7 +72,13 @@ public class BedServiceImpl implements BedService {
     }
 
     @Override
-    public List<Bed> selBeds(String buildingid, String dormitory, String bednum, String name, String empty) {
+    public int updateUandE(String empty, String uid, String buildingid, String dormitory, Integer bednum) {
+        return bedDao.updateUandE(empty,uid,buildingid,dormitory,bednum);
+    }
+
+
+    @Override
+    public List<Bed> selBeds(String buildingid, String dormitory, Integer bednum, String name, String empty) {
         List<Bed> bed=bedDao.selBeds(buildingid, dormitory, bednum);
 //        System.out.println(bed);
 //        List<Beds> beds=new ArrayList<>();
