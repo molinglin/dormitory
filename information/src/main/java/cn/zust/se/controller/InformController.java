@@ -14,6 +14,7 @@ import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Api(value = "信息查看接口")
 @RestController
@@ -50,8 +51,8 @@ public class InformController {
 
     @ApiOperation("删除通知")
     @DeleteMapping("/delInform")
-    public CommonResult delInform(Integer id){
-        if(informService.selInform(id)==null){
+    public CommonResult delInform(Integer id,String user){
+        if(informService.selInform(id)==null || !Objects.equals(informService.selInform(id).getPublisher(), user)){
             return new CommonResult(400,"fail");
         }else {
             informService.delInform(id);
