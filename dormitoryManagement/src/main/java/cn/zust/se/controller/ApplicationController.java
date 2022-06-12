@@ -24,8 +24,6 @@ public class ApplicationController {
     StuService stuService;
     @Autowired
     BedService bedService;
-    @Autowired
-    StuApplicationService service;
 
     @ApiOperation(value = "分页显示所有请求")
     @GetMapping("/")
