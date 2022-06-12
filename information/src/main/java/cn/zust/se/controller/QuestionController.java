@@ -48,6 +48,7 @@ public class QuestionController {
     public CommonResultBeds selQs(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum, @RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize, String uid, Integer sleep, Integer getup, String temper, String name){
         if(uid=="")uid=null;
         if(name=="")name=null;
+        if(temper=="")temper=null;
         List<Questionnaire> questionnaires=questionService.selQs(uid, sleep, getup, temper, name);
         Integer total=questionnaires.size();
         List<Questionnaire> questionnaires1= StartPage.startPage(questionnaires,pageNum,pageSize);
