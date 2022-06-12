@@ -37,11 +37,13 @@ public class InformController {
 
     @ApiOperation("修改通知")
     @PostMapping("/updateInform")
-    public CommonResult updateInform(Integer id,String title,String content){
-        if(informService.selInform(id) == null){
-            return new CommonResult<>(400,"fail",null);
+    public CommonResult updateInform(Integer id,String title,String content,String user){
+        if(informService.updateInform(id, title, content, user)==0){
+            return new CommonResult<>(400,"不能修改其他人发布的通知",null);
+//            informService.updateInform(id, title, content,user);
+//            return new CommonResult<>(200,"success",null);
         }else {
-            informService.updateInform(id, title, content);
+            informService.updateInform(id, title, content,user);
             return new CommonResult<>(200,"success",null);
         }
     }

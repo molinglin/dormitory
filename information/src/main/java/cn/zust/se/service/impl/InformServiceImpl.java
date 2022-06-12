@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class InformServiceImpl implements InformService {
@@ -20,8 +21,13 @@ public class InformServiceImpl implements InformService {
     }
 
     @Override
-    public Integer updateInform(Integer id, String title, String content) {
-        return informDao.updateInform(id, title, content);
+    public Integer updateInform(Integer id, String title, String content,String user) {
+        if(Objects.equals(user, informDao.selInform(id).getPublisher())){
+            return informDao.updateInform(id, title, content);
+        }else {
+            return 0;
+        }
+
     }
 
     @Override
