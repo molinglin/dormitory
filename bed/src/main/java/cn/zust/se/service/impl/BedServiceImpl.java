@@ -18,6 +18,11 @@ public class BedServiceImpl implements BedService {
     BedDao bedDao;
 
     @Override
+    public Bed getBed(String building, String dormitory, Integer bednum) {
+        return bedDao.getBed(building,dormitory,bednum);
+    }
+
+    @Override
     public List<Bed> selEmptyBeds() {
         return bedDao.selEmptyBeds();
     }
@@ -67,9 +72,10 @@ public class BedServiceImpl implements BedService {
     }
 
     @Override
-    public int updateUandE(String buildingid, String dormitory, Integer bednum) {
-        return bedDao.updateUandE(buildingid,dormitory,bednum);
+    public int updateUandE(String empty, String uid, String buildingid, String dormitory, Integer bednum) {
+        return bedDao.updateUandE(empty,uid,buildingid,dormitory,bednum);
     }
+
 
     @Override
     public List<Bed> selBeds(String buildingid, String dormitory, Integer bednum, String name, String empty) {

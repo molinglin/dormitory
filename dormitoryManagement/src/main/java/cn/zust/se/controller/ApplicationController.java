@@ -154,24 +154,37 @@ public class ApplicationController {
             return new CommonResult(400,"删除失败",i);
         }
     }
-    @ApiOperation(value = "同意申请")
+    @ApiOperation(value = "管理员同意申请")
     @GetMapping("/agree/{id}")
     private CommonResult agree(@PathVariable("id") Integer id){
         Application application = applicationService.selectById(id);
         Stu stu = stuService.getStuByUid(application.getUid()).getData();
         System.out.println(stu);
         Integer sid=stu.getId();
+        String dormitory = stu.getDormitory();
+        Integer buildingid = stu.getBuildingid();
+        Integer bednum = stu.getBednum();
         if(application.getType()==0){//换宿申请
+            Bed bed = bedService.findBed(String.valueOf(application.getBuildingid()),application.getDormitory(),application.getBednum());
+            if(bed==null){
+                return new CommonResult(400,"没有此床位");
+            }
+            if(bed.getEmpty().equals("N")){
+                Stu data = stuService.getStuByUid(bed.getUid()).getData();//调换对象
+//                return new CommonResult(400,"申请的寝室不为空");
+            }
+            bedService.update("Y","null",String.valueOf(buildingid),dormitory,bednum);//学生对应床位置为空
             CommonResult result = stuService.update(sid, application.getDormitory(), application.getBuildingid(), application.getBednum());
+            Integer n = bedService.update("N", stu.getUid(), String.valueOf(application.getBuildingid()), application.getDormitory(), application.getBednum());
+            if(n==0){
+                return new CommonResult(400,"修改失败");
+            }
             if(result.getCode()==400){
                 return new CommonResult(400,"修改失败",0);
             }
         }else {
-            String dormitory = stu.getDormitory();
-            Integer buildingid = stu.getBuildingid();
-            Integer bednum = stu.getBednum();
+            bedService.update("Y","null",String.valueOf(buildingid),dormitory,bednum);//学生对应床位置为空
             stuService.update(sid, "null",0,0);
-            bedService.update(String.valueOf(buildingid),dormitory,bednum);
         }
         int i = applicationService.agree(id);
         if(i!=0){

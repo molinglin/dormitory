@@ -13,6 +13,8 @@ import java.util.List;
 
 @Mapper
 public interface BedDao {
+    @Select("select * from bed where buildingid=#{buildingid} and dormitory=#{dormitory} and bednum=#{bednum}")
+    Bed getBed(@Param("buildingid") String buildingid,@Param("dormitory") String dormitory,@Param("bednum") Integer bednum);
     @Select("select * from stu where uid=#{uid}")
     Stu getStuByUid(String  uid);
     @Select("select * from bed where empty='Y'")
@@ -38,7 +40,7 @@ public interface BedDao {
     @Select("select * from building")
     List<Building> selBuildings();
 //    @Update("update bed set empty=#{empty} and uid=#{uid} where buildingid=#{buildingid} and dormitory=#{dormitory} and bednum=#{bednum}")
-    int updateUandE(@Param("buildingid") String building,@Param("dormitory") String dormitory,@Param("bednum") Integer bednum);
+    int updateUandE(@Param("empty") String empty,@Param("uid") String uid,@Param("buildingid") String building,@Param("dormitory") String dormitory,@Param("bednum") Integer bednum);
 }
 
 //    and (bed.empty=#{empty} or #{empty} is null)

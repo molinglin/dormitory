@@ -162,9 +162,14 @@ public class BedController {
         }
     }
     @PostMapping("/updateUandE")
-    public Integer update(@RequestParam("buildingid") String buildingid, @RequestParam("dormitory") String dormitory,@RequestParam("bednum") Integer bednum){
-        int i = bedService.updateUandE(buildingid, dormitory, bednum);
+    public Integer update(@RequestParam("empty")String empty,@RequestParam("uid")String uid,@RequestParam("buildingid") String buildingid, @RequestParam("dormitory") String dormitory,@RequestParam("bednum") Integer bednum){
+        int i = bedService.updateUandE(empty,uid,buildingid,dormitory,bednum);
         return i;
+    }
+    @GetMapping("/findId")
+    public Bed findBed(@RequestParam("buildingid") String buildingid, @RequestParam("dormitory") String dormitory,@RequestParam("bednum") Integer bednum){
+        Bed bed = bedService.getBed(buildingid,dormitory,bednum);
+        return bed;
     }
 
 //    @ApiOperation("联合查询床位")
