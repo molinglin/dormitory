@@ -176,14 +176,14 @@ public class ApplicationController {
                 }
                 Application applicationData=applications.get(0);
                 if((!applicationData.getDormitory().equals(stu.getDormitory()))||(!applicationData.getBuildingid().equals(stu.getBuildingid()))||(!applicationData.getBednum().equals(stu.getBednum()))){
-                    return new CommonResult(400,"修改失败",null);
+                    return new CommonResult(400,"同意失败",null);
                 }
                 int i1=bedService.update("N",stu.getUid(), String.valueOf(application.getBuildingid()),application.getDormitory(),application.getBednum());
                 int c1 = stuService.update(sid, application.getDormitory(), application.getBuildingid(), application.getBednum()).getCode();
                 int i2=bedService.update("N",data.getUid(), String.valueOf(stu.getBuildingid()),stu.getDormitory(),stu.getBednum());
                 int c2=stuService.update(data.getId(), stu.getDormitory(), stu.getBuildingid(), stu.getBednum()).getCode();
                 if(i1==0||i2==0||c1==400||c2==40){
-                    return new CommonResult(400,"修改失败");
+                    return new CommonResult(400,"同意失败");
                 }
                 i=applicationService.agree(id);
                 j=applicationService.agree(applicationData.getId());
