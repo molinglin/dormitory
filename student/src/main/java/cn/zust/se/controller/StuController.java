@@ -164,7 +164,7 @@ public class StuController {
     }
     @ApiOperation(value="修改寝室信息",notes="修改寝室")
     @PostMapping(value = "/students/update")
-    public CommonResult update(@RequestParam("id") Integer id,@RequestParam("dormitory") String dormitory,@RequestParam("buildingid") Integer buildingid,@RequestParam("bednum") Integer bednum){
+    public CommonResult update(@RequestParam("id") Integer id,@RequestParam(value = "dormitory",required = false) String dormitory,@RequestParam(value = "buildingid",required = false) Integer buildingid,@RequestParam(value = "bednum",required = false) Integer bednum){
         int i = stuService.updateDormitory(id, dormitory);
         int j = stuService.updateBuild(id,buildingid);
         int k = stuService.updateBed(id, bednum);

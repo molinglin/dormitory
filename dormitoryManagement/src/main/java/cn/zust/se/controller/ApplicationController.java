@@ -195,7 +195,7 @@ public class ApplicationController {
 //                return new CommonResult(400,"申请的寝室不为空");
             }else {
                 System.out.println("进入此循环");
-                bedService.update("Y","null",String.valueOf(buildingid),dormitory,bednum);//学生对应床位置为空
+                bedService.update("Y",null,String.valueOf(buildingid),dormitory,bednum);//学生对应床位置为空
                 CommonResult result = stuService.update(sid, application.getDormitory(), application.getBuildingid(), application.getBednum());
                 Integer n = bedService.update("N", stu.getUid(), String.valueOf(application.getBuildingid()), application.getDormitory(), application.getBednum());
                 if(n==0){
@@ -211,8 +211,8 @@ public class ApplicationController {
             }
         }else {
             i = applicationService.agree(id);
-            bedService.update("Y","null",String.valueOf(buildingid),dormitory,bednum);//学生对应床位置为空
-            stuService.update(sid, "null",0,0);
+            bedService.update("Y",null,String.valueOf(buildingid),dormitory,bednum);//学生对应床位置为空
+            stuService.update(sid, null,null,null);
         }
 
         if(i!=0){

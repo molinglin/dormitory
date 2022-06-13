@@ -162,7 +162,7 @@ public class BedController {
         }
     }
     @PostMapping("/updateUandE")
-    public Integer update(@RequestParam("empty")String empty,@RequestParam("uid")String uid,@RequestParam("buildingid") String buildingid, @RequestParam("dormitory") String dormitory,@RequestParam("bednum") Integer bednum){
+    public Integer update(@RequestParam("empty")String empty,@RequestParam(value = "uid",required = false)String uid,@RequestParam(value = "buildingid",required = false) String buildingid, @RequestParam(value = "dormitory",required = false) String dormitory,@RequestParam(value = "bednum",required = false) Integer bednum){
         int i = bedService.updateUandE(empty,uid,buildingid,dormitory,bednum);
         return i;
     }

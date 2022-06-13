@@ -18,7 +18,7 @@ public interface StuService {
     @GetMapping("/students/uid/{uid}")
     public CommonResult<Stu> getStuByUid(@ApiParam("uid") @PathVariable("uid") String uid);
     @PostMapping(value = "/students/update")
-    public CommonResult update(@RequestParam("id") Integer id,@RequestParam("dormitory") String dormitory, @RequestParam("buildingid") Integer buildingid, @RequestParam("bednum") Integer bednum);
+    public CommonResult update(@RequestParam("id") Integer id,@RequestParam(value = "dormitory",required = false) String dormitory,@RequestParam(value = "buildingid",required = false) Integer buildingid,@RequestParam(value = "bednum",required = false) Integer bednum);
     @GetMapping("/students/man")
     public List<Stu> getMen();
     @GetMapping("/students/women")
