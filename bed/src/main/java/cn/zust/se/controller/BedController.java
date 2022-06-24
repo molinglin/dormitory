@@ -25,18 +25,7 @@ public class BedController {
     @Resource
     BedService bedService;
 
-    @ApiOperation("查找所有空床位")
-    @GetMapping("/selE")
-    public CommonResult selE(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize){
-        PageHelper.startPage(pageNum,pageSize);
-        List<Bed> beds=bedService.selEmptyBeds();
-        PageInfo<Bed> pageInfo=new PageInfo<>(beds);
-        if(beds.size()!=0){
-            return new CommonResult(200,"success",pageInfo.getList());
-        }else {
-            return new CommonResult (400,"fail",null);
-        }
-    }
+
 
     @ApiOperation("按楼宇查找空床位")
     @GetMapping("/selEByBuild")

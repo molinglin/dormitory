@@ -14,9 +14,11 @@ import java.util.List;
 @Mapper
 @Repository
 public interface DistributionDao {
-    @Select("select stu.uid,stu.gender,stu.name,stu.college,stu.major,stu.classes,questionnaire.sleep,questionnaire.getup,questionnaire.temper from stu,questionnaire " +
+    @Select("select stu.uid,stu.gender,stu.name,stu.college,stu.major,stu.classes," +
+            "questionnaire.sleep,questionnaire.getup,questionnaire.temper from stu,questionnaire " +
             "where stu.status=0 and stu.uid=questionnaire.uid and stu.gender='男' " +
-            "order by stu.college asc,stu.major asc,questionnaire.sleep asc,questionnaire.getup asc,stu.classes,questionnaire.temper")
+            "order by stu.college asc,stu.major asc,questionnaire.sleep asc," +
+            "questionnaire.getup asc,stu.classes,questionnaire.temper")
     List<Distribution> selAllBD();
     @Select("select stu.uid,stu.gender,stu.name,stu.college,stu.major,stu.classes,questionnaire.sleep,questionnaire.getup,questionnaire.temper from stu,questionnaire " +
             "where stu.status=0 and stu.uid=questionnaire.uid and stu.gender='女' " +
