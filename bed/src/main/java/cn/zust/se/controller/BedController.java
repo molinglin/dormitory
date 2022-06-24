@@ -27,18 +27,18 @@ public class BedController {
 
 
 
-    @ApiOperation("按楼宇查找空床位")
-    @GetMapping("/selEByBuild")
-    public CommonResult selEByBuild(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize,Integer buildingid){
-        PageHelper.startPage(pageNum,pageSize);
-        List<Bed> beds=bedService.selEmptyBedsByBuilding(buildingid);
-        PageInfo<Bed> pageInfo=new PageInfo<>(beds);
-        if(beds.size()!=0){
-            return new CommonResult(200,"success",pageInfo.getList());
-        }else {
-            return new CommonResult (400,"fail",null);
-        }
-    }
+//    @ApiOperation("按楼宇查找空床位")
+//    @GetMapping("/selEByBuild")
+//    public CommonResult selEByBuild(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,@RequestParam(defaultValue = "5",value = "pageSize")Integer pageSize,Integer buildingid){
+//        PageHelper.startPage(pageNum,pageSize);
+//        List<Bed> beds=bedService.selEmptyBedsByBuilding(buildingid);
+//        PageInfo<Bed> pageInfo=new PageInfo<>(beds);
+//        if(beds.size()!=0){
+//            return new CommonResult(200,"success",pageInfo.getList());
+//        }else {
+//            return new CommonResult (400,"fail",null);
+//        }
+//    }
 
     @ApiOperation("按楼层查找空床位")
     @GetMapping("/selEByFloor")
